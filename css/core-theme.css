@@ -61,6 +61,10 @@
 
 /* Accordion */
 .accordion {
+    --bs-accordion-color: var(--jjjei-primary-color);
+    --bs-accordion-btn-color: var(--jjjei-primary-color);
+    --bs-accordion-bg: transparent;
+    --bs-accordion-border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
     --bs-accordion-active-color: var(--jjjei-primary-color);
     --bs-accordion-active-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
     --bs-accordion-btn-focus-border-color: var(--jjjei-primary-color);
