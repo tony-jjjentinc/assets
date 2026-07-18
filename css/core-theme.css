@@ -1,4 +1,5 @@
 /* core-theme.css */
+
 /* Button Overrides */
 .btn-primary {
     --bs-btn-bg: var(--jjjei-primary-color);
@@ -22,8 +23,6 @@
     --bs-btn-active-border-color: var(--jjjei-primary-color);
     --bs-btn-disabled-color: var(--jjjei-primary-color);
     --bs-btn-disabled-border-color: var(--jjjei-primary-color);
-    --bs-btn-hover-color: var(--jjjei-text-color);
-    --bs-btn-active-color: var(--jjjei-text-color);
 }
 
 /* Background Utilities */
@@ -43,12 +42,6 @@
     color: var(--jjjei-text-color) !important;
 }
 
-/* Forms */
-.form-control:focus, .form-select:focus {
-    border-color: var(--jjjei-primary-color) !important;
-    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent) !important;
-}
-
 /* List Groups */
 .list-group-item.active {
     background-color: var(--jjjei-primary-color) !important;
@@ -57,30 +50,24 @@
 }
 
 /* Pagination */
-.page-item.active .page-link {
-    background-color: var(--jjjei-primary-color) !important;
-    border-color: var(--jjjei-primary-color) !important;
-    color: var(--jjjei-text-color) !important;
-}
-.page-link {
-    color: var(--jjjei-primary-color);
+.pagination {
+    --bs-pagination-active-bg: var(--jjjei-primary-color);
+    --bs-pagination-active-border-color: var(--jjjei-primary-color);
+    --bs-pagination-active-color: var(--jjjei-text-color);
+    --bs-pagination-color: var(--jjjei-primary-color);
+    --bs-pagination-hover-color: var(--jjjei-hover-color);
+    --bs-pagination-focus-color: var(--jjjei-hover-color);
 }
 
-/* Accordions */
+/* Accordion */
+.accordion {
+    --bs-accordion-active-color: var(--jjjei-primary-color);
+    --bs-accordion-active-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
+    --bs-accordion-btn-focus-border-color: var(--jjjei-primary-color);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent);
+}
 .accordion-button:not(.collapsed) {
-    background-color: color-mix(in srgb, var(--jjjei-primary-color) 15%, transparent) !important;
     color: var(--jjjei-primary-color) !important;
-    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent) !important;
-}
-.accordion-button:focus {
-    border-color: var(--jjjei-primary-color) !important;
-    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent) !important;
-}
-
-/* Tables */
-.table-primary {
-    --bs-table-bg: color-mix(in srgb, var(--jjjei-primary-color) 15%, transparent);
-    --bs-table-striped-bg: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
-    --bs-table-border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
-    color: inherit;
+    background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent) !important;
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
 }

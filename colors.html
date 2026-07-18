@@ -1,541 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department Theme Palettes (Light & Dark Mode)</title>
-<style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #e5e7eb; color: #333; }
-    h1 { text-align: center; padding: 30px 20px 10px; margin: 0; background: #fff; color: #111827; }
-    p.desc { text-align: center; margin: 0; background: #fff; color: #6b7280; border-bottom: 1px solid #d1d5db; }
-    
-    .dept-container { margin: 40px auto; width: 90%; max-width: 1400px; border-radius: 0px; }
-    
-    .base-header { padding: 25px 30px; text-align: left; display: flex; justify-content: space-between; align-items: center; }
-    .base-title { font-size: 1.8em; font-weight: 800; letter-spacing: 1px; }
-    .base-hex { font-family: monospace; font-size: 1.2em; opacity: 0.9; padding: 4px 12px; border-radius: 16px; }
-    
-    .theme-split { display: flex; width: 100%;  background: #fff; box-shadow: 10px 10px 12px -2px rgba(0,0,0,0.3); border-radius: 16px; overflow: hidden; }
-    .theme-section { flex: 1; padding: 30px; display: flex; flex-direction: column; gap: 8px; }
-    
-    .light-theme-bg { background-color: #F9FAFB; border-right: 1px solid #e5e7eb; }
-    .dark-theme-bg { background-color: #111827; }
-    
-    .theme-title { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; }
-    .light-theme-bg .theme-title { color: #374151; }
-    .dark-theme-bg .theme-title { color: #E5E7EB; }
-    
-    .color-row { 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between; 
-        padding: 15px 25px; 
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    
-    .color-hex { font-family: monospace; font-weight: bold; font-size: 1.1em; }
-    .sample-text { font-size: 1.1em; font-weight: 500; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Theme Palettes (Light & Dark Mode)</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #1f2937;
+        }
 
-    @media (max-width: 900px) {
-        .theme-split { flex-direction: column; }
-        .light-theme-bg { border-right: none; border-bottom: 1px solid #e5e7eb; }
-    }
+        .main-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-    .main-nav {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        display: flex;
-        justify-content: center;
-        padding: 15px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    .main-nav .nav-links {
-        display: flex;
-        gap: 20px;
-    }
-    .main-nav .nav-link {
-        text-decoration: none;
-        color: #4B5563;
-        font-weight: 600;
-        padding: 8px 16px;
-        border-radius: 8px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .main-nav .nav-link:hover {
-        background: rgba(0,0,0,0.05);
-        color: #111827;
-    }
-    .main-nav .nav-link.active {
-        color: #111827;
-        background: #ffffff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-</style>
+        .main-nav .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav .nav-link {
+            text-decoration: none;
+            color: #4B5563;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-nav .nav-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #111827;
+        }
+
+        .main-nav .nav-link.active {
+            color: #111827;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-section {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #111827;
+        }
+
+        .header-section h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        .dept-container {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .base-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .base-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #111827;
+            text-transform: uppercase;
+        }
+
+        .base-hex {
+            font-family: 'Inter', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .theme-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .theme-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .light-theme-bg {
+            background-color: #f9fafb;
+            border: 1px dashed #d1d5db;
+        }
+
+        .dark-theme-bg {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+        }
+
+        .theme-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .light-theme-bg .theme-title {
+            color: #6b7280;
+        }
+
+        .dark-theme-bg .theme-title {
+            color: #9ca3af;
+        }
+
+        .color-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .sample-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+    </style>
 </head>
-<body style="margin: 0; padding: 0;">
+
+<body>
     <nav class="main-nav">
         <div class="nav-links">
             <a href="index.html" class="nav-link">Components</a>
             <a href="colors.html" class="nav-link active">Color Visualizer</a>
         </div>
     </nav>
-    <h1 style="padding: 20px 20px 30px; margin: 0; background: #fff; color: #111827; text-align: center;">JJJEI - Departmental & System Colors</h1>
 
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">GMO</span>
-            <span class="base-hex" style="background-color: #008000; color: #ffffff;">#008000</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #004d00; color: #ffffff;">
-                    <span class="color-hex">#004D00</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #006400; color: #ffffff;">
-                    <span class="color-hex">#006400</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #228B22; color: #ffffff;">
-                    <span class="color-hex">#228B22</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #2E8B57; color: #ffffff;">
-                    <span class="color-hex">#2E8B57</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #32CD32; color: #000000;">
-                    <span class="color-hex">#32CD32</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #90EE90; color: #000000;">
-                    <span class="color-hex">#90EE90</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #98FB98; color: #000000;">
-                    <span class="color-hex">#98FB98</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #00FF7F; color: #000000;">
-                    <span class="color-hex">#00FF7F</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Admin</span>
-            <span class="base-hex" style="background-color: #FFD700; color: #000000;">#FFD700</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #B8860B; color: #ffffff;">
-                    <span class="color-hex">#B8860B</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #DAA520; color: #000000;">
-                    <span class="color-hex">#DAA520</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #D2691E; color: #ffffff;">
-                    <span class="color-hex">#D2691E</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #CD853F; color: #000000;">
-                    <span class="color-hex">#CD853F</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #FFD700; color: #000000;">
-                    <span class="color-hex">#FFD700</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFE4B5; color: #000000;">
-                    <span class="color-hex">#FFE4B5</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #F0E68C; color: #000000;">
-                    <span class="color-hex">#F0E68C</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFFACD; color: #000000;">
-                    <span class="color-hex">#FFFACD</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Facilities</span>
-            <span class="base-hex" style="background-color: #0000FF; color: #ffffff;">#0000FF</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #000080; color: #ffffff;">
-                    <span class="color-hex">#000080</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #0000CD; color: #ffffff;">
-                    <span class="color-hex">#0000CD</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #4169E1; color: #ffffff;">
-                    <span class="color-hex">#4169E1</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #4682B4; color: #ffffff;">
-                    <span class="color-hex">#4682B4</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #1E90FF; color: #ffffff;">
-                    <span class="color-hex">#1E90FF</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #00BFFF; color: #000000;">
-                    <span class="color-hex">#00BFFF</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #87CEEB; color: #000000;">
-                    <span class="color-hex">#87CEEB</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #B0E0E6; color: #000000;">
-                    <span class="color-hex">#B0E0E6</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Leasing</span>
-            <span class="base-hex" style="background-color: #800000; color: #ffffff;">#800000</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #5c0000; color: #ffffff;">
-                    <span class="color-hex">#5C0000</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #800000; color: #ffffff;">
-                    <span class="color-hex">#800000</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #8B0000; color: #ffffff;">
-                    <span class="color-hex">#8B0000</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #B22222; color: #ffffff;">
-                    <span class="color-hex">#B22222</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #CD5C5C; color: #ffffff;">
-                    <span class="color-hex">#CD5C5C</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #F08080; color: #000000;">
-                    <span class="color-hex">#F08080</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FA8072; color: #000000;">
-                    <span class="color-hex">#FA8072</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFB6C1; color: #000000;">
-                    <span class="color-hex">#FFB6C1</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">HR</span>
-            <span class="base-hex" style="background-color: #800080; color: #ffffff;">#800080</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #4B0082; color: #ffffff;">
-                    <span class="color-hex">#4B0082</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #6a0dad; color: #ffffff;">
-                    <span class="color-hex">#6A0DAD</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #800080; color: #ffffff;">
-                    <span class="color-hex">#800080</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #8B008B; color: #ffffff;">
-                    <span class="color-hex">#8B008B</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #BA55D3; color: #ffffff;">
-                    <span class="color-hex">#BA55D3</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #EE82EE; color: #000000;">
-                    <span class="color-hex">#EE82EE</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #DDA0DD; color: #000000;">
-                    <span class="color-hex">#DDA0DD</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #D8BFD8; color: #000000;">
-                    <span class="color-hex">#D8BFD8</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Procurement and Inventory</span>
-            <span class="base-hex" style="background-color: #C08081; color: #000000;">#C08081</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #8A3638; color: #ffffff;">
-                    <span class="color-hex">#8A3638</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #9C4E50; color: #ffffff;">
-                    <span class="color-hex">#9C4E50</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #AD6668; color: #ffffff;">
-                    <span class="color-hex">#AD6668</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #C08081; color: #000000;">
-                    <span class="color-hex">#C08081</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #D1999A; color: #000000;">
-                    <span class="color-hex">#D1999A</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #E2B3B4; color: #000000;">
-                    <span class="color-hex">#E2B3B4</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #F2CDCE; color: #000000;">
-                    <span class="color-hex">#F2CDCE</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFE8E8; color: #000000;">
-                    <span class="color-hex">#FFE8E8</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Controller</span>
-            <span class="base-hex" style="background-color: #008080; color: #ffffff;">#008080</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #004C4C; color: #ffffff;">
-                    <span class="color-hex">#004C4C</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #006666; color: #ffffff;">
-                    <span class="color-hex">#006666</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #008080; color: #ffffff;">
-                    <span class="color-hex">#008080</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #20B2AA; color: #ffffff;">
-                    <span class="color-hex">#20B2AA</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #40E0D0; color: #000000;">
-                    <span class="color-hex">#40E0D0</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #48D1CC; color: #000000;">
-                    <span class="color-hex">#48D1CC</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #7FFFD4; color: #000000;">
-                    <span class="color-hex">#7FFFD4</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #AFEEEE; color: #000000;">
-                    <span class="color-hex">#AFEEEE</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">Treasury</span>
-            <span class="base-hex" style="background-color: #F28500; color: #000000;">#F28500</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="color-row" style="background-color: #A65B00; color: #ffffff;">
-                    <span class="color-hex">#A65B00</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #CC7000; color: #ffffff;">
-                    <span class="color-hex">#CC7000</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #E67E22; color: #000000;">
-                    <span class="color-hex">#E67E22</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #F28500; color: #000000;">
-                    <span class="color-hex">#F28500</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="color-row" style="background-color: #FF9F33; color: #000000;">
-                    <span class="color-hex">#FF9F33</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFB866; color: #000000;">
-                    <span class="color-hex">#FFB866</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFD199; color: #000000;">
-                    <span class="color-hex">#FFD199</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFEACC; color: #000000;">
-                    <span class="color-hex">#FFEACC</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-            </div>
-        </div>
+    <div class="header-section">
+        <h1>Departmental & System Colors</h1>
+        <p style="opacity: 0.7; font-weight: 500;">Complete hex-code reference for all UI themes.</p>
     </div>
 
-    <div class="dept-container">
-        <div class="base-header">
-            <span class="base-title">System & Utility Colors</span>
-            <span class="base-hex" style="background-color: #4B5563; color: #ffffff;">8 COLORS</span>
-        </div>
-        <div class="theme-split">
-            <!-- Light Theme UI Section -->
-            <div class="theme-section light-theme-bg">
-                <div class="theme-title">For Light Mode UIs</div>
+    <div style="padding: 0px 10px;">
 
-                <div class="color-row" style="background-color: #059669; color: #ffffff;">
-                    <span class="color-hex">Success (#059669)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">GMO</span>
+                <span class="base-hex" style="background-color: #008000; color: #ffffff;">#008000</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #004d00; color: #ffffff;">
+                        <span class="color-hex">#004D00</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #006400; color: #ffffff;">
+                        <span class="color-hex">#006400</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #228B22; color: #ffffff;">
+                        <span class="color-hex">#228B22</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #2E8B57; color: #ffffff;">
+                        <span class="color-hex">#2E8B57</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
                 </div>
-                <div class="color-row" style="background-color: #DC2626; color: #ffffff;">
-                    <span class="color-hex">Danger (#DC2626)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #2563EB; color: #ffffff;">
-                    <span class="color-hex">Info (#2563EB)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #D97706; color: #ffffff;">
-                    <span class="color-hex">Warning (#D97706)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #F3F4F6; color: #000000;">
-                    <span class="color-hex">Light (#F3F4F6)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #1F2937; color: #ffffff;">
-                    <span class="color-hex">Dark (#1F2937)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFFFFF; color: #000000;">
-                    <span class="color-hex">White (#FFFFFF)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #000000; color: #ffffff;">
-                    <span class="color-hex">Black (#000000)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #32CD32; color: #000000;">
+                        <span class="color-hex">#32CD32</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #90EE90; color: #000000;">
+                        <span class="color-hex">#90EE90</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #98FB98; color: #000000;">
+                        <span class="color-hex">#98FB98</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #00FF7F; color: #000000;">
+                        <span class="color-hex">#00FF7F</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
                 </div>
             </div>
-            <!-- Dark Theme UI Section -->
-            <div class="theme-section dark-theme-bg">
-                <div class="theme-title">For Dark Mode UIs</div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Admin</span>
+                <span class="base-hex" style="background-color: #FFD700; color: #000000;">#FFD700</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #B8860B; color: #ffffff;">
+                        <span class="color-hex">#B8860B</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #DAA520; color: #000000;">
+                        <span class="color-hex">#DAA520</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #D2691E; color: #ffffff;">
+                        <span class="color-hex">#D2691E</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #CD853F; color: #000000;">
+                        <span class="color-hex">#CD853F</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #FFD700; color: #000000;">
+                        <span class="color-hex">#FFD700</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFE4B5; color: #000000;">
+                        <span class="color-hex">#FFE4B5</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F0E68C; color: #000000;">
+                        <span class="color-hex">#F0E68C</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFFACD; color: #000000;">
+                        <span class="color-hex">#FFFACD</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Facilities</span>
+                <span class="base-hex" style="background-color: #0000FF; color: #ffffff;">#0000FF</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #000080; color: #ffffff;">
+                        <span class="color-hex">#000080</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #0000CD; color: #ffffff;">
+                        <span class="color-hex">#0000CD</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #4169E1; color: #ffffff;">
+                        <span class="color-hex">#4169E1</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #4682B4; color: #ffffff;">
+                        <span class="color-hex">#4682B4</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #1E90FF; color: #ffffff;">
+                        <span class="color-hex">#1E90FF</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #00BFFF; color: #000000;">
+                        <span class="color-hex">#00BFFF</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #87CEEB; color: #000000;">
+                        <span class="color-hex">#87CEEB</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #B0E0E6; color: #000000;">
+                        <span class="color-hex">#B0E0E6</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Leasing</span>
+                <span class="base-hex" style="background-color: #800000; color: #ffffff;">#800000</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #5c0000; color: #ffffff;">
+                        <span class="color-hex">#5C0000</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #800000; color: #ffffff;">
+                        <span class="color-hex">#800000</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #8B0000; color: #ffffff;">
+                        <span class="color-hex">#8B0000</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #B22222; color: #ffffff;">
+                        <span class="color-hex">#B22222</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #CD5C5C; color: #ffffff;">
+                        <span class="color-hex">#CD5C5C</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F08080; color: #000000;">
+                        <span class="color-hex">#F08080</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FA8072; color: #000000;">
+                        <span class="color-hex">#FA8072</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFB6C1; color: #000000;">
+                        <span class="color-hex">#FFB6C1</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">HR</span>
+                <span class="base-hex" style="background-color: #800080; color: #ffffff;">#800080</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #4B0082; color: #ffffff;">
+                        <span class="color-hex">#4B0082</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #6a0dad; color: #ffffff;">
+                        <span class="color-hex">#6A0DAD</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #800080; color: #ffffff;">
+                        <span class="color-hex">#800080</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #8B008B; color: #ffffff;">
+                        <span class="color-hex">#8B008B</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #BA55D3; color: #ffffff;">
+                        <span class="color-hex">#BA55D3</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #EE82EE; color: #000000;">
+                        <span class="color-hex">#EE82EE</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #DDA0DD; color: #000000;">
+                        <span class="color-hex">#DDA0DD</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #D8BFD8; color: #000000;">
+                        <span class="color-hex">#D8BFD8</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Procurement and Inventory</span>
+                <span class="base-hex" style="background-color: #C08081; color: #000000;">#C08081</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #8A3638; color: #ffffff;">
+                        <span class="color-hex">#8A3638</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #9C4E50; color: #ffffff;">
+                        <span class="color-hex">#9C4E50</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #AD6668; color: #ffffff;">
+                        <span class="color-hex">#AD6668</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #C08081; color: #000000;">
+                        <span class="color-hex">#C08081</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #D1999A; color: #000000;">
+                        <span class="color-hex">#D1999A</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #E2B3B4; color: #000000;">
+                        <span class="color-hex">#E2B3B4</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F2CDCE; color: #000000;">
+                        <span class="color-hex">#F2CDCE</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFE8E8; color: #000000;">
+                        <span class="color-hex">#FFE8E8</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Controller</span>
+                <span class="base-hex" style="background-color: #008080; color: #ffffff;">#008080</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #004C4C; color: #ffffff;">
+                        <span class="color-hex">#004C4C</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #006666; color: #ffffff;">
+                        <span class="color-hex">#006666</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #008080; color: #ffffff;">
+                        <span class="color-hex">#008080</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #20B2AA; color: #ffffff;">
+                        <span class="color-hex">#20B2AA</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #40E0D0; color: #000000;">
+                        <span class="color-hex">#40E0D0</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #48D1CC; color: #000000;">
+                        <span class="color-hex">#48D1CC</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #7FFFD4; color: #000000;">
+                        <span class="color-hex">#7FFFD4</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #AFEEEE; color: #000000;">
+                        <span class="color-hex">#AFEEEE</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">Treasury</span>
+                <span class="base-hex" style="background-color: #F28500; color: #000000;">#F28500</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="color-row" style="background-color: #A65B00; color: #ffffff;">
+                        <span class="color-hex">#A65B00</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #CC7000; color: #ffffff;">
+                        <span class="color-hex">#CC7000</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #E67E22; color: #000000;">
+                        <span class="color-hex">#E67E22</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F28500; color: #000000;">
+                        <span class="color-hex">#F28500</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="color-row" style="background-color: #FF9F33; color: #000000;">
+                        <span class="color-hex">#FF9F33</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFB866; color: #000000;">
+                        <span class="color-hex">#FFB866</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFD199; color: #000000;">
+                        <span class="color-hex">#FFD199</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFEACC; color: #000000;">
+                        <span class="color-hex">#FFEACC</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div class="color-row" style="background-color: #34D399; color: #000000;">
-                    <span class="color-hex">Success (#34D399)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
+        <div class="dept-container">
+            <div class="base-header">
+                <span class="base-title">System & Utility Colors</span>
+                <span class="base-hex" style="background-color: #4B5563; color: #ffffff;">8 COLORS</span>
+            </div>
+            <div class="theme-split">
+                <!-- Light Theme UI Section -->
+                <div class="theme-section light-theme-bg">
+                    <div class="theme-title">For Light Mode UIs</div>
+
+                    <div class="color-row" style="background-color: #059669; color: #ffffff;">
+                        <span class="color-hex">Success (#059669)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #DC2626; color: #ffffff;">
+                        <span class="color-hex">Danger (#DC2626)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #2563EB; color: #ffffff;">
+                        <span class="color-hex">Info (#2563EB)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #D97706; color: #ffffff;">
+                        <span class="color-hex">Warning (#D97706)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F3F4F6; color: #000000;">
+                        <span class="color-hex">Light (#F3F4F6)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #1F2937; color: #ffffff;">
+                        <span class="color-hex">Dark (#1F2937)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFFFFF; color: #000000;">
+                        <span class="color-hex">White (#FFFFFF)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #000000; color: #ffffff;">
+                        <span class="color-hex">Black (#000000)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
                 </div>
-                <div class="color-row" style="background-color: #F87171; color: #000000;">
-                    <span class="color-hex">Danger (#F87171)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                <!-- Dark Theme UI Section -->
+                <div class="theme-section dark-theme-bg">
+                    <div class="theme-title">For Dark Mode UIs</div>
+
+                    <div class="color-row" style="background-color: #34D399; color: #000000;">
+                        <span class="color-hex">Success (#34D399)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #F87171; color: #000000;">
+                        <span class="color-hex">Danger (#F87171)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #60A5FA; color: #000000;">
+                        <span class="color-hex">Info (#60A5FA)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FBBF24; color: #000000;">
+                        <span class="color-hex">Warning (#FBBF24)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #E5E7EB; color: #000000;">
+                        <span class="color-hex">Light (#E5E7EB)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #9CA3AF; color: #000000;">
+                        <span class="color-hex">Dark (#9CA3AF)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #FFFFFF; color: #000000;">
+                        <span class="color-hex">White (#FFFFFF)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
+                    <div class="color-row" style="background-color: #000000; color: #ffffff;">
+                        <span class="color-hex">Black (#000000)</span>
+                        <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                    </div>
                 </div>
-                <div class="color-row" style="background-color: #60A5FA; color: #000000;">
-                    <span class="color-hex">Info (#60A5FA)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FBBF24; color: #000000;">
-                    <span class="color-hex">Warning (#FBBF24)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #E5E7EB; color: #000000;">
-                    <span class="color-hex">Light (#E5E7EB)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #9CA3AF; color: #000000;">
-                    <span class="color-hex">Dark (#9CA3AF)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #FFFFFF; color: #000000;">
-                    <span class="color-hex">White (#FFFFFF)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
-                <div class="color-row" style="background-color: #000000; color: #ffffff;">
-                    <span class="color-hex">Black (#000000)</span>
-                    <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                </div>
+
             </div>
         </div>
     </div>
 </body>
+
 </html>

@@ -102,7 +102,7 @@
             max-width: 1200px;
             margin: 0px auto;
             margin-bottom: 16px;
-            background: var(--jjjei-text-color);
+            background: var(--jjjei-card-bg, var(--jjjei-text-color));
             color: var(--jjjei-primary-color);
             border-radius: 8px;
             padding: 20px;
@@ -211,6 +211,13 @@
 
         /* Tables */
         .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--jjjei-primary-color);
+            --bs-table-striped-bg: color-mix(in srgb, var(--jjjei-primary-color) 5%, transparent);
+            --bs-table-striped-color: var(--jjjei-primary-color);
+            --bs-table-hover-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
+            --bs-table-hover-color: var(--jjjei-primary-color);
+            border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
             color: var(--jjjei-primary-color);
         }
 
