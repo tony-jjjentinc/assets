@@ -34,7 +34,7 @@ def generate_css_content(primary, text, theme):
     if theme == "light":
         card_bg = '#F3F4F6'
     else:
-        card_bg = '#1F2937'
+        card_bg = '#1f1f1f'
         
     return f""":root {{
     --jjjei-primary-color: {primary};

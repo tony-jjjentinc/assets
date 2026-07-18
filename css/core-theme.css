@@ -141,21 +141,20 @@
 }
 
 /* Themed Card logic */
-.themed-card {
-    border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+.card {
+    --bs-card-bg: transparent;
+    --bs-card-border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+    --bs-card-color: var(--jjjei-primary-color);
+    --bs-card-cap-bg: var(--jjjei-primary-color);
+    --bs-card-cap-color: var(--jjjei-text-color);
+    
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     overflow: hidden;
-    background: transparent;
 }
-.themed-card .card-header {
+.card-header {
     font-weight: 700;
     border-bottom: none;
-    background-color: var(--jjjei-primary-color);
-    color: var(--jjjei-text-color);
-}
-.themed-card .card-body {
-    color: var(--jjjei-primary-color);
 }
 .accordion-button:not(.collapsed) {
     color: var(--jjjei-primary-color) !important;
