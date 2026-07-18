@@ -70,6 +70,93 @@
     --bs-accordion-btn-focus-border-color: var(--jjjei-primary-color);
     --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent);
 }
+
+/* Alerts */
+.alert-primary {
+    --bs-alert-color: var(--jjjei-primary-color);
+    --bs-alert-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, var(--jjjei-text-color));
+    --bs-alert-border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
+}
+.alert-primary .alert-link { color: var(--jjjei-primary-color); }
+
+/* Progress Bars */
+.progress {
+    --bs-progress-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
+}
+.progress-bar { background-color: var(--jjjei-primary-color); }
+
+/* List Groups */
+.list-group {
+    --bs-list-group-border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
+}
+.list-group-item:not(.active) {
+    --bs-list-group-bg: transparent;
+    --bs-list-group-color: var(--jjjei-primary-color);
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    --bs-breadcrumb-divider-color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent);
+    --bs-breadcrumb-item-active-color: color-mix(in srgb, var(--jjjei-primary-color) 70%, transparent);
+    background: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+.breadcrumb-item a { color: var(--jjjei-primary-color); font-weight: 600; text-decoration: none; }
+.breadcrumb-item a:hover { text-decoration: underline; }
+
+/* Form Controls */
+.form-control, .form-select {
+    background-color: transparent;
+    border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
+    color: var(--jjjei-primary-color);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--jjjei-primary-color);
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent);
+}
+.form-control::placeholder { color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent); }
+
+/* Tables */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--jjjei-primary-color);
+    --bs-table-striped-bg: color-mix(in srgb, var(--jjjei-primary-color) 5%, transparent);
+    --bs-table-striped-color: var(--jjjei-primary-color);
+    --bs-table-hover-bg: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);
+    --bs-table-hover-color: var(--jjjei-primary-color);
+    border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+    color: var(--jjjei-primary-color);
+}
+
+/* Button Groups */
+.btn-group .btn { border-color: var(--jjjei-text-color); }
+
+/* Navbars */
+.navbar {
+    --bs-navbar-color: color-mix(in srgb, var(--jjjei-text-color) 80%, transparent);
+    --bs-navbar-hover-color: var(--jjjei-text-color);
+    --bs-navbar-active-color: var(--jjjei-text-color);
+    --bs-navbar-brand-color: var(--jjjei-text-color);
+}
+
+/* Themed Card logic */
+.themed-card {
+    border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent;
+}
+.themed-card .card-header {
+    font-weight: 700;
+    border-bottom: none;
+    background-color: var(--jjjei-primary-color);
+    color: var(--jjjei-text-color);
+}
+.themed-card .card-body {
+    color: var(--jjjei-primary-color);
+}
 .accordion-button:not(.collapsed) {
     color: var(--jjjei-primary-color) !important;
     background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent) !important;
