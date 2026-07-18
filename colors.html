@@ -205,32 +205,7 @@
                 const container = document.getElementById('dynamic-container');
                 let html = '';
 
-                // 1. Render System Colors
-                html += `
-                <div class="dept-container">
-                    <div class="base-header">
-                        <span class="base-title">System & Utility Colors</span>
-                    </div>
-                    <div class="theme-split">
-                        <div class="theme-section light-theme-bg">
-                            <div class="theme-title">System Palettes</div>`;
-                
-                for (const [key, color] of Object.entries(data.system_colors)) {
-                    html += `
-                            <div class="color-row" style="background-color: ${color.hex}; color: ${color.text};">
-                                <span class="color-hex">${color.hex} (${key})</span>
-                                <span class="sample-text">Lorem ipsum dolor sit amet</span>
-                            </div>`;
-                }
 
-                html += `
-                        </div>
-                        <div class="theme-section dark-theme-bg">
-                            <div class="theme-title">Placeholder</div>
-                            <p style="opacity: 0.5;">Reserved for future dark mode system utilities.</p>
-                        </div>
-                    </div>
-                </div>`;
 
                 // 2. Render Departments
                 for (const [deptId, dept] of Object.entries(data.departments)) {
@@ -276,6 +251,29 @@
                     </div>
                 </div>`;
                 }
+
+                                // 1. Render System Colors
+                html += `
+                <div class="dept-container">
+                    <div class="base-header">
+                        <span class="base-title">System Colors</span>
+                    </div>
+                    <div class="">
+                        <div class="theme-section light-theme-bg">
+                            <div class="theme-title">System Palettes</div>`;
+                
+                for (const [key, color] of Object.entries(data.system_colors)) {
+                    html += `
+                            <div class="color-row" style="background-color: ${color.hex}; color: ${color.text};">
+                                <span class="color-hex">${color.hex} (${key})</span>
+                                <span class="sample-text">Lorem ipsum dolor sit amet</span>
+                            </div>`;
+                }
+
+                html += `
+                        </div
+                    </div>
+                </div>`;
 
                 container.innerHTML = html;
             })
