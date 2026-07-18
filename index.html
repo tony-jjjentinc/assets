@@ -11,44 +11,44 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: var(--jjjei-primary-color);
+            transition: background-color 0.5s ease;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
         nav {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
+            background: var(--jjjei-text-color);
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
             padding: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            transition: background-color 0.5s ease;
         }
         .nav-links { display: flex; gap: 20px; }
         .nav-link {
             text-decoration: none;
-            color: #4b5563;
+            color: var(--jjjei-primary-color);
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 8px;
+            opacity: 0.8;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-link:hover { background: rgba(0,0,0,0.05); color: #111827; }
+        .nav-link:hover { opacity: 1; background: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent); }
         .nav-link.active {
-            color: #111827;
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            opacity: 1;
+            background: color-mix(in srgb, var(--jjjei-primary-color) 15%, transparent);
         }
         
         .header-section {
             text-align: center;
             padding: 60px 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-            border-bottom: 1px solid #e5e7eb;
+            color: var(--jjjei-text-color);
+            transition: color 0.5s ease;
         }
         .header-section h1 { font-weight: 800; font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 15px; }
         .theme-selector-container {
@@ -58,35 +58,37 @@
         }
         #theme-switcher {
             appearance: none;
-            background-color: #ffffff;
-            border: 2px solid #e5e7eb;
+            background-color: var(--jjjei-text-color);
+            color: var(--jjjei-primary-color);
+            border: 2px solid var(--jjjei-text-color);
             border-radius: 12px;
             padding: 14px 20px;
             font-size: 1.1rem;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: all 0.5s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
-        #theme-switcher:hover { border-color: #d1d5db; box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
-        #theme-switcher:focus { outline: none; border-color: var(--jjjei-primary-color); box-shadow: 0 0 0 4px rgba(0,0,0,0.1); }
+        #theme-switcher:focus { outline: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--jjjei-text-color) 30%, transparent); }
         
         .component-section {
             max-width: 1200px;
             margin: 50px auto;
-            background: #ffffff;
+            background: var(--jjjei-text-color);
+            color: var(--jjjei-primary-color);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid #f3f4f6;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
         }
+
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f3f4f6;
+            border-bottom: 2px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -101,8 +103,8 @@
         .demo-box {
             padding: 30px;
             border-radius: 16px;
-            background: #f9fafb;
-            border: 1px dashed #d1d5db;
+            background: transparent;
+            border: 1px dashed color-mix(in srgb, var(--jjjei-primary-color) 40%, transparent);
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -110,39 +112,52 @@
             transition: transform 0.3s ease;
         }
         .demo-box:hover { transform: translateY(-2px); }
-        .demo-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; font-weight: 700; margin-bottom: 10px; }
+        .demo-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--jjjei-primary-color); opacity: 0.7; font-weight: 700; margin-bottom: 10px; }
         
-        /* Smooth transitions for Bootstrap elements */
-        .btn, .badge, .bg-primary, .text-primary, .progress-bar, .card-header {
+        /* Smooth transitions */
+        .btn, .badge, .bg-primary, .text-primary, .progress-bar, .card-header, .form-control, .list-group-item, .accordion-button {
             transition: all 0.3s ease !important;
         }
-        .btn { border-radius: 8px; font-weight: 600; padding: 10px 20px; }
-        .card { border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 16px; overflow: hidden; }
-        .card-header { font-weight: 700; border-bottom: none; background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); }
         
+        .btn { border-radius: 8px; font-weight: 600; padding: 10px 20px; }
+        
+        /* Themed Card logic */
+        .themed-card { border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 16px; overflow: hidden; background: transparent; }
+        .themed-card .card-header { font-weight: 700; border-bottom: none; background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); }
+        .themed-card .card-body { color: var(--jjjei-primary-color); }
+
         /* Custom overrides missing in core-theme for visualizer */
         .text-bg-primary { background-color: var(--jjjei-primary-color) !important; color: var(--jjjei-text-color) !important; }
-        .alert-primary { background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); border-color: var(--jjjei-hover-color); }
-        .alert-primary strong { color: var(--jjjei-text-color); }
+        .alert-primary { background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, var(--jjjei-text-color)); color: var(--jjjei-primary-color); border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); }
+        .alert-primary strong { color: var(--jjjei-primary-color); }
+        
+        /* Tables */
+        .table { color: var(--jjjei-primary-color); }
+        .table-striped>tbody>tr:nth-of-type(odd)>* { color: var(--jjjei-primary-color); }
+        
+        /* Inputs */
+        .form-control, .form-select { background-color: transparent; border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); color: var(--jjjei-primary-color); }
+        .form-control::placeholder { color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-links">
             <a href="index.html" class="nav-link active">✨ UI Components</a>
-            <a href="colors.html" class="nav-link">🎨 Color Visualizer</a>
+            <a href="colors.html" class="nav-link" style="opacity: 1; background: var(--jjjei-primary-color); color: var(--jjjei-text-color);">🎨 Color Visualizer</a>
         </div>
     </nav>
 
     <div class="header-section">
         <h1>Dynamic Theme Cheatsheet</h1>
-        <p class="text-muted">Select a department or sub-department to instantly theme all components.</p>
+        <p style="opacity: 0.9;">Select a department or sub-department to instantly theme all components.</p>
         
         <div class="theme-selector-container">
             <select id="theme-switcher" class="form-select"></select>
         </div>
     </div>
 
+    <!-- SECTION 1 -->
     <div class="component-section">
         <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">1</span> Buttons & Actions</h2>
         <div class="component-grid">
@@ -161,6 +176,7 @@
         </div>
     </div>
 
+    <!-- SECTION 2 -->
     <div class="component-section">
         <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">2</span> Indicators & Feedback</h2>
         <div class="component-grid">
@@ -179,19 +195,20 @@
             </div>
             <div class="demo-box" style="grid-column: 1 / -1;">
                 <div class="demo-title">Progress Indicators</div>
-                <div class="progress w-100" style="height: 20px; border-radius: 10px;">
-                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                <div class="progress w-100" style="height: 20px; border-radius: 10px; background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);">
+                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%">75%</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- SECTION 3 -->
     <div class="component-section">
         <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">3</span> Containers & Typography</h2>
         <div class="component-grid">
             <div class="demo-box">
                 <div class="demo-title">Themed Card</div>
-                <div class="card w-100">
+                <div class="card themed-card w-100">
                   <div class="card-header">
                     Department Portal
                   </div>
@@ -212,7 +229,97 @@
             </div>
         </div>
     </div>
+    
+    <!-- SECTION 4 (NEW) -->
+    <div class="component-section">
+        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">4</span> Forms & Data</h2>
+        <div class="component-grid">
+            <div class="demo-box">
+                <div class="demo-title">Form Controls</div>
+                <input type="email" class="form-control mb-3" placeholder="name@example.com">
+                <select class="form-select">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                </select>
+            </div>
+            <div class="demo-box">
+                <div class="demo-title">List Groups</div>
+                <ul class="list-group w-100" style="border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">
+                  <li class="list-group-item active" aria-current="true">An active item</li>
+                  <li class="list-group-item" style="background: transparent; color: inherit; border-color: inherit;">A second item</li>
+                  <li class="list-group-item" style="background: transparent; color: inherit; border-color: inherit;">A third item</li>
+                </ul>
+            </div>
+            
+            <div class="demo-box" style="grid-column: 1 / -1;">
+                <div class="demo-title">Data Tables</div>
+                <table class="table table-striped table-hover mb-0" style="background: transparent;">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First</th>
+                      <th scope="col">Last</th>
+                      <th scope="col">Handle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SECTION 5 (NEW) -->
+    <div class="component-section" style="margin-bottom: 100px;">
+        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">5</span> Navigation & Layout</h2>
+        <div class="component-grid">
+            <div class="demo-box">
+                <div class="demo-title">Pagination</div>
+                <nav aria-label="Page navigation">
+                  <ul class="pagination mb-0">
+                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Next</a></li>
+                  </ul>
+                </nav>
+            </div>
+            <div class="demo-box">
+                <div class="demo-title">Accordions</div>
+                <div class="accordion w-100" id="accordionExample" style="border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); border-radius: 8px; overflow: hidden;">
+                  <div class="accordion-item" style="background:transparent; border:none;">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:var(--jjjei-primary-color);">
+                        Accordion Item #1
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        This is the first item's accordion body.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Bootstrap Bundle with Popper required for Accordions etc -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         const departments = [
             { id: 'gmo', name: 'GMO' },
