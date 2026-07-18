@@ -162,8 +162,6 @@
     box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
 }
 
-/* Phase 12: Advanced Components */
-
 /* Modals */
 .modal-header {
     background-color: var(--jjjei-primary-color);
@@ -225,4 +223,46 @@
 }
 .form-range::-moz-range-thumb {
     background-color: var(--jjjei-primary-color);
+}
+
+/* Carousel */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--jjjei-primary-color);
+}
+
+/* Close Button Focus */
+.btn-close:focus {
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--jjjei-primary-color) 25%, transparent);
+}
+
+/* Offcanvas */
+.offcanvas {
+    --bs-offcanvas-border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+}
+.offcanvas-header {
+    background-color: var(--jjjei-primary-color);
+    color: var(--jjjei-text-color);
+}
+
+/* Placeholders */
+.placeholder {
+    background-color: var(--jjjei-primary-color);
+}
+
+/* Popovers */
+.popover {
+    --bs-popover-border-color: color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+    --bs-popover-header-bg: var(--jjjei-primary-color);
+    --bs-popover-header-color: var(--jjjei-text-color);
+}
+
+/* Tooltips */
+.tooltip {
+    --bs-tooltip-bg: var(--jjjei-primary-color);
+    --bs-tooltip-color: var(--jjjei-text-color);
+}
+
+/* Spinners */
+.spinner-border, .spinner-grow {
+    color: var(--jjjei-primary-color);
 }
