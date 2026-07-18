@@ -1,0 +1,446 @@
+{
+  "system_colors": {
+    "primary": {
+      "hex": "#0d6efd",
+      "text": "#ffffff",
+      "theme": "light"
+    },
+    "secondary": {
+      "hex": "#6c757d",
+      "text": "#ffffff",
+      "theme": "light"
+    },
+    "success": {
+      "hex": "#198754",
+      "text": "#ffffff",
+      "theme": "light"
+    },
+    "danger": {
+      "hex": "#dc3545",
+      "text": "#ffffff",
+      "theme": "light"
+    },
+    "warning": {
+      "hex": "#ffc107",
+      "text": "#000000",
+      "theme": "dark"
+    },
+    "info": {
+      "hex": "#0dcaf0",
+      "text": "#000000",
+      "theme": "dark"
+    },
+    "light": {
+      "hex": "#f8f9fa",
+      "text": "#000000",
+      "theme": "dark"
+    },
+    "dark": {
+      "hex": "#212529",
+      "text": "#ffffff",
+      "theme": "light"
+    }
+  },
+  "departments": {
+    "gmo": {
+      "name": "GMO",
+      "base": {
+        "hex": "#008000",
+        "text": "#FFFFFF",
+        "theme": "light"
+      },
+      "shades": {
+        "1": {
+          "hex": "#004D00",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#006400",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#228B22",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#2E8B57",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#32CD32",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#90EE90",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#98FB98",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#00FF7F",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "admin": {
+      "name": "Admin",
+      "base": {
+        "hex": "#FFD700",
+        "text": "#000000",
+        "theme": "dark"
+      },
+      "shades": {
+        "1": {
+          "hex": "#B8860B",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#DAA520",
+          "text": "#000000",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#D2691E",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#CD853F",
+          "text": "#000000",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#FFD700",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#FFE4B5",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#F0E68C",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#FFFACD",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "facilities": {
+      "name": "Facilities",
+      "base": {
+        "hex": "#0000FF",
+        "text": "#FFFFFF",
+        "theme": "light"
+      },
+      "shades": {
+        "1": {
+          "hex": "#000080",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#0000CD",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#4169E1",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#4682B4",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#1E90FF",
+          "text": "#FFFFFF",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#00BFFF",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#87CEEB",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#B0E0E6",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "leasing": {
+      "name": "Leasing",
+      "base": {
+        "hex": "#800000",
+        "text": "#FFFFFF",
+        "theme": "light"
+      },
+      "shades": {
+        "1": {
+          "hex": "#5C0000",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#800000",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#8B0000",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#B22222",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#CD5C5C",
+          "text": "#FFFFFF",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#F08080",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#FA8072",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#FFB6C1",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "hr": {
+      "name": "HR",
+      "base": {
+        "hex": "#800080",
+        "text": "#FFFFFF",
+        "theme": "light"
+      },
+      "shades": {
+        "1": {
+          "hex": "#4B0082",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#6A0DAD",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#800080",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#8B008B",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#BA55D3",
+          "text": "#FFFFFF",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#EE82EE",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#DDA0DD",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#D8BFD8",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "procurement-inventory": {
+      "name": "Procurement and Inventory",
+      "base": {
+        "hex": "#C08081",
+        "text": "#000000",
+        "theme": "dark"
+      },
+      "shades": {
+        "1": {
+          "hex": "#8A3638",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#9C4E50",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#AD6668",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#C08081",
+          "text": "#000000",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#D1999A",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#E2B3B4",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#F2CDCE",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#FFE8E8",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "controller": {
+      "name": "Controller",
+      "base": {
+        "hex": "#008080",
+        "text": "#FFFFFF",
+        "theme": "light"
+      },
+      "shades": {
+        "1": {
+          "hex": "#004C4C",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#006666",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#008080",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#20B2AA",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#40E0D0",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#48D1CC",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#7FFFD4",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#AFEEEE",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    },
+    "treasury": {
+      "name": "Treasury",
+      "base": {
+        "hex": "#F28500",
+        "text": "#000000",
+        "theme": "dark"
+      },
+      "shades": {
+        "1": {
+          "hex": "#A65B00",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "2": {
+          "hex": "#CC7000",
+          "text": "#FFFFFF",
+          "theme": "light"
+        },
+        "3": {
+          "hex": "#E67E22",
+          "text": "#000000",
+          "theme": "light"
+        },
+        "4": {
+          "hex": "#F28500",
+          "text": "#000000",
+          "theme": "light"
+        },
+        "5": {
+          "hex": "#FF9F33",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "6": {
+          "hex": "#FFB866",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "7": {
+          "hex": "#FFD199",
+          "text": "#000000",
+          "theme": "dark"
+        },
+        "8": {
+          "hex": "#FFEACC",
+          "text": "#000000",
+          "theme": "dark"
+        }
+      }
+    }
+  }
+}
