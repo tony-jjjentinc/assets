@@ -1,0 +1,37 @@
+/* core-theme.css */
+/* Button Overrides */
+.btn-primary {
+    --bs-btn-bg: var(--jjjei-primary-color);
+    --bs-btn-border-color: var(--jjjei-primary-color);
+    --bs-btn-hover-bg: var(--jjjei-hover-color);
+    --bs-btn-hover-border-color: var(--jjjei-hover-color);
+    --bs-btn-active-bg: var(--jjjei-hover-color);
+    --bs-btn-active-border-color: var(--jjjei-hover-color);
+    color: var(--jjjei-text-color) !important;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--jjjei-primary-color);
+    --bs-btn-border-color: var(--jjjei-primary-color);
+    --bs-btn-hover-bg: var(--jjjei-primary-color);
+    --bs-btn-hover-border-color: var(--jjjei-primary-color);
+    --bs-btn-active-bg: var(--jjjei-primary-color);
+    --bs-btn-active-border-color: var(--jjjei-primary-color);
+}
+
+/* Background Utilities */
+.bg-primary {
+    background-color: var(--jjjei-primary-color) !important;
+    color: var(--jjjei-text-color) !important;
+}
+
+/* Text Utilities */
+.text-primary {
+    color: var(--jjjei-primary-color) !important;
+}
+
+/* Badges */
+.badge.text-bg-primary {
+    background-color: var(--jjjei-primary-color) !important;
+    color: var(--jjjei-text-color) !important;
+}

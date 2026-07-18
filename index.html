@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJJEI Component Cheatsheet</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/core-theme.css">
+    <link id="dynamic-theme-css" rel="stylesheet" href="css/dpt/gmo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-link {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover { background: rgba(0,0,0,0.05); color: #111827; }
+        .nav-link.active {
+            color: #111827;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .header-section h1 { font-weight: 800; font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 15px; }
+        .theme-selector-container {
+            max-width: 400px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+        #theme-switcher {
+            appearance: none;
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        #theme-switcher:hover { border-color: #d1d5db; box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
+        #theme-switcher:focus { outline: none; border-color: var(--jjjei-primary-color); box-shadow: 0 0 0 4px rgba(0,0,0,0.1); }
+        
+        .component-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f3f4f6;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .demo-box {
+            padding: 30px;
+            border-radius: 16px;
+            background: #f9fafb;
+            border: 1px dashed #d1d5db;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        .demo-box:hover { transform: translateY(-2px); }
+        .demo-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; font-weight: 700; margin-bottom: 10px; }
+        
+        /* Smooth transitions for Bootstrap elements */
+        .btn, .badge, .bg-primary, .text-primary, .progress-bar, .card-header {
+            transition: all 0.3s ease !important;
+        }
+        .btn { border-radius: 8px; font-weight: 600; padding: 10px 20px; }
+        .card { border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 16px; overflow: hidden; }
+        .card-header { font-weight: 700; border-bottom: none; background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); }
+        
+        /* Custom overrides missing in core-theme for visualizer */
+        .text-bg-primary { background-color: var(--jjjei-primary-color) !important; color: var(--jjjei-text-color) !important; }
+        .alert-primary { background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); border-color: var(--jjjei-hover-color); }
+        .alert-primary strong { color: var(--jjjei-text-color); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">✨ UI Components</a>
+            <a href="colors.html" class="nav-link">🎨 Color Visualizer</a>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <h1>Dynamic Theme Cheatsheet</h1>
+        <p class="text-muted">Select a department or sub-department to instantly theme all components.</p>
+        
+        <div class="theme-selector-container">
+            <select id="theme-switcher" class="form-select"></select>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">1</span> Buttons & Actions</h2>
+        <div class="component-grid">
+            <div class="demo-box">
+                <div class="demo-title">Solid Buttons</div>
+                <button class="btn btn-primary">Primary Action</button>
+                <button class="btn btn-primary btn-sm">Small Primary</button>
+                <button class="btn btn-primary" disabled>Disabled State</button>
+            </div>
+            <div class="demo-box">
+                <div class="demo-title">Outline Buttons</div>
+                <button class="btn btn-outline-primary">Secondary Action</button>
+                <button class="btn btn-outline-primary btn-sm">Small Outline</button>
+                <button class="btn btn-outline-primary" disabled>Disabled State</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">2</span> Indicators & Feedback</h2>
+        <div class="component-grid">
+            <div class="demo-box">
+                <div class="demo-title">Badges</div>
+                <div>
+                    <span class="badge text-bg-primary fs-6">New Feature</span>
+                    <span class="badge rounded-pill text-bg-primary fs-6 ms-2">99+</span>
+                </div>
+            </div>
+            <div class="demo-box">
+                <div class="demo-title">Alerts</div>
+                <div class="alert alert-primary w-100 mb-0" role="alert">
+                    <strong>Notice:</strong> This is a themed alert message!
+                </div>
+            </div>
+            <div class="demo-box" style="grid-column: 1 / -1;">
+                <div class="demo-title">Progress Indicators</div>
+                <div class="progress w-100" style="height: 20px; border-radius: 10px;">
+                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">3</span> Containers & Typography</h2>
+        <div class="component-grid">
+            <div class="demo-box">
+                <div class="demo-title">Themed Card</div>
+                <div class="card w-100">
+                  <div class="card-header">
+                    Department Portal
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">Welcome back</h5>
+                    <p class="card-text">Example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-outline-primary mt-2">Go somewhere</a>
+                  </div>
+                </div>
+            </div>
+            <div class="demo-box">
+                <div class="demo-title">Typography Utilities</div>
+                <h3 class="text-primary fw-bold">Primary Header</h3>
+                <p>Standard text with a <a href="#" class="text-primary fw-bold">primary link</a> styling.</p>
+                <div class="p-3 bg-primary rounded w-100 mt-2 fw-bold" style="text-align: center;">
+                    Background Utility Box
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const departments = [
+            { id: 'gmo', name: 'GMO' },
+            { id: 'admin', name: 'Admin' },
+            { id: 'facilities', name: 'Facilities' },
+            { id: 'leasing', name: 'Leasing' },
+            { id: 'hr', name: 'HR' },
+            { id: 'procurement', name: 'Procurement & Inventory' },
+            { id: 'controller', name: 'Controller' },
+            { id: 'treasury', name: 'Treasury' }
+        ];
+        
+        const select = document.getElementById('theme-switcher');
+        
+        departments.forEach(dept => {
+            const optgroup = document.createElement('optgroup');
+            optgroup.label = dept.name;
+            
+            const baseOpt = document.createElement('option');
+            baseOpt.value = `css/dpt/${dept.id}.css`;
+            baseOpt.textContent = `${dept.name} Base`;
+            optgroup.appendChild(baseOpt);
+            
+            for(let i = 1; i <= 8; i++) {
+                const shadeOpt = document.createElement('option');
+                shadeOpt.value = `css/sbdpt/${dept.id}-shade-${i}.css`;
+                shadeOpt.textContent = `Shade ${i}`;
+                optgroup.appendChild(shadeOpt);
+            }
+            
+            select.appendChild(optgroup);
+        });
+
+        select.addEventListener('change', function() {
+            document.getElementById('dynamic-theme-css').href = this.value;
+        });
+    </script>
+</body>
+</html>
