@@ -41,13 +41,47 @@
         .theme-split { flex-direction: column; }
         .light-theme-bg { border-right: none; border-bottom: 1px solid #e5e7eb; }
     }
+
+    .main-nav {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .main-nav .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+    .main-nav .nav-link {
+        text-decoration: none;
+        color: #4B5563;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .main-nav .nav-link:hover {
+        background: rgba(0,0,0,0.05);
+        color: #111827;
+    }
+    .main-nav .nav-link.active {
+        color: #111827;
+        background: #ffffff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
 </style>
 </head>
 <body style="margin: 0; padding: 0;">
-    <nav style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: 'Segoe UI', sans-serif;">
-        <div style="display: flex; gap: 20px;">
-            <a href="index.html" style="text-decoration: none; color: #4B5563; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.05)'" onmouseout="this.style.background='transparent'">UI Components</a>
-            <a href="colors.html" style="text-decoration: none; color: #111827; background: #ffffff; font-weight: 600; padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">Color Visualizer</a>
+    <nav class="main-nav">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Components</a>
+            <a href="colors.html" class="nav-link active">Color Visualizer</a>
         </div>
     </nav>
     <h1 style="padding: 20px 20px 30px; margin: 0; background: #fff; color: #111827; text-align: center;">JJJEI - Departmental & System Colors</h1>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,74 +18,100 @@
             padding: 0;
             min-height: 100vh;
         }
-        nav {
-            background: var(--jjjei-text-color);
+
+        nav.main-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
             padding: 15px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-            transition: background-color 0.5s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-link {
+
+        .main-nav .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav .nav-link {
             text-decoration: none;
-            color: var(--jjjei-primary-color);
+            color: #4B5563;
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 8px;
-            opacity: 0.8;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-link:hover { opacity: 1; background: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent); }
-        .nav-link.active {
-            opacity: 1;
-            background: color-mix(in srgb, var(--jjjei-primary-color) 15%, transparent);
+
+        .main-nav .nav-link:hover {
+            background: rgba(0,0,0,0.05);
+            color: #111827;
         }
-        
+
+        .main-nav .nav-link.active {
+            color: #111827;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
         .header-section {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px 20px;
             color: var(--jjjei-text-color);
             transition: color 0.5s ease;
         }
-        .header-section h1 { font-weight: 800; font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 15px; }
-        .theme-selector-container {
-            max-width: 400px;
-            margin: 30px auto 0;
-            position: relative;
+
+        .header-section h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
         }
-        #theme-switcher {
-            appearance: none;
-            background-color: var(--jjjei-text-color);
-            color: var(--jjjei-primary-color);
-            border: 2px solid var(--jjjei-text-color);
+
+        .theme-selector-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .theme-dropdown {
+            background-color: #ffffff !important;
+            /* Force white background */
+            color: #111827 !important;
+            /* Force dark text */
+            border: 2px solid rgba(0, 0, 0, 0.1) !important;
             border-radius: 12px;
             padding: 14px 20px;
             font-size: 1.1rem;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
-            transition: all 0.5s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-        #theme-switcher:focus { outline: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--jjjei-text-color) 30%, transparent); }
-        
+
+        .theme-dropdown:focus {
+            outline: none;
+            border-color: #111827 !important;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1) !important;
+        }
+
         .component-section {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 0px auto;
+            margin-bottom: 16px;
             background: var(--jjjei-text-color);
             color: var(--jjjei-primary-color);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             transition: all 0.5s ease;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 30px;
             padding-bottom: 15px;
@@ -93,13 +120,13 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .component-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-        
+
         .demo-box {
             padding: 30px;
             border-radius: 16px;
@@ -111,251 +138,447 @@
             align-items: flex-start;
             transition: transform 0.3s ease;
         }
-        .demo-box:hover { transform: translateY(-2px); }
-        .demo-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--jjjei-primary-color); opacity: 0.7; font-weight: 700; margin-bottom: 10px; }
-        
+
+        .demo-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .demo-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--jjjei-primary-color);
+            opacity: 0.7;
+            font-weight: 700;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
         /* Smooth transitions */
-        .btn, .badge, .bg-primary, .text-primary, .progress-bar, .card-header, .form-control, .list-group-item, .accordion-button {
+        .btn,
+        .badge,
+        .bg-primary,
+        .text-primary,
+        .progress-bar,
+        .card-header,
+        .form-control,
+        .list-group-item,
+        .accordion-button {
             transition: all 0.3s ease !important;
         }
-        
-        .btn { border-radius: 8px; font-weight: 600; padding: 10px 20px; }
-        
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 10px 20px;
+        }
+
         /* Themed Card logic */
-        .themed-card { border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 16px; overflow: hidden; background: transparent; }
-        .themed-card .card-header { font-weight: 700; border-bottom: none; background-color: var(--jjjei-primary-color); color: var(--jjjei-text-color); }
-        .themed-card .card-body { color: var(--jjjei-primary-color); }
+        .themed-card {
+            border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 20%, transparent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .themed-card .card-header {
+            font-weight: 700;
+            border-bottom: none;
+            background-color: var(--jjjei-primary-color);
+            color: var(--jjjei-text-color);
+        }
+
+        .themed-card .card-body {
+            color: var(--jjjei-primary-color);
+        }
 
         /* Custom overrides missing in core-theme for visualizer */
-        .text-bg-primary { background-color: var(--jjjei-primary-color) !important; color: var(--jjjei-text-color) !important; }
-        .alert-primary { background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, var(--jjjei-text-color)); color: var(--jjjei-primary-color); border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); }
-        .alert-primary strong { color: var(--jjjei-primary-color); }
-        
+        .text-bg-primary {
+            background-color: var(--jjjei-primary-color) !important;
+            color: var(--jjjei-text-color) !important;
+        }
+
+        .alert-primary {
+            background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, var(--jjjei-text-color));
+            color: var(--jjjei-primary-color);
+            border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
+        }
+
+        .alert-primary strong {
+            color: var(--jjjei-primary-color);
+        }
+
         /* Tables */
-        .table { color: var(--jjjei-primary-color); }
-        .table-striped>tbody>tr:nth-of-type(odd)>* { color: var(--jjjei-primary-color); }
-        
+        .table {
+            color: var(--jjjei-primary-color);
+        }
+
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            color: var(--jjjei-primary-color);
+        }
+
         /* Inputs */
-        .form-control, .form-select { background-color: transparent; border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); color: var(--jjjei-primary-color); }
-        .form-control::placeholder { color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent); }
+        .form-control,
+        .form-select {
+            background-color: transparent;
+            border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);
+            color: var(--jjjei-primary-color);
+        }
+
+        .form-control::placeholder {
+            color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-item a {
+            color: var(--jjjei-primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-item.active {
+            color: color-mix(in srgb, var(--jjjei-primary-color) 70%, transparent);
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            color: color-mix(in srgb, var(--jjjei-primary-color) 50%, transparent);
+        }
     </style>
 </head>
+
 <body>
-    <nav>
+    <nav class="main-nav">
         <div class="nav-links">
-            <a href="index.html" class="nav-link active">✨ UI Components</a>
-            <a href="colors.html" class="nav-link" style="opacity: 1; background: var(--jjjei-primary-color); color: var(--jjjei-text-color);">🎨 Color Visualizer</a>
+            <a href="index.html" class="nav-link active">Components</a>
+            <a href="colors.html" class="nav-link">Color Visualizer</a>
         </div>
     </nav>
 
-    <div class="header-section">
-        <h1>Dynamic Theme Cheatsheet</h1>
-        <p style="opacity: 0.9;">Select a department or sub-department to instantly theme all components.</p>
-        
-        <div class="theme-selector-container">
-            <select id="theme-switcher" class="form-select"></select>
-        </div>
-    </div>
+    <div style="padding: 16px;">
+        <!-- THEME CONTROLS CARD -->
+        <div class="component-section" style="padding: 20px">
+            <h2 class="section-title" style="margin-bottom: 20px; font-size: 1.25rem; border: none; padding: 0;">
+                Departmental color shades</h2>
+            <div class="theme-selector-container">
+                <select id="dept-switcher" class="form-select-sm theme-dropdown">
+                    <option value="gmo">GMO</option>
+                    <option value="admin">Admin</option>
+                    <option value="facilities">Facilities</option>
+                    <option value="leasing">Leasing</option>
+                    <option value="hr">HR</option>
+                    <option value="procurement-inventory">Procurement & Inventory</option>
+                    <option value="controller">Controller</option>
+                    <option value="treasury">Treasury</option>
+                </select>
 
-    <!-- SECTION 1 -->
-    <div class="component-section">
-        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">1</span> Buttons & Actions</h2>
-        <div class="component-grid">
-            <div class="demo-box">
-                <div class="demo-title">Solid Buttons</div>
-                <button class="btn btn-primary">Primary Action</button>
-                <button class="btn btn-primary btn-sm">Small Primary</button>
-                <button class="btn btn-primary" disabled>Disabled State</button>
-            </div>
-            <div class="demo-box">
-                <div class="demo-title">Outline Buttons</div>
-                <button class="btn btn-outline-primary">Secondary Action</button>
-                <button class="btn btn-outline-primary btn-sm">Small Outline</button>
-                <button class="btn btn-outline-primary" disabled>Disabled State</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SECTION 2 -->
-    <div class="component-section">
-        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">2</span> Indicators & Feedback</h2>
-        <div class="component-grid">
-            <div class="demo-box">
-                <div class="demo-title">Badges</div>
-                <div>
-                    <span class="badge text-bg-primary fs-6">New Feature</span>
-                    <span class="badge rounded-pill text-bg-primary fs-6 ms-2">99+</span>
-                </div>
-            </div>
-            <div class="demo-box">
-                <div class="demo-title">Alerts</div>
-                <div class="alert alert-primary w-100 mb-0" role="alert">
-                    <strong>Notice:</strong> This is a themed alert message!
-                </div>
-            </div>
-            <div class="demo-box" style="grid-column: 1 / -1;">
-                <div class="demo-title">Progress Indicators</div>
-                <div class="progress w-100" style="height: 20px; border-radius: 10px; background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);">
-                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%">75%</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SECTION 3 -->
-    <div class="component-section">
-        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">3</span> Containers & Typography</h2>
-        <div class="component-grid">
-            <div class="demo-box">
-                <div class="demo-title">Themed Card</div>
-                <div class="card themed-card w-100">
-                  <div class="card-header">
-                    Department Portal
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title text-primary fw-bold">Welcome back</h5>
-                    <p class="card-text">Example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-outline-primary mt-2">Go somewhere</a>
-                  </div>
-                </div>
-            </div>
-            <div class="demo-box">
-                <div class="demo-title">Typography Utilities</div>
-                <h3 class="text-primary fw-bold">Primary Header</h3>
-                <p>Standard text with a <a href="#" class="text-primary fw-bold">primary link</a> styling.</p>
-                <div class="p-3 bg-primary rounded w-100 mt-2 fw-bold" style="text-align: center;">
-                    Background Utility Box
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- SECTION 4 (NEW) -->
-    <div class="component-section">
-        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">4</span> Forms & Data</h2>
-        <div class="component-grid">
-            <div class="demo-box">
-                <div class="demo-title">Form Controls</div>
-                <input type="email" class="form-control mb-3" placeholder="name@example.com">
-                <select class="form-select">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
+                <select id="shade-switcher" class="form-select-sm theme-dropdown">
+                    <option value="base">Base Color</option>
+                    <optgroup label="Light Themes">
+                        <option value="1">Light 1</option>
+                        <option value="2">Light 2</option>
+                        <option value="3">Light 3</option>
+                        <option value="4">Light 4</option>
+                    </optgroup>
+                    <optgroup label="Dark Themes">
+                        <option value="5">Dark 1</option>
+                        <option value="6">Dark 2</option>
+                        <option value="7">Dark 3</option>
+                        <option value="8">Dark 4</option>
+                    </optgroup>
                 </select>
             </div>
-            <div class="demo-box">
-                <div class="demo-title">List Groups</div>
-                <ul class="list-group w-100" style="border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">
-                  <li class="list-group-item active" aria-current="true">An active item</li>
-                  <li class="list-group-item" style="background: transparent; color: inherit; border-color: inherit;">A second item</li>
-                  <li class="list-group-item" style="background: transparent; color: inherit; border-color: inherit;">A third item</li>
-                </ul>
-            </div>
-            
-            <div class="demo-box" style="grid-column: 1 / -1;">
-                <div class="demo-title">Data Tables</div>
-                <table class="table table-striped table-hover mb-0" style="background: transparent;">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
         </div>
-    </div>
-    
-    <!-- SECTION 5 (NEW) -->
-    <div class="component-section" style="margin-bottom: 100px;">
-        <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">5</span> Navigation & Layout</h2>
-        <div class="component-grid">
-            <div class="demo-box">
-                <div class="demo-title">Pagination</div>
-                <nav aria-label="Page navigation">
-                  <ul class="pagination mb-0">
-                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">1</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#" style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Next</a></li>
-                  </ul>
-                </nav>
-            </div>
-            <div class="demo-box">
-                <div class="demo-title">Accordions</div>
-                <div class="accordion w-100" id="accordionExample" style="border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); border-radius: 8px; overflow: hidden;">
-                  <div class="accordion-item" style="background:transparent; border:none;">
-                    <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:var(--jjjei-primary-color);">
-                        Accordion Item #1
-                      </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        This is the first item's accordion body.
-                      </div>
+
+        <!-- SECTION 1: Buttons & Actions -->
+        <div class="component-section">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">1</span> Buttons & Actions</h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Solid Buttons</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-primary btn-sm">Small</button>
+                        <button class="btn btn-primary" disabled>Disabled State</button>
                     </div>
-                  </div>
+                </div>
+                <div class="demo-box">
+                    <div class="demo-title">Outline Buttons</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary">Secondary Action</button>
+                        <button class="btn btn-outline-primary btn-sm">Small</button>
+                        <button class="btn btn-outline-primary" disabled>Disabled State</button>
+                    </div>
+                </div>
+                <div class="demo-box" style="grid-column: 1 / -1;">
+                    <div class="demo-title">System & Utility Buttons</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-success">Success</button>
+                        <button class="btn btn-danger">Danger</button>
+                        <button class="btn btn-warning">Warning</button>
+                        <button class="btn btn-info text-white">Info</button>
+                        <button class="btn btn-dark">Dark</button>
+                        <button class="btn btn-light">Light</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 2: Indicators & Feedback -->
+        <div class="component-section">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">2</span> Indicators & Feedback</h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Badges</div>
+                    <div>
+                        <span class="badge text-bg-primary fs-6">New Feature</span>
+                        <span class="badge rounded-pill text-bg-primary fs-6 ms-2">99+</span>
+                    </div>
+                </div>
+                <div class="demo-box">
+                    <div class="demo-title">Alerts</div>
+                    <div class="alert alert-primary w-100 mb-0" role="alert" style="padding: 10px 15px;">
+                        <strong>Notice:</strong> This is a themed alert message!
+                    </div>
+                </div>
+                <div class="demo-box" style="grid-column: 1 / -1;">
+                    <div class="demo-title">Progress Indicators</div>
+                    <div class="progress w-100"
+                        style="height: 20px; border-radius: 10px; background-color: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent);">
+                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                            role="progressbar" style="width: 75%">75%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Containers & Typography -->
+        <div class="component-section">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">3</span> Containers & Typography
+            </h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Themed Card</div>
+                    <div class="card themed-card w-100">
+                        <div class="card-header">
+                            Department Portal
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-primary fw-bold">Welcome back</h5>
+                            <p class="card-text">Example text to build on the card title and make up the bulk of the
+                                card's content.</p>
+                            <a href="#" class="btn btn-outline-primary mt-2">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-box">
+                    <div class="demo-title">Typography Utilities</div>
+                    <h3 class="text-primary fw-bold">Primary Header</h3>
+                    <p>Standard text with a <a href="#" class="text-primary fw-bold">primary link</a> styling.</p>
+                    <div class="p-3 bg-primary rounded w-100 mt-2 fw-bold" style="text-align: center;">
+                        Background Utility Box
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Forms & Data -->
+        <div class="component-section">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">4</span> Forms & Data</h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Form Controls</div>
+                    <input type="email" class="form-control mb-3" placeholder="name@example.com">
+                    <select class="form-select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                    </select>
+                </div>
+                <div class="demo-box">
+                    <div class="demo-title">List Groups</div>
+                    <ul class="list-group w-100"
+                        style="border-color: color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">
+                        <li class="list-group-item active" aria-current="true">An active item</li>
+                        <li class="list-group-item"
+                            style="background: transparent; color: inherit; border-color: inherit;">A second item</li>
+                        <li class="list-group-item"
+                            style="background: transparent; color: inherit; border-color: inherit;">A third item</li>
+                    </ul>
+                </div>
+
+                <div class="demo-box" style="grid-column: 1 / -1;">
+                    <div class="demo-title">Data Tables</div>
+                    <table class="table table-striped table-hover mb-0" style="background: transparent;">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Navigation & Layout -->
+        <div class="component-section">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">5</span> Navigation & Layout</h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Pagination</div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination mb-0">
+                            <li class="page-item"><a class="page-link" href="#"
+                                    style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Prev</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#"
+                                    style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">1</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#"
+                                    style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">3</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#"
+                                    style="background:transparent; border-color:color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent);">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="demo-box">
+                    <div class="demo-title">Accordions</div>
+                    <div class="accordion w-100" id="accordionExample"
+                        style="border: 1px solid color-mix(in srgb, var(--jjjei-primary-color) 30%, transparent); border-radius: 8px; overflow: hidden;">
+                        <div class="accordion-item" style="background:transparent; border:none;">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                    style="color:var(--jjjei-primary-color);">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    This is the first item's accordion body.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Advanced Components -->
+        <div class="component-section" style="">
+            <h2 class="section-title"><span class="badge text-bg-primary fs-6 me-2">6</span> Advanced Components</h2>
+            <div class="component-grid">
+                <div class="demo-box">
+                    <div class="demo-title">Loading Spinners</div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <span style="font-weight: 500;">Processing data...</span>
+                    </div>
+                </div>
+
+                <div class="demo-box">
+                    <div class="demo-title">Breadcrumbs & Buttons Groups</div>
+                    <nav aria-label="breadcrumb" class="w-100 mb-3">
+                        <ol class="breadcrumb mb-0"
+                            style="background: color-mix(in srgb, var(--jjjei-primary-color) 10%, transparent); padding: 10px 15px; border-radius: 8px;">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Library</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                    <div class="btn-group w-100" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary">Left</button>
+                        <button type="button" class="btn btn-primary"
+                            style="border-left: 1px solid var(--jjjei-text-color); border-right: 1px solid var(--jjjei-text-color);">Middle</button>
+                        <button type="button" class="btn btn-primary">Right</button>
+                    </div>
+                </div>
+
+                <div class="demo-box" style="grid-column: 1 / -1;">
+                    <div class="demo-title">Themed Navbar</div>
+                    <nav class="navbar navbar-expand-lg rounded w-100 bg-primary" data-bs-theme="dark">
+                        <div class="container-fluid">
+                            <a class="navbar-brand fw-bold" href="#"
+                                style="color: var(--jjjei-text-color) !important;">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#"
+                                            style="color: var(--jjjei-text-color) !important; opacity: 1;">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"
+                                            style="color: var(--jjjei-text-color) !important; opacity: 0.8;">Features</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"
+                                            style="color: var(--jjjei-text-color) !important; opacity: 0.8;">Pricing</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Bootstrap Bundle with Popper required for Accordions etc -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        const departments = [
-            { id: 'gmo', name: 'GMO' },
-            { id: 'admin', name: 'Admin' },
-            { id: 'facilities', name: 'Facilities' },
-            { id: 'leasing', name: 'Leasing' },
-            { id: 'hr', name: 'HR' },
-            { id: 'procurement', name: 'Procurement & Inventory' },
-            { id: 'controller', name: 'Controller' },
-            { id: 'treasury', name: 'Treasury' }
-        ];
-        
-        const select = document.getElementById('theme-switcher');
-        
-        departments.forEach(dept => {
-            const optgroup = document.createElement('optgroup');
-            optgroup.label = dept.name;
-            
-            const baseOpt = document.createElement('option');
-            baseOpt.value = `css/dpt/${dept.id}.css`;
-            baseOpt.textContent = `${dept.name} Base`;
-            optgroup.appendChild(baseOpt);
-            
-            for(let i = 1; i <= 8; i++) {
-                const shadeOpt = document.createElement('option');
-                shadeOpt.value = `css/sbdpt/${dept.id}-shade-${i}.css`;
-                shadeOpt.textContent = `Shade ${i}`;
-                optgroup.appendChild(shadeOpt);
-            }
-            
-            select.appendChild(optgroup);
-        });
 
-        select.addEventListener('change', function() {
-            document.getElementById('dynamic-theme-css').href = this.value;
-        });
+    <script>
+        function updateTheme() {
+            const dept = document.getElementById('dept-switcher').value;
+            const shade = document.getElementById('shade-switcher').value;
+
+            let targetCSS = '';
+
+            if (shade === 'base') {
+                targetCSS = `css/dpt/${dept}.css`;
+            } else {
+                targetCSS = `css/sbdpt/${dept}-shade-${shade}.css`;
+            }
+
+            document.getElementById('dynamic-theme-css').href = targetCSS;
+        }
+
+        document.getElementById('dept-switcher').addEventListener('change', updateTheme);
+        document.getElementById('shade-switcher').addEventListener('change', updateTheme);
     </script>
 </body>
+
 </html>
