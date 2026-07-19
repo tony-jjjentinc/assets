@@ -1,0 +1,371 @@
+/* ==========================================================================
+   Leasing — Base
+   Primary Color: #800000
+   Generated: 2026-07-19 15:18:28
+   ========================================================================== */
+
+/* ==========================================================================
+   Root-Level Variables
+   ========================================================================== */
+
+:root {
+  /* Core primary color */
+  --bs-primary: #800000;
+  --bs-primary-rgb: 128, 0, 0;
+
+  /* Primary variants */
+  --bs-primary-text-emphasis: #330000;
+  --bs-primary-bg-subtle: #e6cccc;
+  --bs-primary-border-subtle: #cc9999;
+
+  /* Link colors (Bootstrap sets these to primary by default) */
+  --bs-link-color: #800000;
+  --bs-link-color-rgb: 128, 0, 0;
+  --bs-link-hover-color: #660000;
+  --bs-link-hover-color-rgb: 102, 0, 0;
+
+  /* Focus ring */
+  --bs-focus-ring-color: rgba(128, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Buttons — .btn-primary
+   ========================================================================== */
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #800000;
+  --bs-btn-border-color: #800000;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #660000;
+  --bs-btn-hover-border-color: #600000;
+  --bs-btn-focus-shadow-rgb: 128, 0, 0;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #600000;
+  --bs-btn-active-border-color: #5a0000;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #800000;
+  --bs-btn-disabled-border-color: #800000;
+}
+
+/* ==========================================================================
+   Buttons — .btn-outline-primary
+   ========================================================================== */
+
+.btn-outline-primary {
+  --bs-btn-color: #800000;
+  --bs-btn-border-color: #800000;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #800000;
+  --bs-btn-hover-border-color: #800000;
+  --bs-btn-focus-shadow-rgb: 128, 0, 0;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #800000;
+  --bs-btn-active-border-color: #800000;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #800000;
+  --bs-btn-disabled-border-color: #800000;
+}
+
+/* ==========================================================================
+   Alerts — .alert-primary
+   ========================================================================== */
+
+.alert-primary {
+  --bs-alert-color: #330000;
+  --bs-alert-bg: #e6cccc;
+  --bs-alert-border-color: #cc9999;
+  --bs-alert-link-color: #330000;
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+
+.badge.bg-primary,
+.badge.text-bg-primary {
+  background-color: #800000 !important;
+  color: #fff !important;
+}
+
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+
+.pagination {
+  --bs-pagination-active-bg: #800000;
+  --bs-pagination-active-border-color: #800000;
+  --bs-pagination-active-color: #fff;
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Nav Pills
+   ========================================================================== */
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #800000;
+  --bs-nav-pills-link-active-color: #fff;
+}
+
+/* ==========================================================================
+   Nav Tabs
+   ========================================================================== */
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #800000;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+  border-color: #e6cccc #e6cccc transparent;
+}
+
+/* ==========================================================================
+   List Group
+   ========================================================================== */
+
+.list-group-item-primary {
+  --bs-list-group-color: #330000;
+  --bs-list-group-bg: #e6cccc;
+  --bs-list-group-border-color: #cc9999;
+  --bs-list-group-action-hover-color: #330000;
+  --bs-list-group-action-hover-bg: #cc9999;
+  --bs-list-group-action-active-color: #330000;
+  --bs-list-group-action-active-bg: #cc9999;
+}
+
+.list-group-item.active {
+  --bs-list-group-active-bg: #800000;
+  --bs-list-group-active-border-color: #800000;
+  --bs-list-group-active-color: #fff;
+}
+
+/* ==========================================================================
+   Accordion
+   ========================================================================== */
+
+.accordion {
+  --bs-accordion-active-color: #330000;
+  --bs-accordion-active-bg: #e6cccc;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+.accordion-button:not(.collapsed)::after {
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23c08080'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-image: var(--bs-accordion-btn-active-icon);
+}
+
+/* ==========================================================================
+   Form Controls — Focus States
+   ========================================================================== */
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #c08080;
+  box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Form Controls — Checkboxes & Radios
+   ========================================================================== */
+
+.form-check-input:checked {
+  background-color: #800000;
+  border-color: #800000;
+}
+
+.form-check-input:focus {
+  border-color: #c08080;
+  box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+.form-check-input:checked[type="checkbox"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked[type="radio"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input:indeterminate {
+  background-color: #800000;
+  border-color: #800000;
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+/* ==========================================================================
+   Form Controls — Switches
+   ========================================================================== */
+
+.form-switch .form-check-input:checked {
+  background-color: #800000;
+  border-color: #800000;
+}
+
+.form-switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23c08080'/%3e%3c/svg%3e");
+}
+
+/* ==========================================================================
+   Form Controls — Range
+   ========================================================================== */
+
+.form-range::-webkit-slider-thumb {
+  background: #800000;
+}
+
+.form-range::-moz-range-thumb {
+  background: #800000;
+}
+
+.form-range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+.form-range:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.table-primary {
+  --bs-table-bg: #e6cccc;
+  --bs-table-border-color: #cc9999;
+  --bs-table-color: #330000;
+  --bs-table-striped-bg: #cc9999;
+  --bs-table-striped-color: #330000;
+  --bs-table-active-bg: #cc9999;
+  --bs-table-active-color: #330000;
+  --bs-table-hover-bg: #cc9999;
+  --bs-table-hover-color: #330000;
+}
+
+/* ==========================================================================
+   Dropdowns
+   ========================================================================== */
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #800000;
+  color: #fff;
+}
+
+/* ==========================================================================
+   Progress Bar
+   ========================================================================== */
+
+.progress-bar {
+  background-color: #800000;
+}
+
+/* ==========================================================================
+   Spinners
+   ========================================================================== */
+
+.spinner-border.text-primary,
+.spinner-grow.text-primary {
+  color: #800000 !important;
+}
+
+/* ==========================================================================
+   Utility Classes — Text
+   ========================================================================== */
+
+.text-primary {
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity, 1)) !important;
+}
+
+.text-primary-emphasis {
+  color: var(--bs-primary-text-emphasis) !important;
+}
+
+/* ==========================================================================
+   Utility Classes — Background
+   ========================================================================== */
+
+.bg-primary {
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.bg-primary-subtle {
+  background-color: var(--bs-primary-bg-subtle) !important;
+}
+
+.text-bg-primary {
+  color: #fff !important;
+  background-color: #800000 !important;
+}
+
+/* ==========================================================================
+   Utility Classes — Border
+   ========================================================================== */
+
+.border-primary {
+  border-color: #800000 !important;
+}
+
+.border-primary-subtle {
+  border-color: var(--bs-primary-border-subtle) !important;
+}
+
+/* ==========================================================================
+   Focus Ring
+   ========================================================================== */
+
+.focus-ring-primary {
+  --bs-focus-ring-color: rgba(128, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Link Utility — .link-primary
+   ========================================================================== */
+
+.link-primary {
+  color: rgba(128, 0, 0, var(--bs-link-opacity, 1)) !important;
+  -webkit-text-decoration-color: rgba(128, 0, 0, var(--bs-link-underline-opacity, 1)) !important;
+  text-decoration-color: rgba(128, 0, 0, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.link-primary:hover,
+.link-primary:focus {
+  color: rgba(102, 0, 0, var(--bs-link-opacity, 1)) !important;
+  -webkit-text-decoration-color: rgba(102, 0, 0, var(--bs-link-underline-opacity, 1)) !important;
+  text-decoration-color: rgba(102, 0, 0, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+/* ==========================================================================
+   Breadcrumbs
+   ========================================================================== */
+
+.breadcrumb-item a {
+  color: #800000;
+}
+
+.breadcrumb-item a:hover {
+  color: #660000;
+}
+
+/* ==========================================================================
+   Dark Mode Overrides
+   ========================================================================== */
+
+[data-bs-theme="dark"] {
+  --bs-primary: #800000;
+  --bs-primary-rgb: 128, 0, 0;
+  --bs-primary-text-emphasis: #b36666;
+  --bs-primary-bg-subtle: #1a0000;
+  --bs-primary-border-subtle: #4d0000;
+  --bs-link-color: #b36666;
+  --bs-link-color-rgb: 179, 102, 102;
+  --bs-link-hover-color: #cc9999;
+  --bs-link-hover-color-rgb: 204, 153, 153;
+  --bs-focus-ring-color: rgba(128, 0, 0, 0.25);
+}

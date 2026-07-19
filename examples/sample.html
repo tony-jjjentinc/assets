@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Custom Color CDN — Sample</title>
+
+  <!-- 1. Bootstrap 5 CSS (from public CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 2. Base CSS overrides (fonts, shadows, border-radius) -->
+  <link rel="stylesheet" href="../css/base.css">
+
+  <!-- 3. Department color override — change this to switch departments -->
+  <link rel="stylesheet" href="../css/colors/gmo/gmo.css" id="color-theme">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">Custom CDN Demo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Reports</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Department Switcher -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">Department Theme Switcher</h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted mb-3">Select a department to see its color applied to all Bootstrap components below.</p>
+        <div class="row g-2">
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="gmo/gmo" data-label="GMO">GMO</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="admin/admin" data-label="Admin">Admin</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="facilities/facilities" data-label="Facilities">Facilities</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="leasing/leasing" data-label="Leasing">Leasing</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="hr/hr" data-label="HR">HR</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="procurement-and-inventory/procurement-and-inventory" data-label="Procurement">Procurement</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="controller/controller" data-label="Controller">Controller</button></div>
+          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="treasury/treasury" data-label="Treasury">Treasury</button></div>
+        </div>
+        <hr>
+        <p class="text-muted mb-2"><small>Sub-department shades (current department):</small></p>
+        <div class="row g-2" id="sub-dept-buttons"></div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- Left Column -->
+      <div class="col-lg-6">
+
+        <!-- Buttons -->
+        <div class="card mb-4">
+          <div class="card-header">Buttons</div>
+          <div class="card-body">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-primary">Primary</button>
+              <button class="btn btn-outline-primary">Outline</button>
+              <button class="btn btn-primary btn-sm">Small</button>
+              <button class="btn btn-primary btn-lg">Large</button>
+              <button class="btn btn-primary" disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="card mb-4">
+          <div class="card-header">Alert</div>
+          <div class="card-body">
+            <div class="alert alert-primary mb-0" role="alert">
+              This is a <strong>primary alert</strong> with <a href="#" class="alert-link">a link</a>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="card mb-4">
+          <div class="card-header">Badges</div>
+          <div class="card-body">
+            <span class="badge text-bg-primary me-2">Primary Badge</span>
+            <span class="badge rounded-pill text-bg-primary me-2">Pill Badge</span>
+            <button class="btn btn-primary">
+              Notifications <span class="badge text-bg-light">4</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- List Group -->
+        <div class="card mb-4">
+          <div class="card-header">List Group</div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item active">Active Item</li>
+              <li class="list-group-item">Regular Item</li>
+              <li class="list-group-item list-group-item-primary">Primary Item</li>
+              <li class="list-group-item">Another Item</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="card mb-4">
+          <div class="card-header">Progress Bar</div>
+          <div class="card-body">
+            <div class="progress mb-3">
+              <div class="progress-bar" role="progressbar" style="width: 65%">65%</div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 45%">45%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="card mb-4">
+          <div class="card-header">Modal</div>
+          <div class="card-body">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sampleModal">Open Modal</button>
+          </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="card mb-4">
+          <div class="card-header">Toast</div>
+          <div class="card-body">
+            <button class="btn btn-primary" id="showToast">Show Toast</button>
+          </div>
+        </div>
+
+        <!-- Offcanvas -->
+        <div class="card mb-4">
+          <div class="card-header">Offcanvas</div>
+          <div class="card-body">
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#sampleOffcanvas">Open Offcanvas</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-lg-6">
+
+        <!-- Form Controls -->
+        <div class="card mb-4">
+          <div class="card-header">Form Controls</div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="sampleInput" class="form-label">Text Input</label>
+              <input type="text" class="form-control" id="sampleInput" placeholder="Click to see focus state">
+            </div>
+            <div class="mb-3">
+              <label for="sampleSelect" class="form-label">Select</label>
+              <select class="form-select" id="sampleSelect">
+                <option>Option 1</option>
+                <option>Option 2</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="sampleRange" class="form-label">Range</label>
+              <input type="range" class="form-range" id="sampleRange">
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="check1" checked>
+              <label class="form-check-label" for="check1">Checkbox (checked)</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="radio" id="radio1" checked>
+              <label class="form-check-label" for="radio1">Radio (checked)</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="switch1" checked>
+              <label class="form-check-label" for="switch1">Switch (checked)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nav Pills & Tabs -->
+        <div class="card mb-4">
+          <div class="card-header">Nav Pills & Tabs</div>
+          <div class="card-body">
+            <ul class="nav nav-pills mb-3">
+              <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+            </ul>
+            <ul class="nav nav-tabs">
+              <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Tab</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Tab</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="card mb-4">
+          <div class="card-header">Pagination</div>
+          <div class="card-body">
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">»</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="card mb-4">
+          <div class="card-header">Accordion</div>
+          <div class="card-body p-0">
+            <div class="accordion accordion-flush" id="sampleAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    Accordion Item #1
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#sampleAccordion">
+                  <div class="accordion-body">Content for the first item.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    Accordion Item #2
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#sampleAccordion">
+                  <div class="accordion-body">Content for the second item.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spinners -->
+        <div class="card mb-4">
+          <div class="card-header">Spinners, Utilities & More</div>
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+              <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+              <span class="text-primary fw-semibold">Text Primary</span>
+            </div>
+            <div class="d-flex gap-2">
+              <div class="p-3 bg-primary text-white rounded">.bg-primary</div>
+              <div class="p-3 bg-primary-subtle rounded">.bg-primary-subtle</div>
+              <div class="p-3 border border-primary rounded">.border-primary</div>
+            </div>
+            <hr>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="text-primary-emphasis">Text emphasis</span>
+              <span class="border border-primary-subtle p-2 rounded">Subtle border</span>
+              <button class="btn btn-sm btn-outline-primary focus-ring-primary">Focus ring</button>
+            </div>
+            <div>
+              <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Tooltip using primary focus ring">Hover for Tooltip</button>
+              <button class="btn btn-primary" data-bs-toggle="popover" data-bs-title="Primary Popover" data-bs-content="This popover is triggered from a primary button.">Show Popover</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card mb-4">
+      <div class="card-header">Table</div>
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr><th>#</th><th>Name</th><th>Department</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr class="table-primary"><td>1</td><td>John Doe</td><td>GMO</td><td><span class="badge text-bg-primary">Active</span></td></tr>
+            <tr><td>2</td><td>Jane Smith</td><td>Admin</td><td><span class="badge text-bg-primary">Active</span></td></tr>
+            <tr><td>3</td><td>Bob Wilson</td><td>HR</td><td><span class="badge text-bg-secondary">Inactive</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Dropdown -->
+    <div class="card mb-4">
+      <div class="card-header">Dropdown</div>
+      <div class="card-body">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="#">Active item</a></li>
+            <li><a class="dropdown-item" href="#">Regular item</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Another item</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="card mb-4">
+      <div class="card-header">Breadcrumb & Links</div>
+      <div class="card-body">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-2">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Department</a></li>
+            <li class="breadcrumb-item active">Current Page</li>
+          </ol>
+        </nav>
+        <p>This is a <a href="#">sample link</a> that uses the primary color.</p>
+      </div>
+    </div>
+
+    <!-- Modal Component -->
+    <div class="modal fade" id="sampleModal" tabindex="-1" aria-labelledby="sampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="sampleModalLabel">Sample Modal</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">This modal demonstrates the primary color on the header and action buttons.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Component -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div class="toast" id="sampleToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header text-bg-primary">
+          <strong class="me-auto">Notification</strong>
+          <small>just now</small>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">This toast uses the primary color theme.</div>
+      </div>
+    </div>
+
+    <!-- Offcanvas Component -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sampleOffcanvas" aria-labelledby="sampleOffcanvasLabel">
+      <div class="offcanvas-header bg-primary text-white">
+        <h5 class="offcanvas-title" id="sampleOffcanvasLabel">Offcanvas Panel</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <p>This offcanvas panel uses the primary color on its header.</p>
+        <button class="btn btn-primary">Primary Action</button>
+      </div>
+    </div>
+
+    <footer class="text-center text-muted py-4">
+      <small>Bootstrap 5 Custom Color CDN — Sample Page</small>
+    </footer>
+
+  </div>
+
+  <!-- Bootstrap 5 JS (from public CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Theme Switcher Script -->
+  <script>
+    const colorLink = document.getElementById('color-theme');
+    const subDeptContainer = document.getElementById('sub-dept-buttons');
+
+    function setActiveDeptButton(activeBtn) {
+      document.querySelectorAll('.dept-btn').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-outline-secondary');
+      });
+      activeBtn.classList.remove('btn-outline-secondary');
+      activeBtn.classList.add('btn-primary');
+    }
+
+    function updateSubDeptButtons(dept) {
+      const folder = dept.split('/')[0];
+      let html = '';
+      html += `<div class="col-auto"><button class="btn btn-sm btn-primary sub-btn" data-path="${folder}/${folder}">Base</button></div>`;
+      for (let i = 1; i <= 8; i++) {
+        html += `<div class="col-auto"><button class="btn btn-sm btn-outline-primary sub-btn" data-path="${folder}/${folder}-sub-dept-${i}">Sub ${i}</button></div>`;
+      }
+      subDeptContainer.innerHTML = html;
+
+      subDeptContainer.querySelectorAll('.sub-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          colorLink.href = `../css/colors/${btn.dataset.path}.css`;
+          // Active state tracking for sub-dept buttons
+          subDeptContainer.querySelectorAll('.sub-btn').forEach(b => {
+            b.classList.remove('btn-primary');
+            b.classList.add('btn-outline-primary');
+          });
+          btn.classList.remove('btn-outline-primary');
+          btn.classList.add('btn-primary');
+        });
+      });
+    }
+
+    document.querySelectorAll('.dept-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dept = btn.dataset.dept;
+        colorLink.href = `../css/colors/${dept}.css`;
+        setActiveDeptButton(btn);
+        updateSubDeptButtons(dept);
+      });
+    });
+
+    // Initialize: set GMO as active, build sub-dept buttons
+    const defaultBtn = document.querySelector('.dept-btn[data-dept="gmo/gmo"]');
+    if (defaultBtn) setActiveDeptButton(defaultBtn);
+    updateSubDeptButtons('gmo/gmo');
+
+    // Initialize tooltips and popovers
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bootstrap.Popover(el));
+
+    // Toast trigger
+    document.getElementById('showToast')?.addEventListener('click', () => {
+      const toast = new bootstrap.Toast(document.getElementById('sampleToast'));
+      toast.show();
+    });
+  </script>
+
+</body>
+</html>

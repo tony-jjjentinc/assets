@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Dev tools (generator script output logs)
+*.log
+node_modules/
+
+# Scratch files
+scratch/
