@@ -385,6 +385,9 @@
 .card {
   --bs-card-bg: {{CARD_BG}};
   --bs-card-color: {{CARD_COLOR}};
+  --bs-heading-color: {{CARD_COLOR}};
+  --bs-body-color: {{CARD_COLOR}};
+  --bs-secondary-color: {{CARD_COLOR}};
 }
 
 [data-bs-theme="dark"] {
