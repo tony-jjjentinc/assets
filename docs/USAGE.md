@@ -15,10 +15,10 @@ In your Google Apps Script project, create an HTML file and add the following to
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- 2. Base style overrides -->
-  <link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
+  <link href="https://tony-jjjentinc.github.io/assets/css/base.css" rel="stylesheet">
 
   <!-- 3. Department color (choose one) -->
-  <link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
+  <link href="https://tony-jjjentinc.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 </head>
 <body>
 
@@ -54,7 +54,7 @@ Each department has its own dynamically generated theme variants and theme varia
 
 **Example** — HR Light Theme (Thistle):
 ```html
-<link href="https://{username}.github.io/assets/css/colors/hr/hr-light-2.css" rel="stylesheet">
+<link href="https://tony-jjjentinc.github.io/assets/css/colors/hr/hr-light-2.css" rel="stylesheet">
 ```
 *Note: See `examples/config.js` or the interactive demo to view the available theme variants and their filenames for each department.*
 
@@ -101,8 +101,8 @@ function doGet() {
 <head>
   <base target="_top">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
-  <link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
+  <link href="https://tony-jjjentinc.github.io/assets/css/base.css" rel="stylesheet">
+  <link href="https://tony-jjjentinc.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 </head>
 <body>
   <div class="container mt-4">

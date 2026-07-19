@@ -11,10 +11,10 @@ Add these three lines to your Google Apps Script HTML file:
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 2. Base style overrides (fonts, shadows, border-radius) -->
-<link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
+<link href="https://tony-jjjentinc.github.io/assets/css/base.css" rel="stylesheet">
 
 <!-- 3. Department color override (pick one) -->
-<link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
+<link href="https://tony-jjjentinc.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 ```
 
 And the Bootstrap JS at the end of `<body>`:

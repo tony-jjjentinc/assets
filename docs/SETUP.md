@@ -14,7 +14,7 @@
 2. Once forked to your account, clone your new repository:
 
 ```bash
-git clone https://github.com/{username}/assets.git
+git clone https://github.com/tony-jjjentinc/assets.git
 cd assets
 ```
 
@@ -28,7 +28,7 @@ cd assets
 
 GitHub Pages will deploy your site at:
 ```
-https://{username}.github.io/assets/
+https://tony-jjjentinc.github.io/assets/
 ```
 
 ### 3. Verify Deployment
@@ -36,8 +36,8 @@ https://{username}.github.io/assets/
 After a few minutes, verify the CSS files are accessible:
 
 ```
-https://{username}.github.io/assets/css/base.css
-https://{username}.github.io/assets/css/colors/gmo/gmo.css
+https://tony-jjjentinc.github.io/assets/css/base.css
+https://tony-jjjentinc.github.io/assets/css/colors/gmo/gmo.css
 ```
 
 ## Project Structure
