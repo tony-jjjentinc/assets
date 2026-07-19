@@ -1,7 +1,7 @@
 /* ==========================================================================
    Controller — Light Sea Green
    Primary Color: #20B2AA
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #20b2aa;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #20b2aa;
+  color: #212529;
+  background-color: #20b2aa;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #d2f0ee;
+  --bs-table-bg: #20b2aa;
   --bs-table-border-color: #a6e0dd;
-  --bs-table-color: #0d4744;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #a6e0dd;
   --bs-table-striped-color: #0d4744;
   --bs-table-active-bg: #a6e0dd;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #20b2aa;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #20b2aa;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #20b2aa !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #20b2aa;
+  --bs-toast-header-bg: #20b2aa;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

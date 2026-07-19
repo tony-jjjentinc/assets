@@ -1,7 +1,7 @@
 /* ==========================================================================
    Admin — Dark Goldenrod
    Primary Color: #B8860B
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #b8860b;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #b8860b;
+  color: #212529;
+  background-color: #b8860b;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #f1e7ce;
+  --bs-table-bg: #b8860b;
   --bs-table-border-color: #e3cf9d;
-  --bs-table-color: #4a3604;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #e3cf9d;
   --bs-table-striped-color: #4a3604;
   --bs-table-active-bg: #e3cf9d;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #b8860b;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #b8860b;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #b8860b !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #b8860b;
+  --bs-toast-header-bg: #b8860b;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

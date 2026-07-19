@@ -1,7 +1,7 @@
 /* ==========================================================================
    Controller — Dark Slate Gray
    Primary Color: #2F4F4F
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #2f4f4f;
+  --bs-nav-tabs-link-active-color: #fff;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #2f4f4f;
+  color: #fff;
+  background-color: #2f4f4f;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #d5dcdc;
+  --bs-table-bg: #2f4f4f;
   --bs-table-border-color: #acb9b9;
-  --bs-table-color: #132020;
+  --bs-table-color: #fff;
   --bs-table-striped-bg: #acb9b9;
   --bs-table-striped-color: #132020;
   --bs-table-active-bg: #acb9b9;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #2f4f4f;
+  color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #2f4f4f;
   color: #fff;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #2f4f4f !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #2f4f4f;
+  --bs-toast-header-bg: #2f4f4f;
+  --bs-toast-color: #fff;
+  --bs-toast-header-color: #fff;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

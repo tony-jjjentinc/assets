@@ -141,9 +141,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: {{PRIMARY}};
+  --bs-nav-tabs-link-active-color: {{TEXT_ON_PRIMARY}};
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: {{PRIMARY}};
+  color: {{TEXT_ON_PRIMARY}};
+  background-color: {{PRIMARY}};
 }
 
 .nav-tabs .nav-link:hover,
@@ -262,9 +268,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: {{PRIMARY_BG_SUBTLE}};
+  --bs-table-bg: {{PRIMARY}};
   --bs-table-border-color: {{PRIMARY_BORDER_SUBTLE}};
-  --bs-table-color: {{PRIMARY_TEXT_EMPHASIS}};
+  --bs-table-color: {{TEXT_ON_PRIMARY}};
   --bs-table-striped-bg: {{PRIMARY_BORDER_SUBTLE}};
   --bs-table-striped-color: {{PRIMARY_TEXT_EMPHASIS}};
   --bs-table-active-bg: {{PRIMARY_BORDER_SUBTLE}};
@@ -279,6 +285,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: {{PRIMARY}};
+  color: {{TEXT_ON_PRIMARY}};
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: {{PRIMARY}};
   color: {{TEXT_ON_PRIMARY}};
 }
@@ -298,6 +310,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: {{PRIMARY}} !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: {{PRIMARY}};
+  --bs-toast-header-bg: {{PRIMARY}};
+  --bs-toast-color: {{TEXT_ON_PRIMARY}};
+  --bs-toast-header-color: {{TEXT_ON_PRIMARY}};
 }
 
 /* ==========================================================================
@@ -383,11 +406,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: {{CARD_COLOR}};
+  --bs-navbar-hover-color: {{CARD_COLOR}};
+  --bs-navbar-brand-color: {{CARD_COLOR}};
+  --bs-navbar-active-color: {{CARD_COLOR}};
   background-color: {{CARD_BG}} !important;
-  color: {{CARD_COLOR}} !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: {{CARD_COLOR}} !important;
 }
 

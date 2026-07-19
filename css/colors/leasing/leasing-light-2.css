@@ -1,7 +1,7 @@
 /* ==========================================================================
    Leasing — Pink Lace
    Primary Color: #FFDDF4
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #ffddf4;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #ffddf4;
+  color: #212529;
+  background-color: #ffddf4;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #fff8fd;
+  --bs-table-bg: #ffddf4;
   --bs-table-border-color: #fff1fb;
-  --bs-table-color: #665862;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #fff1fb;
   --bs-table-striped-color: #665862;
   --bs-table-active-bg: #fff1fb;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #ffddf4;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #ffddf4;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #ffddf4 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #ffddf4;
+  --bs-toast-header-bg: #ffddf4;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #f8f9fa;
+  --bs-navbar-hover-color: #f8f9fa;
+  --bs-navbar-brand-color: #f8f9fa;
+  --bs-navbar-active-color: #f8f9fa;
   background-color: #1a1d20 !important;
-  color: #f8f9fa !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #f8f9fa !important;
 }
 

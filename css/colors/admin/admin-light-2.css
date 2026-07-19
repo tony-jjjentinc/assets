@@ -1,7 +1,7 @@
 /* ==========================================================================
    Admin — Pale Goldenrod
    Primary Color: #EEE8AA
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #eee8aa;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #eee8aa;
+  color: #212529;
+  background-color: #eee8aa;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #fcfaee;
+  --bs-table-bg: #eee8aa;
   --bs-table-border-color: #f8f6dd;
-  --bs-table-color: #5f5d44;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #f8f6dd;
   --bs-table-striped-color: #5f5d44;
   --bs-table-active-bg: #f8f6dd;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #eee8aa;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #eee8aa;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #eee8aa !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #eee8aa;
+  --bs-toast-header-bg: #eee8aa;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #f8f9fa;
+  --bs-navbar-hover-color: #f8f9fa;
+  --bs-navbar-brand-color: #f8f9fa;
+  --bs-navbar-active-color: #f8f9fa;
   background-color: #1a1d20 !important;
-  color: #f8f9fa !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #f8f9fa !important;
 }
 

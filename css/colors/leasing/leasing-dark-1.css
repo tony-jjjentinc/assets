@@ -1,7 +1,7 @@
 /* ==========================================================================
    Leasing — Firebrick
    Primary Color: #B22222
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #b22222;
+  --bs-nav-tabs-link-active-color: #fff;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #b22222;
+  color: #fff;
+  background-color: #b22222;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #f0d3d3;
+  --bs-table-bg: #b22222;
   --bs-table-border-color: #e0a7a7;
-  --bs-table-color: #470e0e;
+  --bs-table-color: #fff;
   --bs-table-striped-bg: #e0a7a7;
   --bs-table-striped-color: #470e0e;
   --bs-table-active-bg: #e0a7a7;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #b22222;
+  color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #b22222;
   color: #fff;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #b22222 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #b22222;
+  --bs-toast-header-bg: #b22222;
+  --bs-toast-color: #fff;
+  --bs-toast-header-color: #fff;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

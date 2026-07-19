@@ -1,7 +1,7 @@
 /* ==========================================================================
    Procurement and Inventory — Mahogany
    Primary Color: #C04000
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #c04000;
+  --bs-nav-tabs-link-active-color: #fff;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #c04000;
+  color: #fff;
+  background-color: #c04000;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #f2d9cc;
+  --bs-table-bg: #c04000;
   --bs-table-border-color: #e6b399;
-  --bs-table-color: #4d1a00;
+  --bs-table-color: #fff;
   --bs-table-striped-bg: #e6b399;
   --bs-table-striped-color: #4d1a00;
   --bs-table-active-bg: #e6b399;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #c04000;
+  color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #c04000;
   color: #fff;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #c04000 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #c04000;
+  --bs-toast-header-bg: #c04000;
+  --bs-toast-color: #fff;
+  --bs-toast-header-color: #fff;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

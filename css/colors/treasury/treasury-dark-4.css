@@ -1,7 +1,7 @@
 /* ==========================================================================
    Treasury — Rust
    Primary Color: #B7410E
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #b7410e;
+  --bs-nav-tabs-link-active-color: #fff;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #b7410e;
+  color: #fff;
+  background-color: #b7410e;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #f1d9cf;
+  --bs-table-bg: #b7410e;
   --bs-table-border-color: #e2b39f;
-  --bs-table-color: #491a06;
+  --bs-table-color: #fff;
   --bs-table-striped-bg: #e2b39f;
   --bs-table-striped-color: #491a06;
   --bs-table-active-bg: #e2b39f;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #b7410e;
+  color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #b7410e;
   color: #fff;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #b7410e !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #b7410e;
+  --bs-toast-header-bg: #b7410e;
+  --bs-toast-color: #fff;
+  --bs-toast-header-color: #fff;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

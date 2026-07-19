@@ -1,7 +1,7 @@
 /* ==========================================================================
    HR — Thistle
    Primary Color: #D8BFD8
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #d8bfd8;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #d8bfd8;
+  color: #212529;
+  background-color: #d8bfd8;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #f7f2f7;
+  --bs-table-bg: #d8bfd8;
   --bs-table-border-color: #efe5ef;
-  --bs-table-color: #564c56;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #efe5ef;
   --bs-table-striped-color: #564c56;
   --bs-table-active-bg: #efe5ef;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #d8bfd8;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #d8bfd8;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #d8bfd8 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #d8bfd8;
+  --bs-toast-header-bg: #d8bfd8;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #f8f9fa;
+  --bs-navbar-hover-color: #f8f9fa;
+  --bs-navbar-brand-color: #f8f9fa;
+  --bs-navbar-active-color: #f8f9fa;
   background-color: #1a1d20 !important;
-  color: #f8f9fa !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #f8f9fa !important;
 }
 

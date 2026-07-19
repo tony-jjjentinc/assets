@@ -1,7 +1,7 @@
 /* ==========================================================================
    Leasing — Burgundy
    Primary Color: #800020
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #800020;
+  --bs-nav-tabs-link-active-color: #fff;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #800020;
+  color: #fff;
+  background-color: #800020;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #e6ccd2;
+  --bs-table-bg: #800020;
   --bs-table-border-color: #cc99a6;
-  --bs-table-color: #33000d;
+  --bs-table-color: #fff;
   --bs-table-striped-bg: #cc99a6;
   --bs-table-striped-color: #33000d;
   --bs-table-active-bg: #cc99a6;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #800020;
+  color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #800020;
   color: #fff;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #800020 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #800020;
+  --bs-toast-header-bg: #800020;
+  --bs-toast-color: #fff;
+  --bs-toast-header-color: #fff;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #1a1d20;
+  --bs-navbar-hover-color: #1a1d20;
+  --bs-navbar-brand-color: #1a1d20;
+  --bs-navbar-active-color: #1a1d20;
   background-color: #f8f9fa !important;
-  color: #1a1d20 !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #1a1d20 !important;
 }
 

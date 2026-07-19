@@ -1,7 +1,7 @@
 /* ==========================================================================
    Procurement and Inventory — Peach Puff
    Primary Color: #FFDAB9
-   Generated: 2026-07-20 02:01:16
+   Generated: 2026-07-20 02:21:58
    ========================================================================== */
 
 /* ==========================================================================
@@ -116,9 +116,15 @@
    Nav Tabs
    ========================================================================== */
 
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #ffdab9;
+  --bs-nav-tabs-link-active-color: #212529;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #ffdab9;
+  color: #212529;
+  background-color: #ffdab9;
 }
 
 .nav-tabs .nav-link:hover,
@@ -237,9 +243,9 @@
    ========================================================================== */
 
 .table-primary {
-  --bs-table-bg: #fff8f1;
+  --bs-table-bg: #ffdab9;
   --bs-table-border-color: #fff0e3;
-  --bs-table-color: #66574a;
+  --bs-table-color: #212529;
   --bs-table-striped-bg: #fff0e3;
   --bs-table-striped-color: #66574a;
   --bs-table-active-bg: #fff0e3;
@@ -254,6 +260,12 @@
 
 .dropdown-item.active,
 .dropdown-item:active {
+  background-color: #ffdab9;
+  color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
   background-color: #ffdab9;
   color: #212529;
 }
@@ -273,6 +285,17 @@
 .spinner-border.text-primary,
 .spinner-grow.text-primary {
   color: #ffdab9 !important;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.toast {
+  --bs-toast-bg: #ffdab9;
+  --bs-toast-header-bg: #ffdab9;
+  --bs-toast-color: #212529;
+  --bs-toast-header-color: #212529;
 }
 
 /* ==========================================================================
@@ -358,11 +381,11 @@
    ========================================================================== */
 
 .dynamic-navbar {
+  --bs-navbar-color: #f8f9fa;
+  --bs-navbar-hover-color: #f8f9fa;
+  --bs-navbar-brand-color: #f8f9fa;
+  --bs-navbar-active-color: #f8f9fa;
   background-color: #1a1d20 !important;
-  color: #f8f9fa !important;
-}
-.dynamic-navbar .nav-link, 
-.dynamic-navbar .navbar-brand {
   color: #f8f9fa !important;
 }
 

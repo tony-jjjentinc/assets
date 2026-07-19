@@ -189,11 +189,16 @@
               <input type="text" class="form-control" id="sampleInput" placeholder="Click to see focus state">
             </div>
             <div class="mb-3">
-              <label for="sampleSelect" class="form-label">Select</label>
-              <select class="form-select" id="sampleSelect">
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
+              <label class="form-label">Select</label>
+              <div class="dropdown">
+                <button class="btn border dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center bg-body text-body" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Option 1
+                </button>
+                <ul class="dropdown-menu w-100">
+                  <li><a class="dropdown-item active" href="#">Option 1</a></li>
+                  <li><a class="dropdown-item" href="#">Option 2</a></li>
+                </ul>
+              </div>
             </div>
             <div class="mb-3">
               <label for="sampleRange" class="form-label">Range</label>
