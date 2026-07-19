@@ -591,7 +591,7 @@ def format_rgb(rgb):
 # Template Processing
 # ---------------------------------------------------------------------------
 
-def compute_placeholders(base_rgb):
+def compute_placeholders(base_rgb, theme):
     """
     Given a base RGB color, compute all placeholder values needed
     by the _template.css file.
@@ -611,6 +611,13 @@ def compute_placeholders(base_rgb):
     dark_bg_subtle_rgb = shade_color(base_rgb, 0.80)
     dark_border_subtle_rgb = shade_color(base_rgb, 0.40)
     dark_link_hover_rgb = tint_color(base_rgb, 0.60)
+
+    if theme == "light":
+        card_bg = "#1a1d20"
+        card_color = "#f8f9fa"
+    else:
+        card_bg = "#f8f9fa"
+        card_color = "#1a1d20"
 
     return {
         "{{PRIMARY}}":                      rgb_to_hex(*base_rgb),
@@ -632,6 +639,8 @@ def compute_placeholders(base_rgb):
         "{{DARK_PRIMARY_BORDER_SUBTLE}}":    rgb_to_hex(*dark_border_subtle_rgb),
         "{{DARK_PRIMARY_LINK_HOVER}}":       rgb_to_hex(*dark_link_hover_rgb),
         "{{DARK_PRIMARY_LINK_HOVER_RGB}}":   format_rgb(dark_link_hover_rgb),
+        "{{CARD_BG}}":                       card_bg,
+        "{{CARD_COLOR}}":                    card_color,
     }
 
 
@@ -700,7 +709,7 @@ def generate_department_files(template):
             theme = sub_dept["theme"]
 
             sub_rgb = hex_to_rgb(sub_hex)
-            placeholders = compute_placeholders(sub_rgb)
+            placeholders = compute_placeholders(sub_rgb, theme)
             
             css_content = generate_css(
                 template, placeholders,
@@ -737,7 +746,9 @@ def generate_config_js():
             dept_obj["themeVariants"].append({
                 "file": file_val,
                 "label": sub["name"],
-                "theme": sub["theme"]
+                "theme": sub["theme"],
+                "color": sub["color"],
+                "textColor": text_color_on(hex_to_rgb(sub["color"]))
             })
             
         config_data["departments"].append(dept_obj)

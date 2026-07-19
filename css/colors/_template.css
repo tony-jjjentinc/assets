@@ -382,6 +382,11 @@
    Dark Mode Overrides
    ========================================================================== */
 
+.card {
+  --bs-card-bg: {{CARD_BG}};
+  --bs-card-color: {{CARD_COLOR}};
+}
+
 [data-bs-theme="dark"] {
   --bs-primary: {{PRIMARY}};
   --bs-primary-rgb: {{PRIMARY_RGB}};

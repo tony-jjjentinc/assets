@@ -366,7 +366,7 @@
       </div>
     </div>
 
-    <footer class="text-center text-muted py-4">
+    <footer class="text-center py-4">
       <small>Bootstrap 5 Custom Color CDN — Sample Page</small>
     </footer>
 
@@ -408,6 +408,8 @@
         // First item defaults to active
         btn.className = `btn btn-sm sub-btn ${index === 0 ? 'btn-primary' : 'btn-outline-primary'}`;
         btn.dataset.path = `${deptConfig.folder}/${sub.file}`;
+        btn.dataset.color = sub.color;
+        btn.dataset.textColor = sub.textColor;
         btn.textContent = sub.label;
         
         btnWrapper.appendChild(btn);
@@ -424,6 +426,9 @@
       document.querySelectorAll('.sub-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           colorLink.href = `../css/colors/${btn.dataset.path}.css`;
+          document.body.classList.remove('bg-light');
+          document.body.style.backgroundColor = btn.dataset.color;
+          document.body.style.color = btn.dataset.textColor;
           document.querySelectorAll('.sub-btn').forEach(b => {
             b.classList.remove('btn-primary');
             b.classList.add('btn-outline-primary');
@@ -447,6 +452,9 @@
         btn.addEventListener('click', () => {
           const defaultSub = deptConfig.themeVariants[0];
           colorLink.href = `../css/colors/${deptConfig.folder}/${defaultSub.file}.css`;
+          document.body.classList.remove('bg-light');
+          document.body.style.backgroundColor = defaultSub.color;
+          document.body.style.color = defaultSub.textColor;
           setActiveDeptButton(btn);
           updateSubDeptButtons(deptConfig);
         });
@@ -459,6 +467,9 @@
       if (window.THEME_CONFIG.departments.length > 0) {
         const firstDept = window.THEME_CONFIG.departments[0];
         updateSubDeptButtons(firstDept);
+        document.body.classList.remove('bg-light');
+        document.body.style.backgroundColor = firstDept.themeVariants[0].color;
+        document.body.style.color = firstDept.themeVariants[0].textColor;
       }
     }
 
