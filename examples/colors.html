@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department Color Palettes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .color-swatch {
+      width: 110px;
+      height: 110px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      text-align: center;
+      padding: 10px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .color-swatch:hover {
+      transform: scale(1.05);
+    }
+    .swatch-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    .swatch-hex {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">Color Palettes</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="sample.html">Back to Sample Page</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="mb-4">Department Color Palettes</h1>
+    <div id="palette-container"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="config.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("palette-container");
+
+      if (!window.THEME_CONFIG || !window.THEME_CONFIG.departments) {
+        container.innerHTML = "<p>Error loading configuration.</p>";
+        return;
+      }
+
+      window.THEME_CONFIG.departments.forEach(dept => {
+        const section = document.createElement("div");
+        section.className = "card mb-4";
+        
+        const header = document.createElement("div");
+        header.className = "card-header";
+        header.innerHTML = `<h5 class="mb-0">${dept.label}</h5>`;
+        section.appendChild(header);
+
+        const body = document.createElement("div");
+        body.className = "card-body";
+        
+        const swatchContainer = document.createElement("div");
+        swatchContainer.className = "d-flex flex-wrap gap-3";
+        
+        dept.themeVariants.forEach(variant => {
+          const swatch = document.createElement("div");
+          swatch.className = "color-swatch";
+          swatch.style.backgroundColor = variant.color;
+          swatch.style.color = variant.textColor;
+          
+          swatch.innerHTML = `
+            <div class="swatch-label">${variant.label}</div>
+            <div class="swatch-hex">${variant.color}</div>
+          `;
+          
+          swatch.addEventListener("click", () => {
+            navigator.clipboard.writeText(variant.color).then(() => {
+              const hexDiv = swatch.querySelector(".swatch-hex");
+              const originalText = hexDiv.innerText;
+              hexDiv.innerText = "Copied!";
+              setTimeout(() => {
+                hexDiv.innerText = originalText;
+              }, 1500);
+            });
+          });
+          
+          swatchContainer.appendChild(swatch);
+        });
+
+        body.appendChild(swatchContainer);
+        section.appendChild(body);
+        container.appendChild(section);
+      });
+    });
+  </script>
+</body>
+</html>
