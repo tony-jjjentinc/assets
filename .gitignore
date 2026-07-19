@@ -15,3 +15,5 @@ node_modules/
 
 # Scratch files
 scratch/
+
+__pycache__

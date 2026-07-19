@@ -11,10 +11,10 @@ Add these three lines to your Google Apps Script HTML file:
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 2. Base style overrides (fonts, shadows, border-radius) -->
-<link href="https://{username}.github.io/assets_v2/css/base.css" rel="stylesheet">
+<link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
 
 <!-- 3. Department color override (pick one) -->
-<link href="https://{username}.github.io/assets_v2/css/colors/gmo/gmo.css" rel="stylesheet">
+<link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 ```
 
 And the Bootstrap JS at the end of `<body>`:
@@ -36,7 +36,7 @@ And the Bootstrap JS at the end of `<body>`:
 | Controller | Teal (`#008080`) | `css/colors/controller/` |
 | Treasury | Tangerine (`#F28500`) | `css/colors/treasury/` |
 
-Each department folder contains a base color file and 8 sub-department shade variants (`sub-dept-1` to `sub-dept-8`).
+Each department folder contains a base color file and 8 named color variants categorized into Light (`light-1` to `light-4`) and Dark (`dark-1` to `dark-4`) themes.
 
 All color files include `[data-bs-theme="dark"]` overrides for Bootstrap 5.3 dark mode support.
 
@@ -56,8 +56,8 @@ css/
     ├── _template.css                  # Template for creating new color files
     ├── gmo/                           # GMO department (green)
     │   ├── gmo.css                    # Base color
-    │   ├── gmo-sub-dept-1.css         # Lightest shade
-    │   └── ...                        # sub-dept-2 through sub-dept-8
+    │   ├── gmo-light-1.css            # Light theme 1
+    │   └── ...                        # light-2 through dark-4
     ├── admin/                         # Admin department (gold)
     ├── facilities/                    # Facilities department (blue)
     ├── leasing/                       # Leasing department (maroon)

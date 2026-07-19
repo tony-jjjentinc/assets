@@ -8,11 +8,14 @@
 
 ## Initial Setup
 
-### 1. Clone the Repository
+### 1. Fork and Clone the Repository
+
+1. Go to the original repository on GitHub and click the **Fork** button in the top right.
+2. Once forked to your account, clone your new repository:
 
 ```bash
-git clone https://github.com/{username}/assets_v2.git
-cd assets_v2
+git clone https://github.com/{username}/assets.git
+cd assets
 ```
 
 ### 2. Enable GitHub Pages
@@ -25,7 +28,7 @@ cd assets_v2
 
 GitHub Pages will deploy your site at:
 ```
-https://{username}.github.io/assets_v2/
+https://{username}.github.io/assets/
 ```
 
 ### 3. Verify Deployment
@@ -33,19 +36,19 @@ https://{username}.github.io/assets_v2/
 After a few minutes, verify the CSS files are accessible:
 
 ```
-https://{username}.github.io/assets_v2/css/base.css
-https://{username}.github.io/assets_v2/css/colors/gmo/gmo.css
+https://{username}.github.io/assets/css/base.css
+https://{username}.github.io/assets/css/colors/gmo/gmo.css
 ```
 
 ## Project Structure
 
 ```
-assets_v2/
+assets/
 ├── css/
 │   ├── base.css                       # Font + component style overrides
 │   └── colors/
 │       ├── _template.css              # Template (not served to end users)
-│       ├── gmo/                       # 1 base + 8 sub-dept files
+│       ├── gmo/                       # Generated base + theme variant themes
 │       ├── admin/
 │       ├── facilities/
 │       ├── leasing/
@@ -64,17 +67,29 @@ assets_v2/
 
 ## Regenerating Color Files
 
-If you need to change department colors or add new departments:
+If you need to change department colors or add new departments/theme variants:
 
 ### 1. Edit the Configuration
 
-Open `scripts/generate_colors.py` and modify the `DEPARTMENTS` list:
+Open `scripts/generate_colors.py` and modify the `DEPARTMENTS` dictionary:
 
 ```python
-DEPARTMENTS = [
-    ("folder-name", "Display Name", "#HexColor"),
-    # ... add or modify entries
-]
+DEPARTMENTS = {
+    "folder-name": {
+        "name": "Display Name",
+        "base": "#HexColor",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base Theme",
+                "color": "#HexColor",
+                "theme": "base"
+            },
+            # ... add or modify light/dark themes
+        ]
+    },
+    # ...
+}
 ```
 
 ### 2. Run the Generator
@@ -104,7 +119,7 @@ GitHub Pages will automatically redeploy.
 
 ## Verifying Changes
 
-After making any changes, use the [interactive sample page](../examples/sample.html) to visually verify all components render correctly with the new colors. The sample includes a department/sub-department theme switcher.
+After making any changes, use the [interactive sample page](../examples/sample.html) to visually verify all components render correctly with the new colors. The sample includes a department/theme variant theme switcher.
 
 ## Customizing Base Styles
 

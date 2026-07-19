@@ -2,7 +2,7 @@
 """
 generate_colors.py - Bootstrap 5 Primary Color CSS Generator
 =============================================================
-Generates department and sub-department color override CSS files
+Generates department and theme variant color override CSS files
 from the _template.css file.
 
 Usage:
@@ -10,11 +10,13 @@ Usage:
 
 Output:
     css/colors/{dept}/{dept}.css
-    css/colors/{dept}/{dept}-sub-dept-{1-8}.css
+    css/colors/{dept}/{dept}-theme-variant-{1-8}.css
 """
 
 import os
 import sys
+import json
+import re
 from datetime import datetime
 
 # ---------------------------------------------------------------------------
@@ -26,31 +28,491 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 TEMPLATE_PATH = os.path.join(PROJECT_ROOT, "css", "colors", "_template.css")
 COLORS_DIR = os.path.join(PROJECT_ROOT, "css", "colors")
 
-# Department definitions: (folder_name, display_name, hex_color)
-DEPARTMENTS = [
-    ("gmo",                        "GMO",                        "#008000"),
-    ("admin",                      "Admin",                      "#FFD700"),
-    ("facilities",                 "Facilities",                 "#0000FF"),
-    ("leasing",                    "Leasing",                    "#800000"),
-    ("hr",                         "HR",                         "#800080"),
-    ("procurement-and-inventory",  "Procurement and Inventory",  "#C08081"),
-    ("controller",                 "Controller",                 "#008080"),
-    ("treasury",                   "Treasury",                   "#F28500"),
-]
+# Department definitions with curated Light and Dark theme palettes
+DEPARTMENTS = {
+    "gmo": {
+        "name": "GMO",
+        "base": "#008000",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (GMO)",
+                "color": "#008000",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Honeydew",
+                "color": "#F0FFF0",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Mint Cream",
+                "color": "#F5FFFA",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Pale Green",
+                "color": "#98FB98",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Celadon",
+                "color": "#ACE1AF",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Sea Green",
+                "color": "#2E8B57",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Forest Green",
+                "color": "#228B22",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Olive Drab",
+                "color": "#6B8E23",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Dark Green",
+                "color": "#006400",
+                "theme": "dark"
+            }
+        ]
+    },
+    "admin": {
+        "name": "Admin",
+        "base": "#FFD700",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Admin)",
+                "color": "#FFD700",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Lemon Chiffon",
+                "color": "#FFFACD",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Pale Goldenrod",
+                "color": "#EEE8AA",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Khaki",
+                "color": "#F0E68C",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Jasmine",
+                "color": "#F8DE7E",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Goldenrod",
+                "color": "#DAA520",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Dark Goldenrod",
+                "color": "#B8860B",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Peru",
+                "color": "#CD853F",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Saddle Brown",
+                "color": "#8B4513",
+                "theme": "dark"
+            }
+        ]
+    },
+    "facilities": {
+        "name": "Facilities",
+        "base": "#0000FF",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Facilities)",
+                "color": "#0000FF",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Alice Blue",
+                "color": "#F0F8FF",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Powder Blue",
+                "color": "#B0E0E6",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Baby Blue",
+                "color": "#89CFF0",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Carolina Blue",
+                "color": "#4B9CD3",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Steel Blue",
+                "color": "#4682B4",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Independence",
+                "color": "#4C516D",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Sapphire Blue",
+                "color": "#0F52BA",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Oxford Blue",
+                "color": "#002147",
+                "theme": "dark"
+            }
+        ]
+    },
+    "leasing": {
+        "name": "Leasing",
+        "base": "#800000",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Leasing)",
+                "color": "#800000",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Misty Rose",
+                "color": "#FFE4E1",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Pink Lace",
+                "color": "#FFDDF4",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Salmon Pink",
+                "color": "#FF91A4",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Indian Red",
+                "color": "#CD5C5C",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Firebrick",
+                "color": "#B22222",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Crimson",
+                "color": "#DC143C",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Burgundy",
+                "color": "#800020",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Dark Red",
+                "color": "#8B0000",
+                "theme": "dark"
+            }
+        ]
+    },
+    "hr": {
+        "name": "HR",
+        "base": "#800080",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (HR)",
+                "color": "#800080",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Lavender",
+                "color": "#E6E6FA",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Thistle",
+                "color": "#D8BFD8",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Plum",
+                "color": "#DDA0DD",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Orchid",
+                "color": "#DA70D6",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Medium Purple",
+                "color": "#9370DB",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Blue Violet",
+                "color": "#8A2BE2",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Indigo",
+                "color": "#4B0082",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Dark Magenta",
+                "color": "#8B008B",
+                "theme": "dark"
+            }
+        ]
+    },
+    "procurement-and-inventory": {
+        "name": "Procurement and Inventory",
+        "base": "#C08081",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Procurement and Inventory)",
+                "color": "#C08081",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Seashell",
+                "color": "#FFF5EE",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Peach Puff",
+                "color": "#FFDAB9",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Rosy Brown",
+                "color": "#BC8F8F",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Light Coral",
+                "color": "#F08080",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Chestnut",
+                "color": "#954535",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Sienna",
+                "color": "#A0522D",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Mahogany",
+                "color": "#C04000",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Dark Brown",
+                "color": "#654321",
+                "theme": "dark"
+            }
+        ]
+    },
+    "controller": {
+        "name": "Controller",
+        "base": "#008080",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Controller)",
+                "color": "#008080",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Light Cyan",
+                "color": "#E0FFFF",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Pale Turquoise",
+                "color": "#AFEEEE",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Aquamarine",
+                "color": "#7FFFD4",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Medium Aquamarine",
+                "color": "#66CDAA",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Light Sea Green",
+                "color": "#20B2AA",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Cadet Blue",
+                "color": "#5F9EA0",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Dark Cyan",
+                "color": "#008B8B",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Dark Slate Gray",
+                "color": "#2F4F4F",
+                "theme": "dark"
+            }
+        ]
+    },
+    "treasury": {
+        "name": "Treasury",
+        "base": "#F28500",
+        "theme_variants": [
+            {
+                "suffix": "base",
+                "name": "Base (Treasury)",
+                "color": "#F28500",
+                "theme": "base"
+            },
+            {
+                "suffix": "light-1",
+                "name": "Papaya Whip",
+                "color": "#FFEFD5",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-2",
+                "name": "Moccasin",
+                "color": "#FFE4B5",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-3",
+                "name": "Peach",
+                "color": "#FFE5B4",
+                "theme": "light"
+            },
+            {
+                "suffix": "light-4",
+                "name": "Sandy Brown",
+                "color": "#F4A460",
+                "theme": "light"
+            },
+            {
+                "suffix": "dark-1",
+                "name": "Coral",
+                "color": "#FF7F50",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-2",
+                "name": "Tomato",
+                "color": "#FF6347",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-3",
+                "name": "Orange Red",
+                "color": "#FF4500",
+                "theme": "dark"
+            },
+            {
+                "suffix": "dark-4",
+                "name": "Rust",
+                "color": "#B7410E",
+                "theme": "dark"
+            }
+        ]
+    }
+}
 
-# Sub-department shade definitions: (suffix, mode, weight)
-# mode: "tint" = mix with white, "shade" = mix with black
-# weight: percentage (0.0 to 1.0)
-SUB_DEPARTMENTS = [
-    ("sub-dept-1", "tint",  0.85),   # Lightest
-    ("sub-dept-2", "tint",  0.70),   # Lighter
-    ("sub-dept-3", "tint",  0.50),   # Light
-    ("sub-dept-4", "tint",  0.30),   # Light-medium
-    ("sub-dept-5", "tint",  0.15),   # Medium-dark
-    ("sub-dept-6", "shade", 0.15),   # Dark
-    ("sub-dept-7", "shade", 0.30),   # Darker
-    ("sub-dept-8", "shade", 0.45),   # Darkest
-]
+
 
 # ---------------------------------------------------------------------------
 # Color Utility Functions
@@ -209,52 +671,122 @@ def generate_css(template, placeholders, dept_name, color_label, hex_color):
 # ---------------------------------------------------------------------------
 
 def generate_department_files(template):
-    """Generate all CSS files for all departments and sub-departments."""
+    """Generate all CSS files for all departments and theme variants."""
     files_created = 0
 
-    for folder, display_name, hex_color in DEPARTMENTS:
+    for folder, config in DEPARTMENTS.items():
+        display_name = config["name"]
+        hex_color = config["base"]
+        
         dept_dir = os.path.join(COLORS_DIR, folder)
+        
+        # Clear out old generated CSS files to prevent orphaned files
+        if os.path.exists(dept_dir):
+            for file_name in os.listdir(dept_dir):
+                if file_name.endswith('.css') and file_name != '_template.css':
+                    file_path = os.path.join(dept_dir, file_name)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+
         os.makedirs(dept_dir, exist_ok=True)
 
         base_rgb = hex_to_rgb(hex_color)
 
-        # --- Generate base department file ---
-        placeholders = compute_placeholders(base_rgb)
-        css_content = generate_css(
-            template, placeholders,
-            display_name, "Base", hex_color
-        )
-        output_path = os.path.join(dept_dir, f"{folder}.css")
-        with open(output_path, "w") as f:
-            f.write(css_content)
-        files_created += 1
+        # --- Generate all files (Base and Variants) ---
+        for sub_dept in config.get("theme_variants", []):
+            suffix = sub_dept["suffix"]
+            color_name = sub_dept["name"]
+            sub_hex = sub_dept["color"]
+            theme = sub_dept["theme"]
 
-        text_indicator = "◐" if text_color_on(base_rgb) == "#212529" else "●"
-        print(f"  {text_indicator} {folder}/{folder}.css  →  {hex_color}")
-
-        # --- Generate sub-department files ---
-        for suffix, mode, weight in SUB_DEPARTMENTS:
-            if mode == "tint":
-                sub_rgb = tint_color(base_rgb, weight)
-            else:
-                sub_rgb = shade_color(base_rgb, weight)
-
-            sub_hex = rgb_to_hex(*sub_rgb)
+            sub_rgb = hex_to_rgb(sub_hex)
             placeholders = compute_placeholders(sub_rgb)
+            
             css_content = generate_css(
                 template, placeholders,
-                display_name, suffix, sub_hex
+                display_name, color_name, sub_hex
             )
-            filename = f"{folder}-{suffix}.css"
+            
+            filename = f"{folder}-{suffix}.css" if suffix != "base" else f"{folder}.css"
             output_path = os.path.join(dept_dir, filename)
             with open(output_path, "w") as f:
                 f.write(css_content)
             files_created += 1
 
             sub_text_indicator = "◐" if text_color_on(sub_rgb) == "#212529" else "●"
-            print(f"    {sub_text_indicator} {folder}/{filename}  →  {sub_hex}")
+            print(f"  {sub_text_indicator} {folder}/{filename}  →  {sub_hex}")
 
     return files_created
+
+
+
+def generate_config_js():
+    """Generates a config.js file for frontend theme configuration."""
+    config_data = {"departments": []}
+    
+    for folder, config in DEPARTMENTS.items():
+        dept_obj = {
+            "folder": folder,
+            "label": config["name"],
+            "themeVariants": []
+        }
+        
+        for sub in config.get("theme_variants", []):
+            # Only use the suffix if it's not base, else use folder
+            file_val = f"{folder}-{sub['suffix']}" if sub["suffix"] != "base" else folder
+            dept_obj["themeVariants"].append({
+                "file": file_val,
+                "label": sub["name"],
+                "theme": sub["theme"]
+            })
+            
+        config_data["departments"].append(dept_obj)
+        
+    js_content = f"window.THEME_CONFIG = {json.dumps(config_data, indent=2)};\n"
+    
+    output_path = os.path.join(PROJECT_ROOT, "examples", "config.js")
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    with open(output_path, "w") as f:
+        f.write(js_content)
+        
+    print(f"Generated {output_path}")
+
+
+def update_index_html():
+    """Updates the departments table in index.html with the latest colors."""
+    index_path = os.path.join(PROJECT_ROOT, "index.html")
+    
+    if not os.path.exists(index_path):
+        print(f"Warning: {index_path} not found.")
+        return
+
+    with open(index_path, "r") as f:
+        html_content = f.read()
+
+    # Generate the table rows
+    rows = []
+    for folder, config in DEPARTMENTS.items():
+        name = config["name"]
+        base_color = config["base"]
+        row = f'                <tr><td>{name}</td><td><span class="badge" style="background:{base_color}">&nbsp;&nbsp;&nbsp;</span> {base_color}</td><td><code>css/colors/{folder}/{folder}.css</code></td></tr>'
+        rows.append(row)
+    
+    rows_html = "\n".join(rows) + "\n                "
+
+    # Replace the content between the markers using regex
+    pattern = r'(<!-- DEPARTMENTS_TABLE_START -->\n)(.*?)(<!-- DEPARTMENTS_TABLE_END -->)'
+    updated_html = re.sub(
+        pattern, 
+        f'\\g<1>{rows_html}\\g<3>', 
+        html_content, 
+        flags=re.DOTALL
+    )
+
+    with open(index_path, "w") as f:
+        f.write(updated_html)
+        
+    print(f"Updated table in {index_path}")
 
 
 # ---------------------------------------------------------------------------
@@ -286,6 +818,8 @@ def main():
 
     print("-" * 60)
     print(f"Done! Generated {files_created} CSS files.")
+    generate_config_js()
+    update_index_html()
     print()
 
 

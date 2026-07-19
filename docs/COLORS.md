@@ -1,134 +1,116 @@
 # Color Reference
 
-## Department Base Colors
+This document provides a quick reference for the curated Light and Dark theme palettes assigned to each department.
 
-| # | Department | Hex | RGB | Text Color | Preview |
-|---|---|---|---|---|---|
-| 1 | **GMO** | `#008000` | `0, 128, 0` | White | 🟩 Green |
-| 2 | **Admin** | `#FFD700` | `255, 215, 0` | Dark | 🟨 Gold |
-| 3 | **Facilities** | `#0000FF` | `0, 0, 255` | White | 🟦 Blue |
-| 4 | **Leasing** | `#800000` | `128, 0, 0` | White | 🟥 Maroon |
-| 5 | **HR** | `#800080` | `128, 0, 128` | White | 🟪 Purple |
-| 6 | **Procurement & Inventory** | `#C08081` | `192, 128, 129` | Dark | 🩷 Rose Gold |
-| 7 | **Controller** | `#008080` | `0, 128, 128` | White | 🩵 Teal |
-| 8 | **Treasury** | `#F28500` | `242, 133, 0` | Dark | 🟧 Tangerine |
+## GMO
 
-> **Text Color** indicates whether white (`#fff`) or dark (`#212529`) text is used on the primary background for accessibility.
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `gmo.css` | Base (GMO) | Base | `#008000` |
+| `gmo-light-1.css` | Honeydew | Light | `#F0FFF0` |
+| `gmo-light-2.css` | Mint Cream | Light | `#F5FFFA` |
+| `gmo-light-3.css` | Pale Green | Light | `#98FB98` |
+| `gmo-light-4.css` | Celadon | Light | `#ACE1AF` |
+| `gmo-dark-1.css` | Sea Green | Dark | `#2E8B57` |
+| `gmo-dark-2.css` | Forest Green | Dark | `#228B22` |
+| `gmo-dark-3.css` | Olive Drab | Dark | `#6B8E23` |
+| `gmo-dark-4.css` | Dark Green | Dark | `#006400` |
 
----
+## Admin
 
-## Sub-department Shades
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `admin.css` | Base (Admin) | Base | `#FFD700` |
+| `admin-light-1.css` | Lemon Chiffon | Light | `#FFFACD` |
+| `admin-light-2.css` | Pale Goldenrod | Light | `#EEE8AA` |
+| `admin-light-3.css` | Khaki | Light | `#F0E68C` |
+| `admin-light-4.css` | Jasmine | Light | `#F8DE7E` |
+| `admin-dark-1.css` | Goldenrod | Dark | `#DAA520` |
+| `admin-dark-2.css` | Dark Goldenrod | Dark | `#B8860B` |
+| `admin-dark-3.css` | Peru | Dark | `#CD853F` |
+| `admin-dark-4.css` | Saddle Brown | Dark | `#8B4513` |
 
-Each department has 8 sub-department shade variants. Shades 1–5 are lighter (tinted with white), shades 6–8 are darker (shaded with black).
+## Facilities
 
-### GMO (Green `#008000`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `facilities.css` | Base (Facilities) | Base | `#0000FF` |
+| `facilities-light-1.css` | Alice Blue | Light | `#F0F8FF` |
+| `facilities-light-2.css` | Powder Blue | Light | `#B0E0E6` |
+| `facilities-light-3.css` | Baby Blue | Light | `#89CFF0` |
+| `facilities-light-4.css` | Carolina Blue | Light | `#4B9CD3` |
+| `facilities-dark-1.css` | Steel Blue | Dark | `#4682B4` |
+| `facilities-dark-2.css` | Independence | Dark | `#4C516D` |
+| `facilities-dark-3.css` | Sapphire Blue | Dark | `#0F52BA` |
+| `facilities-dark-4.css` | Oxford Blue | Dark | `#002147` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `gmo.css` | `#008000` | **Base** |
-| `gmo-sub-dept-1.css` | `#d9ecd9` | Lightest (85% white) |
-| `gmo-sub-dept-2.css` | `#b2d9b2` | Lighter (70% white) |
-| `gmo-sub-dept-3.css` | `#80c080` | Light (50% white) |
-| `gmo-sub-dept-4.css` | `#4ca64c` | Light-medium (30% white) |
-| `gmo-sub-dept-5.css` | `#269326` | Medium-dark (15% white) |
-| `gmo-sub-dept-6.css` | `#006d00` | Dark (15% black) |
-| `gmo-sub-dept-7.css` | `#005a00` | Darker (30% black) |
-| `gmo-sub-dept-8.css` | `#004600` | Darkest (45% black) |
+## Leasing
 
-### Admin (Gold `#FFD700`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `leasing.css` | Base (Leasing) | Base | `#800000` |
+| `leasing-light-1.css` | Misty Rose | Light | `#FFE4E1` |
+| `leasing-light-2.css` | Pink Lace | Light | `#FFDDF4` |
+| `leasing-light-3.css` | Salmon Pink | Light | `#FF91A4` |
+| `leasing-light-4.css` | Indian Red | Light | `#CD5C5C` |
+| `leasing-dark-1.css` | Firebrick | Dark | `#B22222` |
+| `leasing-dark-2.css` | Crimson | Dark | `#DC143C` |
+| `leasing-dark-3.css` | Burgundy | Dark | `#800020` |
+| `leasing-dark-4.css` | Dark Red | Dark | `#8B0000` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `admin.css` | `#FFD700` | **Base** |
-| `admin-sub-dept-1.css` | `#fff9d9` | Lightest |
-| `admin-sub-dept-2.css` | `#fff3b2` | Lighter |
-| `admin-sub-dept-3.css` | `#ffeb80` | Light |
-| `admin-sub-dept-4.css` | `#ffe34c` | Light-medium |
-| `admin-sub-dept-5.css` | `#ffdd26` | Medium-dark |
-| `admin-sub-dept-6.css` | `#d9b700` | Dark |
-| `admin-sub-dept-7.css` | `#b29600` | Darker |
-| `admin-sub-dept-8.css` | `#8c7600` | Darkest |
+## HR
 
-### Facilities (Blue `#0000FF`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `hr.css` | Base (HR) | Base | `#800080` |
+| `hr-light-1.css` | Lavender | Light | `#E6E6FA` |
+| `hr-light-2.css` | Thistle | Light | `#D8BFD8` |
+| `hr-light-3.css` | Plum | Light | `#DDA0DD` |
+| `hr-light-4.css` | Orchid | Light | `#DA70D6` |
+| `hr-dark-1.css` | Medium Purple | Dark | `#9370DB` |
+| `hr-dark-2.css` | Blue Violet | Dark | `#8A2BE2` |
+| `hr-dark-3.css` | Indigo | Dark | `#4B0082` |
+| `hr-dark-4.css` | Dark Magenta | Dark | `#8B008B` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `facilities.css` | `#0000FF` | **Base** |
-| `facilities-sub-dept-1.css` | `#d9d9ff` | Lightest |
-| `facilities-sub-dept-2.css` | `#b2b2ff` | Lighter |
-| `facilities-sub-dept-3.css` | `#8080ff` | Light |
-| `facilities-sub-dept-4.css` | `#4c4cff` | Light-medium |
-| `facilities-sub-dept-5.css` | `#2626ff` | Medium-dark |
-| `facilities-sub-dept-6.css` | `#0000d9` | Dark |
-| `facilities-sub-dept-7.css` | `#0000b2` | Darker |
-| `facilities-sub-dept-8.css` | `#00008c` | Darkest |
+## Procurement and Inventory
 
-### Leasing (Maroon `#800000`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `procurement-and-inventory.css` | Base (Procurement and Inventory) | Base | `#C08081` |
+| `procurement-and-inventory-light-1.css` | Seashell | Light | `#FFF5EE` |
+| `procurement-and-inventory-light-2.css` | Peach Puff | Light | `#FFDAB9` |
+| `procurement-and-inventory-light-3.css` | Rosy Brown | Light | `#BC8F8F` |
+| `procurement-and-inventory-light-4.css` | Light Coral | Light | `#F08080` |
+| `procurement-and-inventory-dark-1.css` | Chestnut | Dark | `#954535` |
+| `procurement-and-inventory-dark-2.css` | Sienna | Dark | `#A0522D` |
+| `procurement-and-inventory-dark-3.css` | Mahogany | Dark | `#C04000` |
+| `procurement-and-inventory-dark-4.css` | Dark Brown | Dark | `#654321` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `leasing.css` | `#800000` | **Base** |
-| `leasing-sub-dept-1.css` | `#ecd9d9` | Lightest |
-| `leasing-sub-dept-2.css` | `#d9b2b2` | Lighter |
-| `leasing-sub-dept-3.css` | `#c08080` | Light |
-| `leasing-sub-dept-4.css` | `#a64c4c` | Light-medium |
-| `leasing-sub-dept-5.css` | `#932626` | Medium-dark |
-| `leasing-sub-dept-6.css` | `#6d0000` | Dark |
-| `leasing-sub-dept-7.css` | `#5a0000` | Darker |
-| `leasing-sub-dept-8.css` | `#460000` | Darkest |
+## Controller
 
-### HR (Purple `#800080`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `controller.css` | Base (Controller) | Base | `#008080` |
+| `controller-light-1.css` | Light Cyan | Light | `#E0FFFF` |
+| `controller-light-2.css` | Pale Turquoise | Light | `#AFEEEE` |
+| `controller-light-3.css` | Aquamarine | Light | `#7FFFD4` |
+| `controller-light-4.css` | Medium Aquamarine | Light | `#66CDAA` |
+| `controller-dark-1.css` | Light Sea Green | Dark | `#20B2AA` |
+| `controller-dark-2.css` | Cadet Blue | Dark | `#5F9EA0` |
+| `controller-dark-3.css` | Dark Cyan | Dark | `#008B8B` |
+| `controller-dark-4.css` | Dark Slate Gray | Dark | `#2F4F4F` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `hr.css` | `#800080` | **Base** |
-| `hr-sub-dept-1.css` | `#ecd9ec` | Lightest |
-| `hr-sub-dept-2.css` | `#d9b2d9` | Lighter |
-| `hr-sub-dept-3.css` | `#c080c0` | Light |
-| `hr-sub-dept-4.css` | `#a64ca6` | Light-medium |
-| `hr-sub-dept-5.css` | `#932693` | Medium-dark |
-| `hr-sub-dept-6.css` | `#6d006d` | Dark |
-| `hr-sub-dept-7.css` | `#5a005a` | Darker |
-| `hr-sub-dept-8.css` | `#460046` | Darkest |
+## Treasury
 
-### Procurement and Inventory (Rose Gold `#C08081`)
+| File | Color Name | Theme | Hex Color |
+|---|---|---|---|
+| `treasury.css` | Base (Treasury) | Base | `#F28500` |
+| `treasury-light-1.css` | Papaya Whip | Light | `#FFEFD5` |
+| `treasury-light-2.css` | Moccasin | Light | `#FFE4B5` |
+| `treasury-light-3.css` | Peach | Light | `#FFE5B4` |
+| `treasury-light-4.css` | Sandy Brown | Light | `#F4A460` |
+| `treasury-dark-1.css` | Coral | Dark | `#FF7F50` |
+| `treasury-dark-2.css` | Tomato | Dark | `#FF6347` |
+| `treasury-dark-3.css` | Orange Red | Dark | `#FF4500` |
+| `treasury-dark-4.css` | Rust | Dark | `#B7410E` |
 
-| File | Hex | Shade |
-|---|---|---|
-| `procurement-and-inventory.css` | `#C08081` | **Base** |
-| `procurement-and-inventory-sub-dept-1.css` | `#f6ecec` | Lightest |
-| `procurement-and-inventory-sub-dept-2.css` | `#ecd9d9` | Lighter |
-| `procurement-and-inventory-sub-dept-3.css` | `#e0c0c0` | Light |
-| `procurement-and-inventory-sub-dept-4.css` | `#d3a6a7` | Light-medium |
-| `procurement-and-inventory-sub-dept-5.css` | `#c99394` | Medium-dark |
-| `procurement-and-inventory-sub-dept-6.css` | `#a36d6e` | Dark |
-| `procurement-and-inventory-sub-dept-7.css` | `#865a5a` | Darker |
-| `procurement-and-inventory-sub-dept-8.css` | `#6a4647` | Darkest |
-
-### Controller (Teal `#008080`)
-
-| File | Hex | Shade |
-|---|---|---|
-| `controller.css` | `#008080` | **Base** |
-| `controller-sub-dept-1.css` | `#d9ecec` | Lightest |
-| `controller-sub-dept-2.css` | `#b2d9d9` | Lighter |
-| `controller-sub-dept-3.css` | `#80c0c0` | Light |
-| `controller-sub-dept-4.css` | `#4ca6a6` | Light-medium |
-| `controller-sub-dept-5.css` | `#269393` | Medium-dark |
-| `controller-sub-dept-6.css` | `#006d6d` | Dark |
-| `controller-sub-dept-7.css` | `#005a5a` | Darker |
-| `controller-sub-dept-8.css` | `#004646` | Darkest |
-
-### Treasury (Tangerine `#F28500`)
-
-| File | Hex | Shade |
-|---|---|---|
-| `treasury.css` | `#F28500` | **Base** |
-| `treasury-sub-dept-1.css` | `#fdedd9` | Lightest |
-| `treasury-sub-dept-2.css` | `#fbdab2` | Lighter |
-| `treasury-sub-dept-3.css` | `#f8c280` | Light |
-| `treasury-sub-dept-4.css` | `#f6aa4c` | Light-medium |
-| `treasury-sub-dept-5.css` | `#f49726` | Medium-dark |
-| `treasury-sub-dept-6.css` | `#ce7100` | Dark |
-| `treasury-sub-dept-7.css` | `#a95d00` | Darker |
-| `treasury-sub-dept-8.css` | `#854900` | Darkest |

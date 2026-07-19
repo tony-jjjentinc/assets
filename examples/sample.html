@@ -42,19 +42,14 @@
       </div>
       <div class="card-body">
         <p class="text-muted mb-3">Select a department to see its color applied to all Bootstrap components below.</p>
-        <div class="row g-2">
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="gmo/gmo" data-label="GMO">GMO</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="admin/admin" data-label="Admin">Admin</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="facilities/facilities" data-label="Facilities">Facilities</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="leasing/leasing" data-label="Leasing">Leasing</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="hr/hr" data-label="HR">HR</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="procurement-and-inventory/procurement-and-inventory" data-label="Procurement">Procurement</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="controller/controller" data-label="Controller">Controller</button></div>
-          <div class="col-auto"><button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="treasury/treasury" data-label="Treasury">Treasury</button></div>
-        </div>
+        <div class="row g-2" id="dept-buttons"></div>
         <hr>
-        <p class="text-muted mb-2"><small>Sub-department shades (current department):</small></p>
-        <div class="row g-2" id="sub-dept-buttons"></div>
+        <p class="text-muted mb-2"><small>Base Theme:</small></p>
+        <div class="row g-2 mb-3" id="base-theme-variant-buttons"></div>
+        <p class="text-muted mb-2"><small>Light Theme Variants:</small></p>
+        <div class="row g-2 mb-3" id="light-theme-variant-buttons"></div>
+        <p class="text-muted mb-2"><small>Dark Theme Variants:</small></p>
+        <div class="row g-2" id="dark-theme-variant-buttons"></div>
       </div>
     </div>
 
@@ -380,10 +375,16 @@
   <!-- Bootstrap 5 JS (from public CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Theme Configuration -->
+  <script src="config.js"></script>
+
   <!-- Theme Switcher Script -->
   <script>
     const colorLink = document.getElementById('color-theme');
-    const subDeptContainer = document.getElementById('sub-dept-buttons');
+    const deptContainer = document.getElementById('dept-buttons');
+    const baseContainer = document.getElementById('base-theme-variant-buttons');
+    const lightContainer = document.getElementById('light-theme-variant-buttons');
+    const darkContainer = document.getElementById('dark-theme-variant-buttons');
 
     function setActiveDeptButton(activeBtn) {
       document.querySelectorAll('.dept-btn').forEach(b => {
@@ -394,20 +395,36 @@
       activeBtn.classList.add('btn-primary');
     }
 
-    function updateSubDeptButtons(dept) {
-      const folder = dept.split('/')[0];
-      let html = '';
-      html += `<div class="col-auto"><button class="btn btn-sm btn-primary sub-btn" data-path="${folder}/${folder}">Base</button></div>`;
-      for (let i = 1; i <= 8; i++) {
-        html += `<div class="col-auto"><button class="btn btn-sm btn-outline-primary sub-btn" data-path="${folder}/${folder}-sub-dept-${i}">Sub ${i}</button></div>`;
-      }
-      subDeptContainer.innerHTML = html;
+    function updateSubDeptButtons(deptConfig) {
+      baseContainer.innerHTML = '';
+      lightContainer.innerHTML = '';
+      darkContainer.innerHTML = '';
+      
+      deptConfig.themeVariants.forEach((sub, index) => {
+        const btnWrapper = document.createElement('div');
+        btnWrapper.className = 'col-auto';
+        
+        const btn = document.createElement('button');
+        // First item defaults to active
+        btn.className = `btn btn-sm sub-btn ${index === 0 ? 'btn-primary' : 'btn-outline-primary'}`;
+        btn.dataset.path = `${deptConfig.folder}/${sub.file}`;
+        btn.textContent = sub.label;
+        
+        btnWrapper.appendChild(btn);
+        
+        if (sub.theme === 'light') {
+          lightContainer.appendChild(btnWrapper);
+        } else if (sub.theme === 'dark') {
+          darkContainer.appendChild(btnWrapper);
+        } else {
+          baseContainer.appendChild(btnWrapper);
+        }
+      });
 
-      subDeptContainer.querySelectorAll('.sub-btn').forEach(btn => {
+      document.querySelectorAll('.sub-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           colorLink.href = `../css/colors/${btn.dataset.path}.css`;
-          // Active state tracking for sub-dept buttons
-          subDeptContainer.querySelectorAll('.sub-btn').forEach(b => {
+          document.querySelectorAll('.sub-btn').forEach(b => {
             b.classList.remove('btn-primary');
             b.classList.add('btn-outline-primary');
           });
@@ -417,19 +434,33 @@
       });
     }
 
-    document.querySelectorAll('.dept-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const dept = btn.dataset.dept;
-        colorLink.href = `../css/colors/${dept}.css`;
-        setActiveDeptButton(btn);
-        updateSubDeptButtons(dept);
+    // Initialize from THEME_CONFIG
+    if (window.THEME_CONFIG && window.THEME_CONFIG.departments) {
+      window.THEME_CONFIG.departments.forEach((deptConfig, index) => {
+        const btnWrapper = document.createElement('div');
+        btnWrapper.className = 'col-auto';
+        
+        const btn = document.createElement('button');
+        btn.className = `btn btn-sm dept-btn ${index === 0 ? 'btn-primary' : 'btn-outline-secondary'}`;
+        btn.textContent = deptConfig.label;
+        
+        btn.addEventListener('click', () => {
+          const defaultSub = deptConfig.themeVariants[0];
+          colorLink.href = `../css/colors/${deptConfig.folder}/${defaultSub.file}.css`;
+          setActiveDeptButton(btn);
+          updateSubDeptButtons(deptConfig);
+        });
+        
+        btnWrapper.appendChild(btn);
+        deptContainer.appendChild(btnWrapper);
       });
-    });
 
-    // Initialize: set GMO as active, build sub-dept buttons
-    const defaultBtn = document.querySelector('.dept-btn[data-dept="gmo/gmo"]');
-    if (defaultBtn) setActiveDeptButton(defaultBtn);
-    updateSubDeptButtons('gmo/gmo');
+      // Trigger initialization for the first department
+      if (window.THEME_CONFIG.departments.length > 0) {
+        const firstDept = window.THEME_CONFIG.departments[0];
+        updateSubDeptButtons(firstDept);
+      }
+    }
 
     // Initialize tooltips and popovers
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));

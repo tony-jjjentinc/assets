@@ -15,10 +15,10 @@ In your Google Apps Script project, create an HTML file and add the following to
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- 2. Base style overrides -->
-  <link href="https://{username}.github.io/assets_v2/css/base.css" rel="stylesheet">
+  <link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
 
   <!-- 3. Department color (choose one) -->
-  <link href="https://{username}.github.io/assets_v2/css/colors/gmo/gmo.css" rel="stylesheet">
+  <link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 </head>
 <body>
 
@@ -48,25 +48,15 @@ In your Google Apps Script project, create an HTML file and add the following to
 | Controller | `css/colors/controller/controller.css` |
 | Treasury | `css/colors/treasury/treasury.css` |
 
-#### Sub-department Shades
+#### Theme Variant Themes
 
-Each department has 8 sub-department shades. Replace `{dept}` with the department folder name:
+Each department has its own dynamically generated theme variants and theme variants (Light & Dark). Replace `{dept}` with the department folder name and `{theme-suffix}` with the specific theme variant suffix.
 
-| File | Shade |
-|---|---|
-| `{dept}/{dept}-sub-dept-1.css` | Lightest |
-| `{dept}/{dept}-sub-dept-2.css` | Lighter |
-| `{dept}/{dept}-sub-dept-3.css` | Light |
-| `{dept}/{dept}-sub-dept-4.css` | Light-medium |
-| `{dept}/{dept}-sub-dept-5.css` | Medium-dark |
-| `{dept}/{dept}-sub-dept-6.css` | Dark |
-| `{dept}/{dept}-sub-dept-7.css` | Darker |
-| `{dept}/{dept}-sub-dept-8.css` | Darkest |
-
-**Example** — HR Sub-department 3 (light shade):
+**Example** — HR Light Theme (Thistle):
 ```html
-<link href="https://{username}.github.io/assets_v2/css/colors/hr/hr-sub-dept-3.css" rel="stylesheet">
+<link href="https://{username}.github.io/assets/css/colors/hr/hr-light-2.css" rel="stylesheet">
 ```
+*Note: See `examples/config.js` or the interactive demo to view the available theme variants and their filenames for each department.*
 
 ### What Gets Overridden
 
@@ -111,8 +101,8 @@ function doGet() {
 <head>
   <base target="_top">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://{username}.github.io/assets_v2/css/base.css" rel="stylesheet">
-  <link href="https://{username}.github.io/assets_v2/css/colors/gmo/gmo.css" rel="stylesheet">
+  <link href="https://{username}.github.io/assets/css/base.css" rel="stylesheet">
+  <link href="https://{username}.github.io/assets/css/colors/gmo/gmo.css" rel="stylesheet">
 </head>
 <body>
   <div class="container mt-4">
@@ -130,6 +120,20 @@ function doGet() {
 </html>
 ```
 
+### ⚠️ Pale Color Contrast Limitation
+
+**Important:** If you are using a Light Theme with pale colors (e.g., Alice Blue) as your primary or secondary theme colors, be cautious when using Bootstrap's text utility classes like `.text-primary`. 
+
+Bootstrap applies the exact hex color of your theme variable to the text. On white or light backgrounds, these pale text colors will be nearly invisible and fail accessibility contrast standards. 
+
+#### Best Practices & Workarounds
+
+If you want to maintain your pale theme without sacrificing readability, consider the following approaches:
+
+1. **Use Backgrounds Instead of Text Colors:** Apply your pale theme colors to background elements (e.g., `.bg-primary`) and pair them with high-contrast dark text (`.text-dark` or `.text-body`). This is the most effective way to showcase a light theme.
+2. **Define Custom High-Contrast Text Classes:** If you absolutely need colored text that aligns with a pale theme, do not use `.text-primary`. Instead, create a custom CSS utility class (e.g., `.text-primary-dark`) that uses a darker, readable shade of your theme color specifically intended for text.
+3. **Utilize Bootstrap's Built-in Dark Utilities:** Stick to `.text-dark`, `.text-muted`, or default body text for typography when working within pale-themed containers.
+
 ### Tips
 
 1. **Only load one color file** — Loading multiple color files will cause the last one to win.
@@ -139,7 +143,7 @@ function doGet() {
 
 ### Live Demo
 
-See all components in action with the [interactive sample page](../examples/sample.html). It includes a department/sub-department switcher to preview all color themes.
+See all components in action with the [interactive sample page](../examples/sample.html). It includes a department/theme variant switcher to preview all color themes.
 
 ### Troubleshooting
 
