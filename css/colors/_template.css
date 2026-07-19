@@ -379,6 +379,19 @@
 }
 
 /* ==========================================================================
+   Header Navbar Overrides
+   ========================================================================== */
+
+.dynamic-navbar {
+  background-color: {{CARD_BG}} !important;
+  color: {{CARD_COLOR}} !important;
+}
+.dynamic-navbar .nav-link, 
+.dynamic-navbar .navbar-brand {
+  color: {{CARD_COLOR}} !important;
+}
+
+/* ==========================================================================
    Dark Mode Overrides
    ========================================================================== */
 
