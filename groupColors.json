@@ -1,11 +1,10 @@
-
 {
-  "gmo": "#BDEA68",
-  "admin": "#228B22",
-  "facilities": "#BDEA68",
-  "leasing": "#228B22",
-  "hr": "#BDEA68",
-  "procurement": "#228B22",
-  "controller": "#BDEA68",
-  "treasury": "#228B22"
+  "gmo": "#008000",
+  "admin": "#FFD700",
+  "facilities": "#0000FF",
+  "leasing": "#800000",
+  "hr": "#800080",
+  "procurement": "#C08081",
+  "controller": "#008080",
+  "treasury": "#F28500"
 }
