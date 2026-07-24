@@ -2,6 +2,11 @@ import json
 import os
 import subprocess
 
+# Dynamically set working directory to project root
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+os.chdir(PROJECT_ROOT)
+
 def load_json(filename):
     with open(filename, 'r') as f:
         return json.load(f)
@@ -9,9 +14,9 @@ def load_json(filename):
 def generate_css():
     print("Loading configurations...")
     try:
-        group_colors = load_json('groupColors.json')
-        system_colors = load_json('systemColors.json')
-        design_tokens = load_json('designTokens.json')
+        group_colors = load_json('config/groupColors.json')
+        system_colors = load_json('config/systemColors.json')
+        design_tokens = load_json('config/designTokens.json')
     except Exception as e:
         print(f"Error loading JSON configurations: {e}")
         return

@@ -8,10 +8,12 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 
 ```text
 /
-├── groupColors.json       # Defines the base (primary) color for each group
-├── systemColors.json      # Defines standard UI colors (success, danger, etc.)
-├── designTokens.json      # Defines global styling (fonts, border radius, shadows)
-├── generator.py           # The Python build script
+├── config/
+│   ├── groupColors.json       # Defines the base (primary) color for each group
+│   ├── systemColors.json      # Defines standard UI colors (success, danger, etc.)
+│   └── designTokens.json      # Defines global styling (fonts, border radius, shadows)
+├── scripts/
+│   └── generator.py           # The Python build script
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
 ├── node_modules/          # Source files for Bootstrap and dart-sass
 └── colors/                # 📂 Output directory containing the compiled .css files
@@ -24,7 +26,7 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 All theming configuration is driven by three JSON files. You **do not** need to edit any CSS manually.
 
 ### 1. Adding or Modifying a Group (Primary Colors)
-To change the primary brand color of an existing group or to add a completely new group, edit `groupColors.json`:
+To change the primary brand color of an existing group or to add a completely new group, edit `config/groupColors.json`:
 
 ```json
 {
@@ -35,7 +37,7 @@ To change the primary brand color of an existing group or to add a completely ne
 ```
 
 ### 2. Modifying System Colors
-To change the secondary, success, danger, or warning colors that apply across *all* groups, edit `systemColors.json`:
+To change the secondary, success, danger, or warning colors that apply across *all* groups, edit `config/systemColors.json`:
 
 ```json
 {
@@ -47,7 +49,7 @@ To change the secondary, success, danger, or warning colors that apply across *a
 ```
 
 ### 3. Modifying Unified Design Tokens
-To change global design elements like typography, corner rounding, or shadows, edit `designTokens.json`:
+To change global design elements like typography, corner rounding, or shadows, edit `config/designTokens.json`:
 
 ```json
 {
@@ -63,7 +65,7 @@ To change global design elements like typography, corner rounding, or shadows, e
 
 ## How to Re-generate the CSS Files
 
-Whenever you make a change to the `.json` files, you must run the Python generator to rebuild the CSS files.
+Whenever you make a change to the `.json` files, you must run the build command to rebuild the CSS files.
 
 ### Prerequisites
 Make sure you have Node.js and Python installed. If this is a fresh clone of the repository, you need to install the dependencies first:
@@ -72,15 +74,17 @@ npm install
 ```
 
 ### Generating the Output
-To generate or update the CSS files, run the Python script from the root of the project:
+To generate or update the CSS files, run the build command:
 
 ```bash
-python3 generator.py
+npm run build
 ```
+
+*(Note: You can also manually run `python3 scripts/generator.py`. Because the script automatically resolves its root directory, you can safely execute it from anywhere in the project!)*
 
 **What the script does:**
 1. Reads your `.json` configurations.
-2. For each group in `groupColors.json`, it creates a temporary Sass (`.scss`) file.
+2. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file.
 3. It injects your colors and variables into the Sass file.
 4. It imports the official Bootstrap source code from `node_modules/`.
 5. It compiles everything into a highly compressed, standalone CSS file in the `colors/` directory (e.g., `colors/group_a.css`).
