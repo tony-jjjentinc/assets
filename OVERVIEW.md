@@ -11,12 +11,13 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 ├── config/
 │   ├── groupColors.json       # Defines the base (primary) color for each group
 │   ├── systemColors.json      # Defines standard UI colors (success, danger, etc.)
-│   └── designTokens.json      # Defines global styling (fonts, border radius, shadows)
+│   └── designTokens.json      # Defines global styling (fonts, border radius, shadows, contrast)
 ├── scripts/
 │   └── generator.py           # The Python build script
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
 ├── node_modules/          # Source files for Bootstrap and dart-sass
 └── colors/                # 📂 Output directory containing the compiled .css files
+    └── contrast-report.md # 📊 Auto-generated WCAG contrast accessibility report
 ```
 
 ---
@@ -49,7 +50,7 @@ To change the secondary, success, danger, or warning colors that apply across *a
 ```
 
 ### 3. Modifying Unified Design Tokens
-To change global design elements like typography, corner rounding, or shadows, edit `config/designTokens.json`:
+To change global design elements like typography, corner rounding, shadows, or **color contrast accessibility settings**, edit `config/designTokens.json`:
 
 ```json
 {
@@ -57,9 +58,22 @@ To change global design elements like typography, corner rounding, or shadows, e
   "font-url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   "border-radius": "0.5rem",
   "box-shadow": "0 0.5rem 1rem rgba(0, 0, 0, 0.15)",
-  "enable-shadows": "true"
+  "enable-shadows": "true",
+  "min-contrast-ratio": "4.5",
+  "color-contrast-dark": "#212529",
+  "color-contrast-light": "#ffffff"
 }
 ```
+
+#### Contrast Accessibility Settings
+
+| Token | Default | Description |
+|:------|:--------|:------------|
+| `min-contrast-ratio` | `4.5` | WCAG minimum contrast ratio. Use `4.5` for AA compliance, `7.0` for AAA. |
+| `color-contrast-dark` | `#212529` | Dark text color used on light backgrounds (Bootstrap's gray-900). |
+| `color-contrast-light` | `#ffffff` | Light text color used on dark backgrounds. |
+
+The build script automatically detects primary colors that fail WCAG contrast thresholds and applies corrective overrides (darkened text emphasis, tinted subtle backgrounds) so that text and icons remain readable.
 
 ---
 
@@ -84,10 +98,12 @@ npm run build
 
 **What the script does:**
 1. Reads your `.json` configurations.
-2. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file.
-3. It injects your colors and variables into the Sass file.
-4. It imports the official Bootstrap source code from `node_modules/`.
-5. It compiles everything into a highly compressed, standalone CSS file in the `colors/` directory (e.g., `colors/group_a.css`).
-6. It cleans up the temporary files.
+2. **Pre-validates** each group's primary color against WCAG contrast thresholds.
+3. For colors that fail validation, it **auto-generates** corrective SCSS overrides (darkened text emphasis, accessible link colors, tinted subtle backgrounds and borders).
+4. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file with contrast-safe variables injected.
+5. It imports the official Bootstrap source code from `node_modules/`.
+6. It compiles everything into a highly compressed, standalone CSS file in the `colors/` directory (e.g., `colors/group_a.css`).
+7. It cleans up the temporary files.
+8. It generates a **contrast accessibility report** at `colors/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
 
 Once the script finishes successfully, simply commit your changes and push to GitHub!
