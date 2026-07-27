@@ -251,8 +251,9 @@ def generate_css():
             theme_colors_entries.append(f'"{name}": ${name}')
 
         for name, color in status_colors.items():
-            scss_content.append(f"${name}: {color};")
-            theme_colors_entries.append(f'"{name}": ${name}')
+            full_name = f"status-{name}"
+            scss_content.append(f"${full_name}: {color};")
+            theme_colors_entries.append(f'"{full_name}": ${full_name}')
 
         scss_content.append("")
         scss_content.append("$theme-colors: (")

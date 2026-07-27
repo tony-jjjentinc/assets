@@ -8,19 +8,19 @@ The `statusColors.json` maps specific dashboard concepts to hex colors.
 
 ```json
 {
-  "status-completed": "#28A745",
-  "status-resolved": "#28A745",
-  "status-successful": "#28A745",
-  "status-assigned": "#0D6EFD",
-  "status-information": "#0D6EFD",
-  "status-action-required": "#0D6EFD",
+  "completed": "#28A745",
+  "resolved": "#28A745",
+  "successful": "#28A745",
+  "assigned": "#0D6EFD",
+  "information": "#0D6EFD",
+  "action-required": "#0D6EFD",
   ...
 }
 ```
 
 ## How It Works
 
-During the build process (`npm run build`), the generator script dynamically reads `statusColors.json` and injects these colors into Bootstrap's internal `$theme-colors` map.
+During the build process (`npm run build`), the generator script dynamically reads `statusColors.json`, automatically prepends the `status-` namespace to all the keys (to ensure they never collide with Bootstrap's core utilities), and injects these colors into Bootstrap's internal `$theme-colors` map.
 
 Because they are recognized natively by Bootstrap, they automatically generate the complete suite of utility classes and components, including:
 - Backgrounds (`.bg-status-completed`)
