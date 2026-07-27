@@ -105,15 +105,6 @@ def validate_color_contrast(group_name, primary_color, min_ratio, dark_text):
             f"text-emphasis darkened (shade {weight}%) to {text_emphasis} (ratio: {text_emphasis_ratio:.2f}:1)"
         )
 
-        # Generate a subtle background tint
-        bg_subtle = tint_color(primary_color, 80)
-        result['scss_overrides'].append(f"$primary-bg-subtle: {bg_subtle};")
-        result['fixes_applied'].append(f"bg-subtle tinted (80%) to {bg_subtle}")
-
-        # Generate a subtle border tint
-        border_subtle = tint_color(primary_color, 60)
-        result['scss_overrides'].append(f"$primary-border-subtle: {border_subtle};")
-        result['fixes_applied'].append(f"border-subtle tinted (60%) to {border_subtle}")
 
     return result
 
@@ -189,6 +180,20 @@ def generate_css():
     dark_text = design_tokens.get('color-contrast-dark', DARK_TEXT_DEFAULT)
     light_text = design_tokens.get('color-contrast-light', WHITE)
 
+    bg_tint = float(design_tokens.get('subtle-bg-tint-weight', 80))
+    border_tint = float(design_tokens.get('subtle-border-tint-weight', 60))
+    bg_shade = float(design_tokens.get('subtle-bg-shade-weight', 80))
+    border_shade = float(design_tokens.get('subtle-border-shade-weight', 40))
+
+    def generate_subtle_overrides(name, hex_color):
+        overrides = [
+            f"${name}-bg-subtle: {tint_color(hex_color, bg_tint)};",
+            f"${name}-border-subtle: {tint_color(hex_color, border_tint)};",
+            f"${name}-bg-subtle-dark: {shade_color(hex_color, bg_shade)};",
+            f"${name}-border-subtle-dark: {shade_color(hex_color, border_shade)};"
+        ]
+        return "\n".join(overrides)
+
     # Ensure output directory exists
     os.makedirs('colors', exist_ok=True)
 
@@ -232,11 +237,16 @@ def generate_css():
 
         # 3. System Variables Override
         scss_content.append(f"$primary: {primary_color};")
+        scss_content.append(generate_subtle_overrides("primary", primary_color))
 
         theme_colors_entries = ['"primary": $primary']
 
         for name, color in system_colors.items():
             scss_content.append(f"${name}: {color};")
+            
+            if "primary" in name:
+                scss_content.append(generate_subtle_overrides(name, color))
+                
             theme_colors_entries.append(f'"{name}": ${name}')
 
         scss_content.append("")
