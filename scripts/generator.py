@@ -199,11 +199,11 @@ def generate_css():
     print(f"  WCAG Contrast Pre-Validation (threshold: {min_ratio}:1)")
     print(f"{'='*60}")
 
-    for group, primary_color in group_colors.items():
-        print(f"\nProcessing {group}...")
+    for group_key, primary_color in group_colors.items():
+        print(f"\nProcessing {group_key}...")
 
         # ── Phase 1: Pre-Validation ──
-        validation = validate_color_contrast(group, primary_color, min_ratio, dark_text)
+        validation = validate_color_contrast(group_key, primary_color, min_ratio, dark_text)
         contrast_results.append(validation)
 
         if validation['status'] == 'WARN':
@@ -213,9 +213,11 @@ def generate_css():
         else:
             print(f"  ✅  Contrast OK (vs white: {validation['ratio_vs_white']:.2f}:1, vs dark: {validation['ratio_vs_dark']:.2f}:1)")
 
+        safe_filename = group_key.replace(":", "-")
         # ── Phase 2: Build SCSS ──
-        temp_scss_file = f"_temp_{group}.scss"
-        output_css_file = f"colors/{group}.css"
+        temp_scss_file = f"_temp_{safe_filename}.scss"
+        temp_output_css_file = f"colors/{safe_filename}.css"
+        final_output_css_file = f"colors/{group_key}.css"
 
         scss_content = []
 
@@ -231,8 +233,16 @@ def generate_css():
         # 3. System Variables Override
         scss_content.append(f"$primary: {primary_color};")
 
+        theme_colors_entries = ['"primary": $primary']
+
         for name, color in system_colors.items():
             scss_content.append(f"${name}: {color};")
+            theme_colors_entries.append(f'"{name}": ${name}')
+
+        scss_content.append("")
+        scss_content.append("$theme-colors: (")
+        scss_content.append("  " + ",\n  ".join(theme_colors_entries))
+        scss_content.append(");")
 
         # 4. Design Tokens
         if 'font-family' in design_tokens:
@@ -260,15 +270,20 @@ def generate_css():
             f.write("\n".join(scss_content))
 
         # ── Phase 3: Compile ──
-        print(f"  Compiling {temp_scss_file} to {output_css_file}...")
+        print(f"  Compiling {temp_scss_file} to {final_output_css_file}...")
         try:
             subprocess.run(
-                ["npx", "sass", temp_scss_file, output_css_file, "--style=compressed", "--no-source-map"],
+                ["npx", "sass", temp_scss_file, temp_output_css_file, "--style=compressed", "--no-source-map"],
                 check=True
             )
-            print(f"  Successfully generated {output_css_file}")
+            if temp_output_css_file != final_output_css_file:
+                if os.path.exists(temp_output_css_file):
+                    if os.path.exists(final_output_css_file):
+                        os.remove(final_output_css_file)
+                    os.rename(temp_output_css_file, final_output_css_file)
+            print(f"  Successfully generated {final_output_css_file}")
         except subprocess.CalledProcessError as e:
-            print(f"  Error compiling {group}: {e}")
+            print(f"  Error compiling {group_key}: {e}")
         finally:
             # Clean up temporary file
             if os.path.exists(temp_scss_file):
