@@ -10,8 +10,9 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 /
 ├── config/
 │   ├── groupColors.json       # Defines the base (primary) color for each group
-│   ├── systemColors.json      # Defines standard UI colors (success, danger, etc.)
-│   └── designTokens.json      # Defines global styling (fonts, border radius, shadows, contrast)
+│   ├── systemColors.json      # Defines standard UI colors (success, danger, etc.) and custom brand colors
+│   ├── statusColors.json      # Defines custom semantic status colors for dashboards
+│   └── designTokens.json      # Defines global styling (fonts, border radius, shadows, contrast, subtle strengths)
 ├── scripts/
 │   └── generator.py           # The Python build script
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
@@ -31,9 +32,9 @@ To change the primary brand color of an existing group or to add a completely ne
 
 ```json
 {
-  "group_a": "#BDEA68",
-  "group_b": "#228B22",
-  "group_c": "#FF5733"  // <-- Just add a new line!
+  "group:variant_1": "#BDEA68",
+  "group:variant_2": "#228B22",
+  "new_group:variant": "#FF5733"  // <-- Use group:variant naming format!
 }
 ```
 
@@ -42,9 +43,10 @@ To change the secondary, success, danger, or warning colors that apply across *a
 
 ```json
 {
+  "brand-primary": "#YOURHEX",
+  "brand-secondary": "#YOURHEX",
   "secondary": "#848B92",
   "success": "#00E936",
-  "warning": "#F9E500",
   ...
 }
 ```
@@ -61,17 +63,25 @@ To change global design elements like typography, corner rounding, shadows, or *
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#212529",
-  "color-contrast-light": "#ffffff"
+  "color-contrast-light": "#ffffff",
+  "subtle-bg-tint-weight": 70,
+  "subtle-border-tint-weight": 50,
+  "subtle-bg-shade-weight": 70,
+  "subtle-border-shade-weight": 30
 }
 ```
 
-#### Contrast Accessibility Settings
+#### Contrast & Subtle Accessibility Settings
 
 | Token | Default | Description |
 |:------|:--------|:------------|
 | `min-contrast-ratio` | `4.5` | WCAG minimum contrast ratio. Use `4.5` for AA compliance, `7.0` for AAA. |
 | `color-contrast-dark` | `#212529` | Dark text color used on light backgrounds (Bootstrap's gray-900). |
 | `color-contrast-light` | `#ffffff` | Light text color used on dark backgrounds. |
+| `subtle-bg-tint-weight` | `70` | Tint mix percentage for primary subtle backgrounds in light mode (lower = stronger color). |
+| `subtle-border-tint-weight`| `50` | Tint mix percentage for primary subtle borders. |
+| `subtle-bg-shade-weight` | `70` | Shade mix percentage for primary subtle backgrounds in dark mode. |
+| `subtle-border-shade-weight`| `30` | Shade mix percentage for primary subtle borders in dark mode. |
 
 The build script automatically detects primary colors that fail WCAG contrast thresholds and applies corrective overrides (darkened text emphasis, tinted subtle backgrounds) so that text and icons remain readable.
 

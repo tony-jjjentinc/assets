@@ -1,0 +1,22 @@
+{
+  "status-completed": "#28A745",
+  "status-resolved": "#28A745",
+  "status-successful": "#28A745",
+  "status-assigned": "#0D6EFD",
+  "status-information": "#0D6EFD",
+  "status-action-required": "#0D6EFD",
+  "status-warning": "#FFC107",
+  "status-pending-approval": "#FFC107",
+  "status-in-progress": "#FD7E14",
+  "status-due-soon": "#FD7E14",
+  "status-urgent": "#DC3545",
+  "status-delayed": "#DC3545",
+  "status-error": "#DC3545",
+  "status-pending-verification": "#6F42C1",
+  "status-not-started": "#6C757D",
+  "status-read-only": "#6C757D",
+  "status-on-hold": "#8B5E3C",
+  "status-processing": "#17A2B8",
+  "status-cancelled": "#343A40",
+  "status-void": "#343A40"
+}

@@ -171,6 +171,7 @@ def generate_css():
         group_colors = load_json('config/groupColors.json')
         system_colors = load_json('config/systemColors.json')
         design_tokens = load_json('config/designTokens.json')
+        status_colors = load_json('config/statusColors.json')
     except Exception as e:
         print(f"Error loading JSON configurations: {e}")
         return
@@ -247,6 +248,10 @@ def generate_css():
             if "primary" in name:
                 scss_content.append(generate_subtle_overrides(name, color))
                 
+            theme_colors_entries.append(f'"{name}": ${name}')
+
+        for name, color in status_colors.items():
+            scss_content.append(f"${name}: {color};")
             theme_colors_entries.append(f'"{name}": ${name}')
 
         scss_content.append("")

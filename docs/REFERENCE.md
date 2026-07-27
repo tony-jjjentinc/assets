@@ -130,11 +130,12 @@ Apply the provided SVGs as background textures to containers using CSS.
 - `topography.svg`
 
 ### Colors (`/colors/`)
-- `admin.css`, `admin_1.css`, `admin_2.css`, `admin_3.css`, `admin_4.css`, `admin_5.css`, `admin_6.css`
-- `controller.css`, `controller_1.css`, `controller_2.css`, `controller_3.css`, `controller_4.css`, `controller_5.css`, `controller_6.css`, `controller_7.css`
-- `facilities.css`, `facilities_1.css`, `facilities_2.css`, `facilities_3.css`, `facilities_4.css`, `facilities_5.css`, `facilities_6.css`, `facilities_7.css`, `facilities_8.css`
-- `gmo.css`, `gmo_1.css`, `gmo_2.css`, `gmo_3.css`, `gmo_4.css`, `gmo_5.css`, `gmo_6.css`, `gmo_7.css`, `gmo_8.css`
-- `hr.css`, `hr_1.css`, `hr_2.css`, `hr_3.css`, `hr_4.css`, `hr_5.css`, `hr_6.css`, `hr_7.css`, `hr_8.css`
-- `leasing.css`, `leasing_1.css`, `leasing_2.css`, `leasing_3.css`, `leasing_4.css`, `leasing_5.css`, `leasing_6.css`, `leasing_7.css`, `leasing_8.css`
-- `procurement.css`, `procurement_1.css`, `procurement_2.css`, `procurement_3.css`
-- `treasury.css`, `treasury_1.css`, `treasury_2.css`, `treasury_3.css`, `treasury_4.css`
+*(Note: Group variations now use a colon `:` separator instead of an underscore `_`)*
+- `admin.css`, `admin:1.css`, `admin:2.css`, `admin:3.css`, `admin:4.css`, `admin:5.css`, `admin:6.css`
+- `controller.css`, `controller:1.css`, `controller:2.css`, `controller:3.css`, `controller:4.css`, `controller:5.css`, `controller:6.css`, `controller:7.css`
+- `facilities.css`, `facilities:1.css`, `facilities:2.css`, `facilities:3.css`, `facilities:4.css`, `facilities:5.css`, `facilities:6.css`, `facilities:7.css`, `facilities:8.css`
+- `gmo.css`, `gmo:1.css`, `gmo:2.css`, `gmo:3.css`, `gmo:4.css`, `gmo:5.css`, `gmo:6.css`, `gmo:7.css`, `gmo:8.css`
+- `hr.css`, `hr:1.css`, `hr:2.css`, `hr:3.css`, `hr:4.css`, `hr:5.css`, `hr:6.css`, `hr:7.css`, `hr:8.css`
+- `leasing.css`, `leasing:1.css`, `leasing:2.css`, `leasing:3.css`, `leasing:4.css`, `leasing:5.css`, `leasing:6.css`, `leasing:7.css`, `leasing:8.css`
+- `procurement.css`, `procurement:1.css`, `procurement:2.css`, `procurement:3.css`
+- `treasury.css`, `treasury:1.css`, `treasury:2.css`, `treasury:3.css`, `treasury:4.css`
