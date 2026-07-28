@@ -59,7 +59,6 @@ To change global design elements like typography, corner rounding, shadows, or *
   "font-family": "'Inter', sans-serif",
   "font-url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   "border-radius": "0.5rem",
-  "box-shadow": "0 0.5rem 1rem rgba(0, 0, 0, 0.15)",
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#212529",

@@ -116,9 +116,15 @@ Apply the provided SVGs as background textures to containers using CSS.
 - `Inter.woff2`
 
 ### Logos (`/images/logo/`)
+- `.gitkeep`
+- `base-dark.svg`
+- `base-light.svg`
+- `base.svg`
+- `jjjei_horizontal.svg`
+- `jjjei_stacked.svg`
 - `logo.svg`
-- `marymart_compact.svg`
 - `marymart_horizontal.svg`
+- `marymart_stacked.svg`
 
 ### Background Patterns (`/images/misc/background-pattern/`)
 - `bubbles.svg`
@@ -127,15 +133,16 @@ Apply the provided SVGs as background textures to containers using CSS.
 - `diagonal-stripes.svg`
 - `hexagons.svg`
 - `texture.svg`
+- `texture2.svg`
 - `topography.svg`
 
 ### Colors (`/colors/`)
 *(Note: Group variations now use a colon `:` separator instead of an underscore `_`)*
-- `admin.css`, `admin:1.css`, `admin:2.css`, `admin:3.css`, `admin:4.css`, `admin:5.css`, `admin:6.css`
-- `controller.css`, `controller:1.css`, `controller:2.css`, `controller:3.css`, `controller:4.css`, `controller:5.css`, `controller:6.css`, `controller:7.css`
-- `facilities.css`, `facilities:1.css`, `facilities:2.css`, `facilities:3.css`, `facilities:4.css`, `facilities:5.css`, `facilities:6.css`, `facilities:7.css`, `facilities:8.css`
-- `gmo.css`, `gmo:1.css`, `gmo:2.css`, `gmo:3.css`, `gmo:4.css`, `gmo:5.css`, `gmo:6.css`, `gmo:7.css`, `gmo:8.css`
-- `hr.css`, `hr:1.css`, `hr:2.css`, `hr:3.css`, `hr:4.css`, `hr:5.css`, `hr:6.css`, `hr:7.css`, `hr:8.css`
-- `leasing.css`, `leasing:1.css`, `leasing:2.css`, `leasing:3.css`, `leasing:4.css`, `leasing:5.css`, `leasing:6.css`, `leasing:7.css`, `leasing:8.css`
-- `procurement.css`, `procurement:1.css`, `procurement:2.css`, `procurement:3.css`
-- `treasury.css`, `treasury:1.css`, `treasury:2.css`, `treasury:3.css`, `treasury:4.css`
+- `admin.css`, `admin:admin_supervisor.css`, `admin:bla.css`, `admin:compliance.css`, `admin:it.css`, `admin:legal.css`, `admin:om.css`
+- `controller.css`, `controller:compliance_tax_and_payroll_coordinator.css`, `controller:department_head.css`, `controller:payables.css`, `controller:receivables.css`
+- `facilities.css`, `facilities:acs.css`, `facilities:ee.css`, `facilities:mp.css`, `facilities:pjt.css`
+- `gmo.css`, `gmo:1.css`, `gmo:2.css`, `gmo:3.css`, `gmo:4.css`
+- `hr.css`, `hr:assistant.css`, `hr:department_head.css`, `hr:payroll_and_benefits_coordinator.css`, `hr:supervisor.css`
+- `leasing.css`, `leasing:admin.css`, `leasing:events.css`, `leasing:sales.css`, `leasing:supervisor.css`, `leasing:tenant_relations.css`
+- `procinv.css`, `procinv:admin_staff.css`, `procinv:inventory_and_warehouse staff.css`, `procinv:staff.css`, `procinv:supervisor.css`
+- `treasury.css`, `treasury:billing.css`, `treasury:collection.css`, `treasury:department_head.css`, `treasury:disbursment.css`, `treasury:supervisor.css`
