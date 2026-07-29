@@ -6,8 +6,8 @@
   "min-contrast-ratio": "7.0",
   "color-contrast-dark": "#212529",
   "color-contrast-light": "#ffffff",
-  "subtle-bg-tint-weight": 90,
+  "subtle-bg-tint-weight": 60,
   "subtle-border-tint-weight": 50,
-  "subtle-bg-shade-weight": 70,
+  "subtle-bg-shade-weight": 75,
   "subtle-border-shade-weight": 30
 }

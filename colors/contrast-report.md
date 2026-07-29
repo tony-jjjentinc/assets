@@ -1,6 +1,6 @@
 # Contrast Report
 
-**Generated:** 2026-07-29 15:18:13  
+**Generated:** 2026-07-29 15:31:12  
 **WCAG Threshold:** 7.0:1 (Level AA)  
 **Total Groups:** 45  
 
@@ -29,8 +29,8 @@
 | facilities:plumbing | `#59A7FF` | 2.50:1 ⚠️ | 6.17:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 50%) to #2c537f (ratio: 7.92:1) |
 | facilities:pjt | `#0047AB` | 8.44:1 ✅ | 1.83:1 ⚠️ | ✅ PASS | — |
 | leasing | `#800000` | 10.95:1 ✅ | 1.41:1 ⚠️ | ✅ PASS | — |
-| leasing:admin | `#800000` | 10.95:1 ✅ | 1.41:1 ⚠️ | ✅ PASS | — |
-| leasing:supervisor | `#800000` | 10.95:1 ✅ | 1.41:1 ⚠️ | ✅ PASS | — |
+| leasing:leasing_admin | `#800000` | 10.95:1 ✅ | 1.41:1 ⚠️ | ✅ PASS | — |
+| leasing:leasing_supervisor | `#800000` | 10.95:1 ✅ | 1.41:1 ⚠️ | ✅ PASS | — |
 | leasing:events | `#CD5C5C` | 3.98:1 ⚠️ | 3.88:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #7b3737 (ratio: 8.59:1) |
 | leasing:sales | `#B22222` | 6.68:1 ⚠️ | 2.31:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #6a1414 (ratio: 12.19:1) |
 | leasing:tenant_relations | `#DC143C` | 4.99:1 ⚠️ | 3.09:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #840c24 (ratio: 10.20:1) |
