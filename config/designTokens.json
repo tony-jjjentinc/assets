@@ -1,9 +1,9 @@
 {
   "font-family": "'Inter', sans-serif",
   "font-url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-  "border-radius": "1rem",
+  "border-radius": "0.67rem",
   "enable-shadows": "true",
-  "min-contrast-ratio": "7.0",
+  "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#212529",
   "color-contrast-light": "#ffffff",
   "subtle-bg-tint-weight": 60,
