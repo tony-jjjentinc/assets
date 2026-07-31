@@ -185,6 +185,9 @@ def generate_css():
     border_tint = float(design_tokens.get('subtle-border-tint-weight', 60))
     bg_shade = float(design_tokens.get('subtle-bg-shade-weight', 80))
     border_shade = float(design_tokens.get('subtle-border-shade-weight', 40))
+    
+    base_bg_tint_strength = float(design_tokens.get('base-bg-tint-strength', 90))
+    base_bg_shade_strength = float(design_tokens.get('base-bg-shade-strength', 90))
 
     def generate_subtle_overrides(name, hex_color):
         overrides = [
@@ -207,6 +210,11 @@ def generate_css():
 
     for group_key, primary_color in group_colors.items():
         print(f"\nProcessing {group_key}...")
+
+        base_group_key = group_key.split(':')[0]
+        base_group_color = group_colors.get(base_group_key, primary_color)
+        base_bg_light = tint_color(base_group_color, base_bg_tint_strength)
+        base_bg_dark = shade_color(base_group_color, base_bg_shade_strength)
 
         # ── Phase 1: Pre-Validation ──
         validation = validate_color_contrast(group_key, primary_color, min_ratio, dark_text)
@@ -280,6 +288,16 @@ def generate_css():
         # 6. Import Bootstrap
         scss_content.append("")
         scss_content.append('@import "node_modules/bootstrap/scss/bootstrap";')
+
+        # 7. Inject Custom Utilities
+        scss_content.append("")
+        scss_content.append("// Custom Utility: bg-primary-base")
+        scss_content.append(".bg-primary-base {")
+        scss_content.append(f"  background-color: {base_bg_light} !important;")
+        scss_content.append("}")
+        scss_content.append('[data-bs-theme="dark"] .bg-primary-base {')
+        scss_content.append(f"  background-color: {base_bg_dark} !important;")
+        scss_content.append("}")
 
         # Write to temporary file
         with open(temp_scss_file, 'w') as f:

@@ -5,9 +5,5 @@
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#212529",
-  "color-contrast-light": "#ffffff",
-  "subtle-bg-tint-weight": 60,
-  "subtle-border-tint-weight": 50,
-  "subtle-bg-shade-weight": 75,
-  "subtle-border-shade-weight": 30
+  "color-contrast-light": "#ffffff"
 }
