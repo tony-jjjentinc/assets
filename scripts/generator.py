@@ -198,8 +198,17 @@ def generate_css():
         ]
         return "\n".join(overrides)
 
+    try:
+        package_info = load_json('package.json')
+        version_major = package_info.get('version', '1.0.0').split('.')[0]
+    except Exception as e:
+        print(f"Error loading package.json: {e}")
+        version_major = '1'
+        
+    output_dir = f'colors/v{version_major}'
+    
     # Ensure output directory exists
-    os.makedirs('colors', exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
     # Collect contrast validation results for the report
     contrast_results = []
@@ -230,8 +239,8 @@ def generate_css():
         safe_filename = group_key.replace(":", "-")
         # ── Phase 2: Build SCSS ──
         temp_scss_file = f"_temp_{safe_filename}.scss"
-        temp_output_css_file = f"colors/{safe_filename}.css"
-        final_output_css_file = f"colors/{group_key}.css"
+        temp_output_css_file = f"{output_dir}/{safe_filename}.css"
+        final_output_css_file = f"{output_dir}/{group_key}.css"
 
         scss_content = []
 
@@ -285,9 +294,31 @@ def generate_css():
             for override in validation['scss_overrides']:
                 scss_content.append(override)
 
-        # 6. Import Bootstrap
+        # 6. Selectively Import Bootstrap (Lightweight Overrides)
         scss_content.append("")
-        scss_content.append('@import "node_modules/bootstrap/scss/bootstrap";')
+        scss_content.append('// Core variables and mixins')
+        scss_content.append('@import "node_modules/bootstrap/scss/functions";')
+        scss_content.append('@import "node_modules/bootstrap/scss/variables";')
+        scss_content.append('@import "node_modules/bootstrap/scss/variables-dark";')
+        scss_content.append('@import "node_modules/bootstrap/scss/maps";')
+        scss_content.append('@import "node_modules/bootstrap/scss/mixins";')
+        scss_content.append('@import "node_modules/bootstrap/scss/utilities";')
+        
+        scss_content.append('// Components that depend on colors')
+        scss_content.append('@import "node_modules/bootstrap/scss/root";')
+        scss_content.append('@import "node_modules/bootstrap/scss/buttons";')
+        scss_content.append('@import "node_modules/bootstrap/scss/badge";')
+        scss_content.append('@import "node_modules/bootstrap/scss/alert";')
+        scss_content.append('@import "node_modules/bootstrap/scss/list-group";')
+        scss_content.append('@import "node_modules/bootstrap/scss/progress";')
+        scss_content.append('@import "node_modules/bootstrap/scss/spinners";')
+        scss_content.append('@import "node_modules/bootstrap/scss/tables";')
+        
+        scss_content.append('// Configure utilities to only generate color-related utilities to save space')
+        scss_content.append('$utilities: ("color": null, "background-color": null, "border-color": null, "margin": false, "padding": false, "display": false);')
+        
+        scss_content.append('// Generate utilities')
+        scss_content.append('@import "node_modules/bootstrap/scss/utilities/api";')
 
         # 7. Inject Custom Utilities
         scss_content.append("")
@@ -329,7 +360,7 @@ def generate_css():
     print(f"{'='*60}")
 
     report = generate_contrast_report(contrast_results, min_ratio)
-    report_path = 'colors/contrast-report.md'
+    report_path = f'{output_dir}/contrast-report.md'
     with open(report_path, 'w') as f:
         f.write(report)
 
