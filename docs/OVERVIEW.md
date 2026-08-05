@@ -17,8 +17,8 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 │   └── generator.py           # The Python build script
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
 ├── node_modules/          # Source files for Bootstrap and dart-sass
-└── colors/                # 📂 Output directory containing the compiled .css files
-    └── contrast-report.md # 📊 Auto-generated WCAG contrast accessibility report
+└── colors/                # 📂 Output directory
+    └── v1/                # 📂 Versioned CSS files and accessibility reports
 ```
 
 ---
@@ -63,10 +63,8 @@ To change global design elements like typography, corner rounding, shadows, or *
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#212529",
   "color-contrast-light": "#ffffff",
-  "subtle-bg-tint-weight": 70,
-  "subtle-border-tint-weight": 50,
-  "subtle-bg-shade-weight": 70,
-  "subtle-border-shade-weight": 30
+  "base-bg-tint-strength": 90,
+  "base-bg-shade-strength": 90
 }
 ```
 
@@ -77,10 +75,12 @@ To change global design elements like typography, corner rounding, shadows, or *
 | `min-contrast-ratio` | `4.5` | WCAG minimum contrast ratio. Use `4.5` for AA compliance, `7.0` for AAA. |
 | `color-contrast-dark` | `#212529` | Dark text color used on light backgrounds (Bootstrap's gray-900). |
 | `color-contrast-light` | `#ffffff` | Light text color used on dark backgrounds. |
-| `subtle-bg-tint-weight` | `70` | Tint mix percentage for primary subtle backgrounds in light mode (lower = stronger color). |
-| `subtle-border-tint-weight`| `50` | Tint mix percentage for primary subtle borders. |
-| `subtle-bg-shade-weight` | `70` | Shade mix percentage for primary subtle backgrounds in dark mode. |
-| `subtle-border-shade-weight`| `30` | Shade mix percentage for primary subtle borders in dark mode. |
+| `base-bg-tint-strength` | `90` | Tint mix percentage for the custom `.bg-primary-base` utility in light mode. |
+| `base-bg-shade-strength` | `90` | Shade mix percentage for the custom `.bg-primary-base` utility in dark mode. |
+| `subtle-bg-tint-weight` | `80` | Tint mix percentage for primary subtle backgrounds in light mode (lower = stronger color). |
+| `subtle-border-tint-weight`| `60` | Tint mix percentage for primary subtle borders. |
+| `subtle-bg-shade-weight` | `80` | Shade mix percentage for primary subtle backgrounds in dark mode. |
+| `subtle-border-shade-weight`| `40` | Shade mix percentage for primary subtle borders in dark mode. |
 
 The build script automatically detects primary colors that fail WCAG contrast thresholds and applies corrective overrides (darkened text emphasis, tinted subtle backgrounds) so that text and icons remain readable.
 
@@ -110,9 +110,9 @@ npm run build
 2. **Pre-validates** each group's primary color against WCAG contrast thresholds.
 3. For colors that fail validation, it **auto-generates** corrective SCSS overrides (darkened text emphasis, accessible link colors, tinted subtle backgrounds and borders).
 4. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file with contrast-safe variables injected.
-5. It imports the official Bootstrap source code from `node_modules/`.
-6. It compiles everything into a highly compressed, standalone CSS file in the `colors/` directory (e.g., `colors/group_a.css`).
+5. It selectively imports ONLY the Bootstrap components that rely on color (e.g. buttons, badges) to create lightweight overrides.
+6. It compiles everything into a highly compressed CSS file in a versioned directory (e.g., `colors/v1/group_a.css`).
 7. It cleans up the temporary files.
-8. It generates a **contrast accessibility report** at `colors/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
+8. It generates a **contrast accessibility report** at `colors/v1/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
 
 Once the script finishes successfully, simply commit your changes and push to GitHub!

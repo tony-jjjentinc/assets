@@ -10,7 +10,7 @@
   "admin:admin-legal": "#FFD700",
   "admin:admin-om": "#FFC300",
   "facilities": "#0000FF",
-  "facilities:architectural,_civil_and_Structural": "#97D9FF",
+  "facilities:architectural,_civil_and_structural": "#97D9FF",
   "facilities:electrical_and_electronics": "#00CDE9",
   "facilities:mechanical": "#4682B4",
   "facilities:project": "#0047AB",

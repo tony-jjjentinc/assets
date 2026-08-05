@@ -4,7 +4,7 @@ This guide explains how to integrate the custom generated Bootstrap CSS files in
 
 ## 1. Hosting the CSS
 
-The CSS files generated in this repository (`colors/group_a.css`, `colors/group_b.css`, etc.) are designed to be served directly via GitHub Pages.
+The CSS files generated in this repository (`colors/v1/group_a.css`, etc.) act as lightweight themes and are designed to be served directly via GitHub Pages.
 
 Ensure this repository is pushed to GitHub and GitHub Pages is enabled in your repository settings:
 - **Repository:** `tony-jjjentinc/assets`
@@ -12,9 +12,9 @@ Ensure this repository is pushed to GitHub and GitHub Pages is enabled in your r
 
 ## 2. Setting up the HTML Template in GAS
 
-Because the generated CSS files are fully self-contained (meaning they include all of Bootstrap 5 *and* your custom overrides), you **do not** need the default Bootstrap CDN link anymore.
+Because the generated CSS files are lightweight overrides, you **must** include the official Bootstrap 5 CDN link for the core structural CSS (grid, layout), followed by the custom group CSS file.
 
-In your GAS project's `Index.html` (or whichever file contains your `<head>` tags), simply link to the specific group CSS file you want to use.
+In your GAS project's `Index.html` (or whichever file contains your `<head>` tags), link the CDN and the specific group CSS file.
 
 ### Example for Group A:
 
@@ -26,9 +26,10 @@ In your GAS project's `Index.html` (or whichever file contains your `<head>` tag
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- 1. Remove the old standard Bootstrap 5 CDN link -->
-    <!-- 2. Add your custom Github Pages CDN link -->
-    <link rel="stylesheet" href="https://tony-jjjentinc.github.io/assets/colors/group_a.css">
+    <!-- 1. Include the standard Bootstrap 5 CDN link for layout/structure -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. Add your custom Github Pages CDN link for the theme overrides -->
+    <link rel="stylesheet" href="https://tony-jjjentinc.github.io/assets/colors/v1/group_a.css">
     
   </head>
   <body>
@@ -55,7 +56,7 @@ function doGet(e) {
   var group = e.parameter.group || 'group_a'; 
   
   var template = HtmlService.createTemplateFromFile('Index');
-  template.groupCssUrl = `https://tony-jjjentinc.github.io/assets/colors/${group}.css`;
+  template.groupCssUrl = `https://tony-jjjentinc.github.io/assets/colors/v1/${group}.css`;
   
   return template.evaluate()
       .addMetaTag('viewport', 'width=device-width, initial-scale=1');
