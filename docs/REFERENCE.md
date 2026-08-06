@@ -50,7 +50,10 @@ Beyond the standard Bootstrap 5 color classes (`primary`, `secondary`, `success`
 #### 1. The Base Background Utility
 - **`.bg-primary-base`**: A custom background utility designed for page backgrounds. While `.bg-primary-subtle` uses a subtle tint of the specific sub-group's color (e.g., `hr:hr_operations`), `.bg-primary-base` always uses a subtle tint of the **parent group's base color** (e.g., `hr`). This ensures a consistent, non-overwhelming background while the specific variant color is used for active UI elements. It automatically adapts to dark mode.
 
-#### 2. Semantic Status Colors
+#### 2. The Full-Page Gradient Utility
+- **`.bg-primary-gradient`**: A modern, directional gradient utility designed to be applied to the `<body>` tag or main application wrapper. It creates a smooth, 225-degree fade that starts with a clean, neutral background (`$light` or `$dark`) at the top-right and elegantly pools into the specific group variant's 55% intensity subtle color (`$primary-bg-subtle`) at the bottom-left. It is locked in place with `background-attachment: fixed` to ensure a consistent presentation layer regardless of page scroll.
+
+#### 3. Semantic Status Colors
 The project dynamically injects semantic status colors into the standard Bootstrap theming engine. This means you have access to the full suite of Bootstrap utility classes (like `.bg-*`, `.text-*`, `.border-*`, `.btn-*`, etc.) for all defined custom statuses. 
 
 Available status names are numeric keys from `0` to `9` (e.g., `status-0`, `status-1`, etc.).

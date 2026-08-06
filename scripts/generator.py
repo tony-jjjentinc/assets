@@ -368,6 +368,16 @@ def generate_css():
         scss_content.append('[data-bs-theme="dark"] .bg-primary-base {')
         scss_content.append(f"  background-color: {base_bg_dark} !important;")
         scss_content.append("}")
+        
+        scss_content.append("")
+        scss_content.append("// Custom Full-Page Primary Gradient Base")
+        scss_content.append(".bg-primary-gradient {")
+        scss_content.append("  background: linear-gradient(225deg, $light 0%, $primary-bg-subtle 100%) !important;")
+        scss_content.append("  background-attachment: fixed !important;")
+        scss_content.append("}")
+        scss_content.append('[data-bs-theme="dark"] .bg-primary-gradient {')
+        scss_content.append("  background: linear-gradient(225deg, $dark 0%, $primary-bg-subtle-dark 100%) !important;")
+        scss_content.append("}")
 
         # Write to temporary file
         with open(temp_scss_file, 'w') as f:
