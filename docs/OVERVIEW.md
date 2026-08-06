@@ -18,7 +18,7 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
 ├── node_modules/          # Source files for Bootstrap and dart-sass
 └── colors/                # 📂 Output directory
-    └── v1/                # 📂 Versioned CSS files and accessibility reports
+    └── v2/                # 📂 Versioned CSS files and accessibility reports
 ```
 
 ---
@@ -58,13 +58,15 @@ To change global design elements like typography, corner rounding, shadows, or *
 {
   "font-family": "'Inter', sans-serif",
   "font-url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-  "border-radius": "0.5rem",
+  "border-radius": "0.30rem",
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
-  "color-contrast-dark": "#212529",
-  "color-contrast-light": "#ffffff",
-  "base-bg-tint-strength": 90,
-  "base-bg-shade-strength": 90
+  "color-contrast-dark": "#191C1F",
+  "color-contrast-light": "#F8F9FA",
+  "base-bg-tint-strength": 40,
+  "base-bg-shade-strength": 40,
+  "subtle-bg-tint-weight": 75,
+  "subtle-bg-shade-weight": 75
 }
 ```
 
@@ -73,14 +75,14 @@ To change global design elements like typography, corner rounding, shadows, or *
 | Token | Default | Description |
 |:------|:--------|:------------|
 | `min-contrast-ratio` | `4.5` | WCAG minimum contrast ratio. Use `4.5` for AA compliance, `7.0` for AAA. |
-| `color-contrast-dark` | `#212529` | Dark text color used on light backgrounds (Bootstrap's gray-900). |
-| `color-contrast-light` | `#ffffff` | Light text color used on dark backgrounds. |
-| `base-bg-tint-strength` | `90` | Tint mix percentage for the custom `.bg-primary-base` utility in light mode. |
-| `base-bg-shade-strength` | `90` | Shade mix percentage for the custom `.bg-primary-base` utility in dark mode. |
-| `subtle-bg-tint-weight` | `80` | Tint mix percentage for primary subtle backgrounds in light mode (lower = stronger color). |
-| `subtle-border-tint-weight`| `60` | Tint mix percentage for primary subtle borders. |
-| `subtle-bg-shade-weight` | `80` | Shade mix percentage for primary subtle backgrounds in dark mode. |
-| `subtle-border-shade-weight`| `40` | Shade mix percentage for primary subtle borders in dark mode. |
+| `color-contrast-dark` | `#191C1F` | Dark text color used on light backgrounds (Bootstrap's gray-900). |
+| `color-contrast-light` | `#F8F9FA` | Light text color used on dark backgrounds. |
+| `base-bg-tint-strength` | `40` | Tint mix percentage for the custom `.bg-primary-base` utility in light mode. (`40` means 40% white / 60% color). |
+| `base-bg-shade-strength` | `40` | Shade mix percentage for the custom `.bg-primary-base` utility in dark mode. |
+| `subtle-bg-tint-weight` | `75` | Tint mix percentage for primary subtle backgrounds in light mode (`75` means 75% white / 25% color). |
+| `subtle-border-tint-weight`| `75` | Tint mix percentage for primary subtle borders. |
+| `subtle-bg-shade-weight` | `75` | Shade mix percentage for primary subtle backgrounds in dark mode. |
+| `subtle-border-shade-weight`| `75` | Shade mix percentage for primary subtle borders in dark mode. |
 
 The build script automatically detects primary colors that fail WCAG contrast thresholds and applies corrective overrides (darkened text emphasis, tinted subtle backgrounds) so that text and icons remain readable.
 
@@ -111,8 +113,8 @@ npm run build
 3. For colors that fail validation, it **auto-generates** corrective SCSS overrides (darkened text emphasis, accessible link colors, tinted subtle backgrounds and borders).
 4. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file with contrast-safe variables injected.
 5. It selectively imports ONLY the Bootstrap components that rely on color (e.g. buttons, badges) to create lightweight overrides.
-6. It compiles everything into a highly compressed CSS file in a versioned directory (e.g., `colors/v1/group_a.css`).
+6. It compiles everything into a highly compressed CSS file in a versioned directory (e.g., `colors/v2/group_a.css`).
 7. It cleans up the temporary files.
-8. It generates a **contrast accessibility report** at `colors/v1/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
+8. It generates a **contrast accessibility report** at `colors/v2/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
 
 Once the script finishes successfully, simply commit your changes and push to GitHub!

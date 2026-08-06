@@ -293,6 +293,8 @@ def generate_css():
             scss_content.append(f"$border-radius: {design_tokens['border-radius']};")
         if 'box-shadow' in design_tokens:
             scss_content.append(f"$box-shadow: {design_tokens['box-shadow']};")
+        if 'btn-box-shadow' in design_tokens:
+            scss_content.append(f"$btn-box-shadow: {design_tokens['btn-box-shadow']};")
         if 'enable-shadows' in design_tokens:
             scss_content.append(f"$enable-shadows: {design_tokens['enable-shadows']};")
 
@@ -321,6 +323,17 @@ def generate_css():
         scss_content.append('  }')
         scss_content.append('  @if not map-has-key($theme-colors-text, $color) {')
         scss_content.append('    $theme-colors-text: map-merge($theme-colors-text, ($color: color-contrast($value)));')
+        scss_content.append('  }')
+        
+        scss_content.append('  // We must also merge into the hardcoded utility maps so the utility API generates the actual classes')
+        scss_content.append('  @if not map-has-key($utilities-bg-subtle, $color + "-subtle") {')
+        scss_content.append('    $utilities-bg-subtle: map-merge($utilities-bg-subtle, (#{$color}-subtle: var(--#{$prefix}#{$color}-bg-subtle)));')
+        scss_content.append('  }')
+        scss_content.append('  @if not map-has-key($utilities-border-subtle, $color + "-subtle") {')
+        scss_content.append('    $utilities-border-subtle: map-merge($utilities-border-subtle, (#{$color}-subtle: var(--#{$prefix}#{$color}-border-subtle)));')
+        scss_content.append('  }')
+        scss_content.append('  @if not map-has-key($utilities-text-emphasis-colors, $color + "-emphasis") {')
+        scss_content.append('    $utilities-text-emphasis-colors: map-merge($utilities-text-emphasis-colors, (#{$color}-emphasis: var(--#{$prefix}#{$color}-text-emphasis)));')
         scss_content.append('  }')
         scss_content.append('}')
         scss_content.append('')

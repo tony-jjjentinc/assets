@@ -4,6 +4,7 @@
   "font-face-url": "https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/fonts/Inter.woff2",
   "border-radius": "0.30rem",
   "enable-shadows": "true",
+  "btn-box-shadow": "none",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#191C1F",
   "color-contrast-light": "#F8F9FA",
