@@ -6,5 +6,11 @@
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#191C1F",
-  "color-contrast-light": "#F8F9FA"
+  "color-contrast-light": "#F8F9FA",
+  
+  "_comment_subtle": "Custom design token config for jjjei_* subtle colors (67% base, 33% white/black)",
+  "subtle-bg-tint-weight": 33,
+  "subtle-border-tint-weight": 33,
+  "subtle-bg-shade-weight": 33,
+  "subtle-border-shade-weight": 33
 }

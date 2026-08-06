@@ -28,9 +28,9 @@
   "jjjei_hr:1": "#8A2BE2",
   "jjjei_hr:2": "#4B0082",
 
-  "jjjei_procurement_and_inventory:0": "#C08081",
-  "jjjei_procurement_and_inventory:1": "#FFB6C1",
-  "jjjei_procurement_and_inventory:2": "#BC8F8F",
+  "jjjei_procinv:0": "#C08081",
+  "jjjei_procinv:1": "#FFB6C1",
+  "jjjei_procinv:2": "#BC8F8F",
 
   "jjjei_controller:0": "#008080",
   "jjjei_controller:1": "#66CDAA",

@@ -1,6 +1,6 @@
 # Contrast Report
 
-**Generated:** 2026-08-06 10:45:59  
+**Generated:** 2026-08-06 11:06:05  
 **WCAG Threshold:** 4.5:1 (Level AA)  
 **Total Groups:** 34  
 
@@ -34,9 +34,9 @@
 | jjjei_hr:0 | `#800080` | 9.42:1 ✅ | 1.82:1 ⚠️ | ✅ PASS | — |
 | jjjei_hr:1 | `#8A2BE2` | 5.96:1 ✅ | 2.87:1 ⚠️ | ✅ PASS | — |
 | jjjei_hr:2 | `#4B0082` | 12.95:1 ✅ | 1.32:1 ⚠️ | ✅ PASS | — |
-| jjjei_procurement_and_inventory:0 | `#C08081` | 3.16:1 ⚠️ | 5.42:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #734c4d (ratio: 7.32:1) |
-| jjjei_procurement_and_inventory:1 | `#FFB6C1` | 1.65:1 ⚠️ | 10.36:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 45%) to #8c646a (ratio: 5.07:1) |
-| jjjei_procurement_and_inventory:2 | `#BC8F8F` | 2.81:1 ⚠️ | 6.08:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #705555 (ratio: 6.73:1) |
+| jjjei_procinv:0 | `#C08081` | 3.16:1 ⚠️ | 5.42:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #734c4d (ratio: 7.32:1) |
+| jjjei_procinv:1 | `#FFB6C1` | 1.65:1 ⚠️ | 10.36:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 45%) to #8c646a (ratio: 5.07:1) |
+| jjjei_procinv:2 | `#BC8F8F` | 2.81:1 ⚠️ | 6.08:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #705555 (ratio: 6.73:1) |
 | jjjei_controller:0 | `#008080` | 4.77:1 ✅ | 3.58:1 ⚠️ | ✅ PASS | — |
 | jjjei_controller:1 | `#66CDAA` | 1.93:1 ⚠️ | 8.86:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #3d7b66 (ratio: 4.97:1) |
 | jjjei_controller:2 | `#20B2AA` | 2.62:1 ⚠️ | 6.53:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #136a66 (ratio: 6.40:1) |
