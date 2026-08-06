@@ -245,8 +245,16 @@ def generate_css():
         scss_content = []
 
         # 1. Fonts
-        if 'font-url' in design_tokens:
+        if 'font-url' in design_tokens and design_tokens['font-url']:
             scss_content.append(f"@import url('{design_tokens['font-url']}');")
+            
+        if 'font-face-url' in design_tokens and 'font-family-raw' in design_tokens:
+            scss_content.append("@font-face {")
+            scss_content.append(f"  font-family: '{design_tokens['font-family-raw']}';")
+            scss_content.append(f"  src: url('{design_tokens['font-face-url']}') format('woff2');")
+            scss_content.append("  font-weight: normal;")
+            scss_content.append("  font-style: normal;")
+            scss_content.append("}")
 
         # 2. Contrast Configuration
         scss_content.append(f"$min-contrast-ratio: {min_ratio};")

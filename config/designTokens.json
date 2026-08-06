@@ -1,9 +1,10 @@
 {
   "font-family": "'Inter', sans-serif",
-  "font-url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-  "border-radius": "0.67rem",
+  "font-family-raw": "Inter",
+  "font-face-url": "https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/fonts/Inter.woff2",
+  "border-radius": "0.45rem",
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
-  "color-contrast-dark": "#212529",
-  "color-contrast-light": "#ffffff"
+  "color-contrast-dark": "#191C1F",
+  "color-contrast-light": "#F8F9FA"
 }

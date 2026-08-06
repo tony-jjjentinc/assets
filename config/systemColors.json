@@ -1,9 +1,9 @@
 {
-  "success": "#00E936",
-  "warning": "#F9E500",
-  "danger": "#E53B4B",
+  "success": "#28A745",
+  "warning": "#FFC107",
+  "danger": "#DC3545",
   "secondary": "#848B92",
-  "info": "#0DCAF0",
+  "info": "#17A2B8",
   "light": "#F8F9FA",
   "dark": "#191C1F",
   "brand-primary": "#184421",
