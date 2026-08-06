@@ -369,14 +369,18 @@ def generate_css():
         scss_content.append(f"  background-color: {base_bg_dark} !important;")
         scss_content.append("}")
         
+        # Generate the specific 75% base color (25% tint/shade) for the gradient
+        base_gradient_light = tint_color(base_group_color, 25)
+        base_gradient_dark = shade_color(base_group_color, 25)
+
         scss_content.append("")
         scss_content.append("// Custom Full-Page Primary Gradient Base")
         scss_content.append(".bg-primary-gradient {")
-        scss_content.append("  background: linear-gradient(225deg, $primary-bg-subtle 0%, $light 100%) !important;")
+        scss_content.append(f"  background: linear-gradient(225deg, {base_gradient_light} 0%, $light 100%) !important;")
         scss_content.append("  background-attachment: fixed !important;")
         scss_content.append("}")
         scss_content.append('[data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append("  background: linear-gradient(225deg, $primary-bg-subtle-dark 0%, $dark 100%) !important;")
+        scss_content.append(f"  background: linear-gradient(225deg, {base_gradient_dark} 0%, $dark 100%) !important;")
         scss_content.append("}")
 
         # Write to temporary file
