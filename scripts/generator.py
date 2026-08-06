@@ -335,6 +335,8 @@ def generate_css():
         scss_content.append('@import "node_modules/bootstrap/scss/progress";')
         scss_content.append('@import "node_modules/bootstrap/scss/spinners";')
         scss_content.append('@import "node_modules/bootstrap/scss/tables";')
+        scss_content.append('@import "node_modules/bootstrap/scss/forms";')
+        scss_content.append('@import "node_modules/bootstrap/scss/pagination";')
         
         scss_content.append('// Configure utilities to only generate color-related utilities to save space')
         scss_content.append('$utilities: (')

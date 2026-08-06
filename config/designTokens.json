@@ -12,5 +12,9 @@
   "subtle-bg-tint-weight": 33,
   "subtle-border-tint-weight": 33,
   "subtle-bg-shade-weight": 33,
-  "subtle-border-shade-weight": 33
+  "subtle-border-shade-weight": 33,
+  
+  "_comment_base": "Custom design token config for .bg-primary-base utility (67% base, 33% white/black)",
+  "base-bg-tint-strength": 33,
+  "base-bg-shade-strength": 33
 }
