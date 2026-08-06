@@ -8,13 +8,13 @@
   "color-contrast-dark": "#191C1F",
   "color-contrast-light": "#F8F9FA",
   
-  "_comment_subtle": "Custom design token config for jjjei_* subtle colors (67% base, 33% white/black)",
-  "subtle-bg-tint-weight": 33,
-  "subtle-border-tint-weight": 33,
-  "subtle-bg-shade-weight": 33,
-  "subtle-border-shade-weight": 33,
+  "_comment_subtle": "Custom design token config for jjjei_* subtle colors (55% base, 45% white/black)",
+  "subtle-bg-tint-weight": 45,
+  "subtle-border-tint-weight": 45,
+  "subtle-bg-shade-weight": 45,
+  "subtle-border-shade-weight": 45,
   
-  "_comment_base": "Custom design token config for .bg-primary-base utility (67% base, 33% white/black)",
-  "base-bg-tint-strength": 33,
-  "base-bg-shade-strength": 33
+  "_comment_base": "Custom design token config for .bg-primary-base utility (55% base, 45% white/black)",
+  "base-bg-tint-strength": 45,
+  "base-bg-shade-strength": 45
 }
