@@ -43,8 +43,8 @@ To change the secondary, success, danger, or warning colors that apply across *a
 
 ```json
 {
-  "brand-primary": "#YOURHEX",
-  "brand-secondary": "#YOURHEX",
+  "jjjei-primary": "#YOURHEX",
+  "jjjei-secondary": "#YOURHEX",
   "secondary": "#848B92",
   "success": "#00E936",
   ...

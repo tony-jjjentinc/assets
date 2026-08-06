@@ -2,10 +2,11 @@
   "success": "#28A745",
   "warning": "#FFC107",
   "danger": "#DC3545",
-  "secondary": "#848B92",
+  "secondary": "#918F90",
   "info": "#17A2B8",
   "light": "#F8F9FA",
   "dark": "#191C1F",
-  "brand-primary": "#184421",
-  "brand-secondary": "#918F90"
+  
+  "jjjei-primary": "#184421",
+  "jjjei-secondary": "#918F90"
 }
