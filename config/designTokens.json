@@ -2,19 +2,19 @@
   "font-family": "'Inter', sans-serif",
   "font-family-raw": "Inter",
   "font-face-url": "https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/fonts/Inter.woff2",
-  "border-radius": "0.45rem",
+  "border-radius": "0.30rem",
   "enable-shadows": "true",
   "min-contrast-ratio": "4.5",
   "color-contrast-dark": "#191C1F",
   "color-contrast-light": "#F8F9FA",
   
-  "_comment_subtle": "Custom design token config for jjjei_* subtle colors (55% base, 45% white/black)",
-  "subtle-bg-tint-weight": 45,
-  "subtle-border-tint-weight": 45,
-  "subtle-bg-shade-weight": 45,
-  "subtle-border-shade-weight": 45,
+  "_comment_subtle": "Custom design token config for jjjei_* subtle colors (25% base, 75% white/black)",
+  "subtle-bg-tint-weight": 75,
+  "subtle-border-tint-weight": 75,
+  "subtle-bg-shade-weight": 75,
+  "subtle-border-shade-weight": 75,
   
-  "_comment_base": "Custom design token config for .bg-primary-base utility (55% base, 45% white/black)",
-  "base-bg-tint-strength": 45,
-  "base-bg-shade-strength": 45
+  "_comment_base": "Custom design token config for .bg-primary-base utility (60% base, 40% white/black)",
+  "base-bg-tint-strength": 40,
+  "base-bg-shade-strength": 40
 }

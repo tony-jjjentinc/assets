@@ -221,7 +221,8 @@ def generate_css():
         print(f"\nProcessing {group_key}...")
 
         base_group_key = group_key.split(':')[0]
-        base_group_color = group_colors.get(base_group_key, primary_color)
+        # Look for the exact base group key, otherwise fallback to the ':0' variant (the standard base color), otherwise fallback to the primary color itself
+        base_group_color = group_colors.get(base_group_key, group_colors.get(f"{base_group_key}:0", primary_color))
         base_bg_light = tint_color(base_group_color, base_bg_tint_strength)
         base_bg_dark = shade_color(base_group_color, base_bg_shade_strength)
 
@@ -368,19 +369,25 @@ def generate_css():
         scss_content.append('[data-bs-theme="dark"] .bg-primary-base {')
         scss_content.append(f"  background-color: {base_bg_dark} !important;")
         scss_content.append("}")
-        
-        # Generate the specific 75% base color (25% tint/shade) for the gradient
-        base_gradient_light = tint_color(base_group_color, 25)
-        base_gradient_dark = shade_color(base_group_color, 25)
-
         scss_content.append("")
-        scss_content.append("// Custom Full-Page Primary Gradient Base")
+        scss_content.append("// Custom Full-Page Primary Gradient Base (Mobile First)")
         scss_content.append(".bg-primary-gradient {")
-        scss_content.append(f"  background: linear-gradient(225deg, {base_gradient_light} 0%, $light 100%) !important;")
+        scss_content.append(f"  background: linear-gradient(180deg, {base_bg_light} 0%, $light 100%) !important;")
         scss_content.append("  background-attachment: fixed !important;")
         scss_content.append("}")
+        scss_content.append("@media (min-width: 768px) {")
+        scss_content.append("  .bg-primary-gradient {")
+        scss_content.append(f"    background: linear-gradient(90deg, {base_bg_light} 0%, $light 100%) !important;")
+        scss_content.append("  }")
+        scss_content.append("}")
+        
         scss_content.append('[data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append(f"  background: linear-gradient(225deg, {base_gradient_dark} 0%, $dark 100%) !important;")
+        scss_content.append(f"  background: linear-gradient(180deg, {base_bg_dark} 0%, $dark 100%) !important;")
+        scss_content.append("}")
+        scss_content.append("@media (min-width: 768px) {")
+        scss_content.append('  [data-bs-theme="dark"] .bg-primary-gradient {')
+        scss_content.append(f"    background: linear-gradient(90deg, {base_bg_dark} 0%, $dark 100%) !important;")
+        scss_content.append("  }")
         scss_content.append("}")
 
         # Write to temporary file
