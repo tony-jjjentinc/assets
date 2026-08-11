@@ -1,4 +1,4 @@
-# Shared Assets Repository
+# JJJEI Core Assets Repository
 
 This repository hosts shared assets (fonts, custom Bootstrap CSS themes, and SVG images/logos) for Google Apps Script Web Applications via GitHub Pages.
 

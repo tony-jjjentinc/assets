@@ -4,7 +4,7 @@ This guide explains how to integrate the custom generated Bootstrap CSS files in
 
 ## 1. Hosting the CSS (CDN Options)
 
-The CSS files generated in this repository (`colors/v1/group_a.css`, etc.) act as lightweight themes and can be served via two methods:
+The CSS files generated in this repository (`colors/v2/group_a.css`, etc.) act as lightweight themes and can be served via two methods:
 
 ### Option A: jsDelivr CDN (Recommended)
 jsDelivr is a free, enterprise-grade CDN built specifically for public GitHub repositories. It provides faster global load times and better caching than GitHub Pages.
@@ -18,10 +18,10 @@ Ensure this repository is pushed to GitHub and GitHub Pages is enabled in your r
 
 The build script automatically determines the version of the CSS files to generate based on the `version` field in `package.json`. 
 
-* If your `package.json` version is `"1.0.0"`, all CSS files are generated into the `colors/v1/` directory.
+* If your `package.json` version is `"1.0.0"`, all CSS files are generated into the `colors/v2/` directory.
 * When you are ready to make breaking design changes, you can bump the version in `package.json` to `"2.0.0"`. The script will then output all new files into `colors/v2/`.
 
-This ensures backwards compatibility. Your older web applications pointing to the `/v1/` path will remain safe and unaffected when you release version 2.
+This ensures backwards compatibility. Your older web applications pointing to the `/v2/` path will remain safe and unaffected when you release version 2.
 
 ## 3. Setting up the HTML Template in GAS
 
@@ -43,10 +43,10 @@ In your GAS project's `Index.html` (or whichever file contains your `<head>` tag
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- 2. Add your custom theme overrides (jsDelivr Recommended) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v1/group_a.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/group_a.css">
     
     <!-- OR use GitHub Pages -->
-    <!-- <link rel="stylesheet" href="https://tony-jjjentinc.github.io/assets/colors/v1/group_a.css"> -->
+    <!-- <link rel="stylesheet" href="https://tony-jjjentinc.github.io/assets/colors/v2/group_a.css"> -->
     
   </head>
   <body>
@@ -74,10 +74,10 @@ function doGet(e) {
   
   var template = HtmlService.createTemplateFromFile('Index');
   // jsDelivr (Recommended)
-  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v1/${group}.css`;
+  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/${group}.css`;
   
   // OR GitHub Pages
-  // template.groupCssUrl = `https://tony-jjjentinc.github.io/assets/colors/v1/${group}.css`;
+  // template.groupCssUrl = `https://tony-jjjentinc.github.io/assets/colors/v2/${group}.css`;
   
   return template.evaluate()
       .addMetaTag('viewport', 'width=device-width, initial-scale=1');
@@ -100,6 +100,6 @@ function doGet(e) {
 ## 5. Cache Purging
 
 **jsDelivr:** To force jsDelivr to clear its edge cache and fetch the newest version immediately, replace `cdn` with `purge` in the URL in your browser:
-`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v1/group_a.css`
+`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/group_a.css`
 
 **GitHub Pages:** Note that GitHub Pages has a ~10-minute cache (`max-age=600`). When you push updates to your CSS repository, it may take up to 10 minutes for the changes to reflect globally across your GAS apps. You can bypass your browser's local cache by doing a hard refresh (`Ctrl + F5` or `Cmd + Shift + R`).
