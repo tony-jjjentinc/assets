@@ -18,7 +18,7 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 ├── package.json           # Node.js configuration to manage Bootstrap & Sass
 ├── node_modules/          # Source files for Bootstrap and dart-sass
 └── colors/                # 📂 Output directory
-    └── v2/                # 📂 Versioned CSS files and accessibility reports
+    └── v3/                # 📂 Versioned CSS files and accessibility reports
 ```
 
 ---
@@ -113,8 +113,8 @@ npm run build
 3. For colors that fail validation, it **auto-generates** corrective SCSS overrides (darkened text emphasis, accessible link colors, tinted subtle backgrounds and borders).
 4. For each group in `config/groupColors.json`, it creates a temporary Sass (`.scss`) file with contrast-safe variables injected.
 5. It selectively imports ONLY the Bootstrap components that rely on color (e.g. buttons, badges) to create lightweight overrides.
-6. It compiles everything into a highly compressed CSS file in a versioned directory (e.g., `colors/v2/group_a.css`).
+6. It compiles everything into a highly compressed CSS file in a versioned directory (e.g., `colors/v3/group_a.css`).
 7. It cleans up the temporary files.
-8. It generates a **contrast accessibility report** at `colors/v2/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
+8. It generates a **contrast accessibility report** at `colors/v3/contrast-report.md` summarizing pass/fail status and auto-fixes applied per group.
 
 Once the script finishes successfully, simply commit your changes and push to GitHub!

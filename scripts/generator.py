@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import subprocess
 from datetime import datetime
 
@@ -205,10 +206,12 @@ def generate_css():
         print(f"Error loading package.json: {e}")
         version_major = '1'
         
-    output_dir = f'colors/v{version_major}'
+    output_dirs = [f'colors/v{version_major}', 'colors/latest']
+    output_dir = output_dirs[0]
     
-    # Ensure output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    # Ensure output directories exist
+    for d in output_dirs:
+        os.makedirs(d, exist_ok=True)
 
     # Collect contrast validation results for the report
     contrast_results = []
@@ -324,8 +327,13 @@ def generate_css():
         scss_content.append('  @if not map-has-key($theme-colors-text, $color) {')
         scss_content.append('    $theme-colors-text: map-merge($theme-colors-text, ($color: color-contrast($value)));')
         scss_content.append('  }')
-        
-        scss_content.append('  // We must also merge into the hardcoded utility maps so the utility API generates the actual classes')
+        scss_content.append('}')
+        scss_content.append('')
+        scss_content.append('@import "node_modules/bootstrap/scss/mixins";')
+        scss_content.append('@import "node_modules/bootstrap/scss/utilities";')
+        scss_content.append('')
+        scss_content.append('// Populate utility maps after utilities.scss defines them:')
+        scss_content.append('@each $color, $value in $theme-colors {')
         scss_content.append('  @if not map-has-key($utilities-bg-subtle, $color + "-subtle") {')
         scss_content.append('    $utilities-bg-subtle: map-merge($utilities-bg-subtle, (#{$color}-subtle: var(--#{$prefix}#{$color}-bg-subtle)));')
         scss_content.append('  }')
@@ -337,12 +345,25 @@ def generate_css():
         scss_content.append('  }')
         scss_content.append('}')
         scss_content.append('')
-        scss_content.append('@import "node_modules/bootstrap/scss/mixins";')
-        scss_content.append('@import "node_modules/bootstrap/scss/utilities";')
-        
+        scss_content.append('// Update $utilities map with expanded values so Bootstrap API generates all subtle utility classes')
+        scss_content.append('$subtle-bg-config: map-get($utilities, "subtle-background-color");')
+        scss_content.append('$subtle-bg-config: map-merge($subtle-bg-config, (values: $utilities-bg-subtle));')
+        scss_content.append('$subtle-border-config: map-get($utilities, "subtle-border-color");')
+        scss_content.append('$subtle-border-config: map-merge($subtle-border-config, (values: $utilities-border-subtle));')
+        scss_content.append('$text-color-config: map-get($utilities, "text-color");')
+        scss_content.append('$text-color-vals: map-get($text-color-config, "values");')
+        scss_content.append('$text-color-vals: map-merge($text-color-vals, $utilities-text-emphasis-colors);')
+        scss_content.append('$text-color-config: map-merge($text-color-config, (values: $text-color-vals));')
+        scss_content.append('$utilities: map-merge($utilities, (')
+        scss_content.append('  "subtle-background-color": $subtle-bg-config,')
+        scss_content.append('  "subtle-border-color": $subtle-border-config,')
+        scss_content.append('  "text-color": $text-color-config')
+        scss_content.append('));')
+        scss_content.append('')
         scss_content.append('// Components that depend on colors')
         scss_content.append('@import "node_modules/bootstrap/scss/root";')
         scss_content.append('@import "node_modules/bootstrap/scss/buttons";')
+        scss_content.append('@import "node_modules/bootstrap/scss/button-group";')
         scss_content.append('@import "node_modules/bootstrap/scss/badge";')
         scss_content.append('@import "node_modules/bootstrap/scss/alert";')
         scss_content.append('@import "node_modules/bootstrap/scss/list-group";')
@@ -351,6 +372,12 @@ def generate_css():
         scss_content.append('@import "node_modules/bootstrap/scss/tables";')
         scss_content.append('@import "node_modules/bootstrap/scss/forms";')
         scss_content.append('@import "node_modules/bootstrap/scss/pagination";')
+        scss_content.append('@import "node_modules/bootstrap/scss/nav";')
+        scss_content.append('@import "node_modules/bootstrap/scss/navbar";')
+        scss_content.append('@import "node_modules/bootstrap/scss/accordion";')
+        scss_content.append('@import "node_modules/bootstrap/scss/dropdown";')
+        scss_content.append('@import "node_modules/bootstrap/scss/breadcrumb";')
+        scss_content.append('@import "node_modules/bootstrap/scss/carousel";')
         
         scss_content.append('// Configure utilities to only generate color-related utilities to save space')
         scss_content.append('$utilities: (')
@@ -385,21 +412,21 @@ def generate_css():
         scss_content.append("")
         scss_content.append("// Custom Full-Page Primary Gradient Base (Mobile First)")
         scss_content.append(".bg-primary-gradient {")
-        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle 0%, $light 100%) !important;")
+        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle 0%, rgba($primary-bg-subtle, 0.5) 100%) !important;")
         scss_content.append("  background-attachment: fixed !important;")
         scss_content.append("}")
         scss_content.append("@media (min-width: 768px) {")
         scss_content.append("  .bg-primary-gradient {")
-        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle 0%, $light 100%) !important;")
+        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle 0%, rgba($primary-bg-subtle, 0.5) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("}")
         
         scss_content.append('[data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle-dark 0%, $dark 100%) !important;")
+        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle-dark 0%, rgba($primary-bg-subtle-dark, 0.5) 100%) !important;")
         scss_content.append("}")
         scss_content.append("@media (min-width: 768px) {")
         scss_content.append('  [data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle-dark 0%, $dark 100%) !important;")
+        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle-dark 0%, rgba($primary-bg-subtle-dark, 0.5) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("}")
 
@@ -419,6 +446,11 @@ def generate_css():
                     if os.path.exists(final_output_css_file):
                         os.remove(final_output_css_file)
                     os.rename(temp_output_css_file, final_output_css_file)
+            
+            # Sync generated file to latest directory
+            for d in output_dirs[1:]:
+                shutil.copy2(final_output_css_file, f"{d}/{group_key}.css")
+
             print(f"  Successfully generated {final_output_css_file}")
         except subprocess.CalledProcessError as e:
             print(f"  Error compiling {group_key}: {e}")
@@ -433,13 +465,14 @@ def generate_css():
     print(f"{'='*60}")
 
     report = generate_contrast_report(contrast_results, min_ratio)
-    report_path = f'{output_dir}/contrast-report.md'
-    with open(report_path, 'w') as f:
-        f.write(report)
+    for d in output_dirs:
+        report_path = f'{d}/contrast-report.md'
+        with open(report_path, 'w') as f:
+            f.write(report)
 
     pass_count = sum(1 for r in contrast_results if r['status'] == 'PASS')
     warn_count = sum(1 for r in contrast_results if r['status'] == 'WARN')
-    print(f"\n  Report saved to {report_path}")
+    print(f"\n  Reports saved to: {', '.join([f'{d}/contrast-report.md' for d in output_dirs])}")
     print(f"  Summary: ✅ {pass_count} Pass | ⚠️ {warn_count} Auto-Fixed | {len(contrast_results)} Total")
     print(f"\n{'='*60}")
     print(f"  Build Complete!")

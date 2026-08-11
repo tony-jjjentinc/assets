@@ -1,6 +1,6 @@
 # Assets Reference Guide
 
-The assets directory are served via Github Pages
+The assets directory are served via jsDelivr and Github Pages
 
 ## Base URL Configuration
 
@@ -17,12 +17,15 @@ To use these assets in your projects, it is highly recommended to use **jsDelivr
 ## 1. Styling Integration (CSS/Colors)
 
 ### Static Implementation
-Include the default Bootstrap 5 CSS CDN link in your web projects, followed by the CDN URL pointing to the pre-compiled group CSS. These custom files are lightweight and only override the Bootstrap 5 core theme colors and components.
+Include the default Bootstrap 5 CSS CDN link in your web projects, followed by the CDN URL pointing to the pre-compiled group CSS. You can use either the `latest` endpoint for auto-updating styles or a pinned version endpoint (e.g. `v3`).
 
 ```html
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jsDelivr (Recommended) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/jjjei_admin:0.css">
+<!-- jsDelivr (Latest - Recommended) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css">
+
+<!-- jsDelivr (Version Pinned) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v3/jjjei_admin:0.css">
 ```
 
 ### Dynamic Implementation (Code.gs)
@@ -33,7 +36,8 @@ You can dynamically pass the appropriate group CSS URL to the frontend template,
 function doGet(e) {
   var group = e.parameter.group || 'jjjei_admin:0';
   var template = HtmlService.createTemplateFromFile('Index');
-  template.cssUrl = 'https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/' + group + '.css';
+  // Use 'latest' to automatically inherit future theme updates
+  template.cssUrl = 'https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/' + group + '.css';
   return template.evaluate();
 }
 ```
@@ -53,7 +57,7 @@ Beyond the standard Bootstrap 5 color classes (`primary`, `secondary`, `success`
 #### 2. The Full-Page Gradient Utility
 - **`.bg-primary-gradient`**: A modern, responsive gradient utility designed to be applied to the `<body>` tag or main application wrapper. 
   - **Responsive Angles:** It flows vertically (`180deg`) on mobile and cleanly snaps horizontally (`90deg`) on desktop (`>=768px`).
-  - **Colors:** It starts (top/left) with the soft 25% tint of `$primary-bg-subtle` and elegantly pools into the neutral `$light` or `$dark` background at the end (bottom/right). 
+  - **Colors:** It starts (top/left) with `$primary-bg-subtle` at 0% and fades into `$primary-bg-subtle` at 50% opacity (`rgba($primary-bg-subtle, 0.5)`) at 100%.
   - **Fixed Canvas:** It is locked in place with `background-attachment: fixed !important` to ensure a consistent presentation layer regardless of page scroll.
 
 #### 3. Semantic Status Colors
@@ -75,6 +79,12 @@ Available status names are numeric keys from `0` to `9` (e.g., `status-0`, `stat
   </div>
 </div>
 ```
+
+### Included Bootstrap Components & Color Overrides
+These custom CSS files include primary color overrides for all high color-impact Bootstrap 5 components:
+- **Navigation & Layout:** `.nav`, `.nav-pills`, `.nav-tabs`, `.navbar`
+- **Interactive Controls:** `.btn`, `.btn-group`, `.dropdown` (`.dropdown-item.active`), `.accordion` (`.accordion-button`)
+- **Feedback & Content:** `.alert`, `.badge`, `.list-group`, `.progress`, `.spinners`, `.tables`, `.forms`, `.pagination`, `.breadcrumb`, `.carousel`
 
 ### Bootstrap JavaScript Bundle
 This repository only serves customized CSS. For interactive Bootstrap components (like Modals, Dropdowns, or Offcanvases), you must manually include the standard Bootstrap JS bundle in your web projects `Index.html`:
@@ -169,8 +179,8 @@ Apply the provided SVGs as background textures to containers using CSS.
 - `texture2.svg`
 - `topography.svg`
 
-### Colors (`/colors/v2/`)
-*(Note: CSS is now versioned and group variations use a colon `:` separator)*
+### Colors (`/colors/latest/` and `/colors/v3/`)
+*(Note: CSS is available under both `/colors/latest/` for auto-updating apps and `/colors/v3/` for version-pinned apps)*
 - `jjjei_admin:0.css` to `jjjei_admin:5.css`
 - `jjjei_controller:0.css` to `jjjei_controller:2.css`
 - `jjjei_facilities:0.css` to `jjjei_facilities:6.css`

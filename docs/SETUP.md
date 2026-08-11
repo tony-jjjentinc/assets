@@ -14,14 +14,12 @@ jsDelivr is a free, enterprise-grade CDN built specifically for public GitHub re
 Ensure this repository is pushed to GitHub and GitHub Pages is enabled in your repository settings:
 - **Base URL:** `https://tony-jjjentinc.github.io/assets/`
 
-## 2. CSS Versioning
+## 2. CSS Versioning & Endpoints
 
-The build script automatically determines the version of the CSS files to generate based on the `version` field in `package.json`. 
+The build script automatically outputs compiled CSS files to **two** locations:
 
-* If your `package.json` version is `"1.0.0"`, all CSS files are generated into the `colors/v2/` directory.
-* When you are ready to make breaking design changes, you can bump the version in `package.json` to `"2.0.0"`. The script will then output all new files into `colors/v2/`.
-
-This ensures backwards compatibility. Your older web applications pointing to the `/v2/` path will remain safe and unaffected when you release version 2.
+1. **`colors/latest/` (Auto-Updating - Recommended):** Applications using this path will automatically receive future non-breaking theme updates without code modifications.
+2. **`colors/v3/` (Version Pinned):** Applications pointing to major version paths (determined by `package.json` version major) remain completely stable and unaffected when major updates are published.
 
 ## 3. Setting up the HTML Template in GAS
 
@@ -42,11 +40,11 @@ In your GAS project's `Index.html` (or whichever file contains your `<head>` tag
     <!-- 1. Include the standard Bootstrap 5 CDN link for layout/structure -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- 2. Add your custom theme overrides (jsDelivr Recommended) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/group_a.css">
+    <!-- 2. Add your custom theme overrides (jsDelivr Recommended - Latest) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css">
     
-    <!-- OR use GitHub Pages -->
-    <!-- <link rel="stylesheet" href="https://tony-jjjentinc.github.io/assets/colors/v2/group_a.css"> -->
+    <!-- OR Version Pinned -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v3/jjjei_admin:0.css"> -->
     
   </head>
   <body>
@@ -70,14 +68,11 @@ If your GAS project serves multiple groups from the same codebase, you can pass 
 ```javascript
 function doGet(e) {
   // Determine group dynamically, e.g., from query parameter: ?group=group_b
-  var group = e.parameter.group || 'group_a'; 
+  var group = e.parameter.group || 'jjjei_admin:0'; 
   
   var template = HtmlService.createTemplateFromFile('Index');
-  // jsDelivr (Recommended)
-  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/${group}.css`;
-  
-  // OR GitHub Pages
-  // template.groupCssUrl = `https://tony-jjjentinc.github.io/assets/colors/v2/${group}.css`;
+  // jsDelivr (Latest - Recommended)
+  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/${group}.css`;
   
   return template.evaluate()
       .addMetaTag('viewport', 'width=device-width, initial-scale=1');
@@ -100,6 +95,6 @@ function doGet(e) {
 ## 5. Cache Purging
 
 **jsDelivr:** To force jsDelivr to clear its edge cache and fetch the newest version immediately, replace `cdn` with `purge` in the URL in your browser:
-`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v2/group_a.css`
+`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css`
 
 **GitHub Pages:** Note that GitHub Pages has a ~10-minute cache (`max-age=600`). When you push updates to your CSS repository, it may take up to 10 minutes for the changes to reflect globally across your GAS apps. You can bypass your browser's local cache by doing a hard refresh (`Ctrl + F5` or `Cmd + Shift + R`).

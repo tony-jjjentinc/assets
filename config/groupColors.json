@@ -1,23 +1,23 @@
 {
   "jjjei_gmo:0": "#008000",
   "jjjei_gmo:1": "#2E8B57",
-  "jjjei_gmo:2": "#6B8E23",
+  "jjjei_gmo:2": "#2F5B27",
   "jjjei_gmo:3": "#228B22",
 
   "jjjei_admin:0": "#FFD700",
-  "jjjei_admin:1": "#F7DC6F",
-  "jjjei_admin:2": "#E4E95C",
-  "jjjei_admin:3": "#D4AC0D",
-  "jjjei_admin:4": "#FFD700",
+  "jjjei_admin:1": "#F9E547",
+  "jjjei_admin:2": "#C9B037",
+  "jjjei_admin:3": "#E09F00",
+  "jjjei_admin:4": "#C9A227",
   "jjjei_admin:5": "#FFC300",
 
   "jjjei_facilities:0": "#0000FF",
-  "jjjei_facilities:1": "#97D9FF",
-  "jjjei_facilities:2": "#00CDE9",
+  "jjjei_facilities:1": "#66BFFF",
+  "jjjei_facilities:2": "#2196C7",
   "jjjei_facilities:3": "#4682B4",
   "jjjei_facilities:4": "#0047AB",
-  "jjjei_facilities:5": "#59A7FF",
-  "jjjei_facilities:6": "#59A7FF",
+  "jjjei_facilities:5": "#4169E1",
+  "jjjei_facilities:6": "#1E90FF",
 
   "jjjei_leasing:0": "#800000",
   "jjjei_leasing:1": "#CD5C5C",
@@ -37,7 +37,7 @@
   "jjjei_controller:2": "#20B2AA",
 
   "jjjei_treasury:0": "#F28500",
-  "jjjei_treasury:1": "#FFE4B5",
+  "jjjei_treasury:1": "#F6C36A",
   "jjjei_treasury:2": "#F4A460",
   "jjjei_treasury:3": "#FF6347"
 }
