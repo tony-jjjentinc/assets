@@ -2,7 +2,7 @@
   "font-family": "'Inter', sans-serif",
   "font-family-raw": "Inter",
   "font-face-url": "https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/fonts/Inter.woff2",
-  "border-radius": "0.30rem",
+  "border-radius": "0.45rem",
   "enable-shadows": "true",
   "btn-box-shadow": "none",
   "min-contrast-ratio": "4.5",
