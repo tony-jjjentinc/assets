@@ -1,6 +1,6 @@
 # Contrast Report
 
-**Generated:** 2026-08-11 16:31:29  
+**Generated:** 2026-08-14 08:50:22  
 **WCAG Threshold:** 4.5:1 (Level AA)  
 **Total Groups:** 35  
 
@@ -21,8 +21,8 @@
 | jjjei_admin:4 | `#C9A227` | 2.42:1 ⚠️ | 7.07:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #786117 (ratio: 5.96:1) |
 | jjjei_admin:5 | `#FFC300` | 1.61:1 ⚠️ | 10.64:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 45%) to #8c6b00 (ratio: 4.98:1) |
 | jjjei_facilities:0 | `#0000FF` | 8.59:1 ✅ | 1.99:1 ⚠️ | ✅ PASS | — |
-| jjjei_facilities:1 | `#66BFFF` | 2.01:1 ⚠️ | 8.52:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #3d7299 (ratio: 5.17:1) |
-| jjjei_facilities:2 | `#2196C7` | 3.36:1 ⚠️ | 5.09:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #135a77 (ratio: 7.62:1) |
+| jjjei_facilities:1 | `#97D9FF` | 1.53:1 ⚠️ | 11.15:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 45%) to #53778c (ratio: 4.79:1) |
+| jjjei_facilities:2 | `#00CDE9` | 1.92:1 ⚠️ | 8.89:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #007b8b (ratio: 4.99:1) |
 | jjjei_facilities:3 | `#4682B4` | 4.11:1 ⚠️ | 4.17:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #2a4e6c (ratio: 8.73:1) |
 | jjjei_facilities:4 | `#0047AB` | 8.44:1 ✅ | 2.03:1 ⚠️ | ✅ PASS | — |
 | jjjei_facilities:5 | `#4169E1` | 4.85:1 ✅ | 3.53:1 ⚠️ | ✅ PASS | — |
