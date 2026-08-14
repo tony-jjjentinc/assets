@@ -1,10 +1,10 @@
 # Contrast Report
 
-**Generated:** 2026-08-14 08:50:22  
+**Generated:** 2026-08-14 08:55:52  
 **WCAG Threshold:** 4.5:1 (Level AA)  
 **Total Groups:** 35  
 
-**Results:** ✅ 12 Pass | ⚠️ 23 Auto-Fixed
+**Results:** ✅ 11 Pass | ⚠️ 24 Auto-Fixed
 
 ---
 
@@ -25,7 +25,7 @@
 | jjjei_facilities:2 | `#00CDE9` | 1.92:1 ⚠️ | 8.89:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #007b8b (ratio: 4.99:1) |
 | jjjei_facilities:3 | `#4682B4` | 4.11:1 ⚠️ | 4.17:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #2a4e6c (ratio: 8.73:1) |
 | jjjei_facilities:4 | `#0047AB` | 8.44:1 ✅ | 2.03:1 ⚠️ | ✅ PASS | — |
-| jjjei_facilities:5 | `#4169E1` | 4.85:1 ✅ | 3.53:1 ⚠️ | ✅ PASS | — |
+| jjjei_facilities:5 | `#59A7FF` | 2.50:1 ⚠️ | 6.84:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #356499 (ratio: 6.11:1) |
 | jjjei_facilities:6 | `#1E90FF` | 3.24:1 ⚠️ | 5.29:1 ✅ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #125699 (ratio: 7.46:1) |
 | jjjei_leasing:0 | `#800000` | 10.95:1 ✅ | 1.56:1 ⚠️ | ✅ PASS | — |
 | jjjei_leasing:1 | `#CD5C5C` | 3.98:1 ⚠️ | 4.30:1 ⚠️ | ⚠️ AUTO-FIXED | text-emphasis darkened (shade 40%) to #7b3737 (ratio: 8.59:1) |
