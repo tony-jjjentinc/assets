@@ -15,7 +15,19 @@
   "subtle-bg-shade-weight": 75,
   "subtle-border-shade-weight": 75,
   
+  "_comment_faint": "Custom design token config for faint colors (80% base, 20% white/black)",
+  "faint-bg-tint-weight": 20,
+  "faint-border-tint-weight": 20,
+  "faint-bg-shade-weight": 20,
+  "faint-border-shade-weight": 20,
+
+  "_comment_shaded": "Custom design token config for shaded colors (darker shade than subtle)",
+  "shaded-bg-shade-weight": 35,
+  "shaded-border-shade-weight": 35,
+
   "_comment_base": "Custom design token config for .bg-primary-base utility (60% base, 40% white/black)",
   "base-bg-tint-strength": 40,
-  "base-bg-shade-strength": 40
+  "base-bg-shade-strength": 40,
+
+  "override-bootstrap-spinner": false
 }

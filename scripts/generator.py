@@ -173,6 +173,8 @@ def generate_css():
         system_colors = load_json('config/systemColors.json')
         design_tokens = load_json('config/designTokens.json')
         status_colors = load_json('config/statusColors.json')
+        loaders_config = load_json('config/loaders.json') if os.path.exists('config/loaders.json') else {}
+        patterns_config = load_json('config/backgroundPatterns.json') if os.path.exists('config/backgroundPatterns.json') else {}
     except Exception as e:
         print(f"Error loading JSON configurations: {e}")
         return
@@ -182,29 +184,47 @@ def generate_css():
     dark_text = design_tokens.get('color-contrast-dark', DARK_TEXT_DEFAULT)
     light_text = design_tokens.get('color-contrast-light', WHITE)
 
-    bg_tint = float(design_tokens.get('subtle-bg-tint-weight', 80))
-    border_tint = float(design_tokens.get('subtle-border-tint-weight', 60))
-    bg_shade = float(design_tokens.get('subtle-bg-shade-weight', 80))
-    border_shade = float(design_tokens.get('subtle-border-shade-weight', 40))
+    bg_tint = float(design_tokens.get('subtle-bg-tint-weight', 75))
+    border_tint = float(design_tokens.get('subtle-border-tint-weight', 75))
+    bg_shade = float(design_tokens.get('subtle-bg-shade-weight', 75))
+    border_shade = float(design_tokens.get('subtle-border-shade-weight', 75))
+
+    faint_bg_tint = float(design_tokens.get('faint-bg-tint-weight', 20))
+    faint_border_tint = float(design_tokens.get('faint-border-tint-weight', 20))
+    faint_bg_shade = float(design_tokens.get('faint-bg-shade-weight', 20))
+    faint_border_shade = float(design_tokens.get('faint-border-shade-weight', 20))
+
+    shaded_bg_shade = float(design_tokens.get('shaded-bg-shade-weight', 35))
+    shaded_border_shade = float(design_tokens.get('shaded-border-shade-weight', 35))
     
-    base_bg_tint_strength = float(design_tokens.get('base-bg-tint-strength', 90))
-    base_bg_shade_strength = float(design_tokens.get('base-bg-shade-strength', 90))
+    base_bg_tint_strength = float(design_tokens.get('base-bg-tint-strength', 40))
+    base_bg_shade_strength = float(design_tokens.get('base-bg-shade-strength', 40))
+
+    override_spinner = design_tokens.get('override-bootstrap-spinner', False)
 
     def generate_subtle_overrides(name, hex_color):
         overrides = [
             f"${name}-bg-subtle: {tint_color(hex_color, bg_tint)};",
             f"${name}-border-subtle: {tint_color(hex_color, border_tint)};",
             f"${name}-bg-subtle-dark: {shade_color(hex_color, bg_shade)};",
-            f"${name}-border-subtle-dark: {shade_color(hex_color, border_shade)};"
+            f"${name}-border-subtle-dark: {shade_color(hex_color, border_shade)};",
+
+            f"${name}-bg-faint: {tint_color(hex_color, faint_bg_tint)};",
+            f"${name}-border-faint: {tint_color(hex_color, faint_border_tint)};",
+            f"${name}-bg-faint-dark: {shade_color(hex_color, faint_bg_shade)};",
+            f"${name}-border-faint-dark: {shade_color(hex_color, faint_border_shade)};",
+
+            f"${name}-bg-shaded: {shade_color(hex_color, shaded_bg_shade)};",
+            f"${name}-border-shaded: {shade_color(hex_color, shaded_border_shade)};"
         ]
         return "\n".join(overrides)
 
     try:
         package_info = load_json('package.json')
-        version_major = package_info.get('version', '1.0.0').split('.')[0]
+        version_major = package_info.get('version', '4.0.0').split('.')[0]
     except Exception as e:
         print(f"Error loading package.json: {e}")
-        version_major = '1'
+        version_major = '4'
         
     output_dirs = [f'colors/v{version_major}', 'colors/latest']
     output_dir = output_dirs[0]
@@ -273,15 +293,13 @@ def generate_css():
 
         for name, color in system_colors.items():
             scss_content.append(f"${name}: {color};")
-            
-            if "primary" in name:
-                scss_content.append(generate_subtle_overrides(name, color))
-                
+            scss_content.append(generate_subtle_overrides(name, color))
             theme_colors_entries.append(f'"{name}": ${name}')
 
         for name, color in status_colors.items():
             full_name = f"status-{name}"
             scss_content.append(f"${full_name}: {color};")
+            scss_content.append(generate_subtle_overrides(full_name, color))
             theme_colors_entries.append(f'"{full_name}": ${full_name}')
 
         scss_content.append("")
@@ -400,7 +418,7 @@ def generate_css():
         scss_content.append('// Generate utilities')
         scss_content.append('@import "node_modules/bootstrap/scss/utilities/api";')
 
-        # 7. Inject Custom Utilities
+        # 7. Inject Custom Utilities & Color Variants
         scss_content.append("")
         scss_content.append("// Custom Utility: bg-primary-base")
         scss_content.append(".bg-primary-base {")
@@ -410,25 +428,91 @@ def generate_css():
         scss_content.append(f"  background-color: {base_bg_dark} !important;")
         scss_content.append("}")
         scss_content.append("")
-        scss_content.append("// Custom Full-Page Primary Gradient Base (Mobile First)")
-        scss_content.append(".bg-primary-gradient {")
-        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle 0%, rgba($primary-bg-subtle, 0.5) 100%) !important;")
-        scss_content.append("  background-attachment: fixed !important;")
-        scss_content.append("}")
-        scss_content.append("@media (min-width: 768px) {")
-        scss_content.append("  .bg-primary-gradient {")
-        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle 0%, rgba($primary-bg-subtle, 0.5) 100%) !important;")
-        scss_content.append("  }")
-        scss_content.append("}")
         
-        scss_content.append('[data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append("  background: linear-gradient(180deg, $primary-bg-subtle-dark 0%, rgba($primary-bg-subtle-dark, 0.5) 100%) !important;")
-        scss_content.append("}")
-        scss_content.append("@media (min-width: 768px) {")
-        scss_content.append('  [data-bs-theme="dark"] .bg-primary-gradient {')
-        scss_content.append("    background: linear-gradient(90deg, $primary-bg-subtle-dark 0%, rgba($primary-bg-subtle-dark, 0.5) 100%) !important;")
+        # Color Variant Utilities (-gradient 45deg, -shaded, -faint)
+        scss_content.append("// 45deg Gradient Utilities (Primary, System & Status colors)")
+        scss_content.append("@each $color, $value in $theme-colors {")
+        scss_content.append("  .bg-#{$color}-gradient {")
+        scss_content.append("    background: linear-gradient(45deg, $value 0%, var(--#{$prefix}#{$color}-bg-subtle, mix(#fff, $value, 75%)) 100%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  [data-bs-theme=\"dark\"] .bg-#{$color}-gradient {")
+        scss_content.append("    background: linear-gradient(45deg, $value 0%, var(--#{$prefix}#{$color}-bg-subtle-dark, mix(#000, $value, 75%)) 100%) !important;")
+        scss_content.append("  }")
+        scss_content.append("")
+        scss_content.append("  .bg-#{$color}-shaded {")
+        scss_content.append("    background-color: mix(#000, $value, 35%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  .border-#{$color}-shaded {")
+        scss_content.append("    border-color: mix(#000, $value, 35%) !important;")
+        scss_content.append("  }")
+        scss_content.append("")
+        scss_content.append("  .bg-#{$color}-faint {")
+        scss_content.append("    background-color: mix(#fff, $value, 20%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  .border-#{$color}-faint {")
+        scss_content.append("    border-color: mix(#fff, $value, 20%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  [data-bs-theme=\"dark\"] .bg-#{$color}-faint {")
+        scss_content.append("    background-color: mix(#000, $value, 20%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  [data-bs-theme=\"dark\"] .border-#{$color}-faint {")
+        scss_content.append("    border-color: mix(#000, $value, 20%) !important;")
         scss_content.append("  }")
         scss_content.append("}")
+        scss_content.append("")
+
+        # 8. Inject Custom Keyframe Loaders
+        scss_content.append("// Custom Loader Animation Utilities")
+        scss_content.append("@keyframes loader-spin {")
+        scss_content.append("  to { transform: rotate(360deg); }")
+        scss_content.append("}")
+        scss_content.append("@keyframes loader-pulse {")
+        scss_content.append("  0%, 100% { transform: scale(0.8); opacity: 0.5; }")
+        scss_content.append("  50% { transform: scale(1.2); opacity: 1; }")
+        scss_content.append("}")
+        scss_content.append("@keyframes loader-dots {")
+        scss_content.append("  0%, 20% { transform: translateY(0); }")
+        scss_content.append("  50% { transform: translateY(-6px); }")
+        scss_content.append("  80%, 100% { transform: translateY(0); }")
+        scss_content.append("}")
+        scss_content.append("")
+        
+        loader_target_selector = ".loader, .spinner-border" if override_spinner else ".loader"
+        scss_content.append(f"{loader_target_selector} {{")
+        scss_content.append("  display: inline-block;")
+        scss_content.append("  width: 2rem;")
+        scss_content.append("  height: 2rem;")
+        scss_content.append("  vertical-align: -0.125em;")
+        scss_content.append("  border: 0.2em solid currentColor;")
+        scss_content.append("  border-right-color: transparent;")
+        scss_content.append("  border-radius: 50%;")
+        scss_content.append("  animation: loader-spin 0.75s linear infinite;")
+        scss_content.append("}")
+        scss_content.append(".loader-pulse {")
+        scss_content.append("  border: none !important;")
+        scss_content.append("  background-color: currentColor;")
+        scss_content.append("  border-radius: 50%;")
+        scss_content.append("  animation: loader-pulse 1s ease-in-out infinite !important;")
+        scss_content.append("}")
+        scss_content.append(".loader-dots {")
+        scss_content.append("  border: none !important;")
+        scss_content.append("  border-radius: 0 !important;")
+        scss_content.append("  animation: loader-dots 1.2s ease-in-out infinite !important;")
+        scss_content.append("}")
+        scss_content.append("")
+
+        # 9. Inject Background Patterns
+        scss_content.append("// Configurable Background Patterns")
+        if isinstance(patterns_config, dict):
+            for p_name, p_data in patterns_config.items():
+                if isinstance(p_data, dict) and 'svg' in p_data:
+                    scss_content.append(f".bg-pattern-{p_name} {{")
+                    scss_content.append(f"  background-image: url(\"{p_data['svg']}\") !important;")
+                    if 'background-size' in p_data:
+                        scss_content.append(f"  background-size: {p_data['background-size']} !important;")
+                    if 'background-repeat' in p_data:
+                        scss_content.append(f"  background-repeat: {p_data['background-repeat']} !important;")
+                    scss_content.append("}")
 
         # Write to temporary file
         with open(temp_scss_file, 'w') as f:

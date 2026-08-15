@@ -1,6 +1,6 @@
 {
   "name": "jjjei-core-assets",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "JJJEI Core Assets Repository for centralized CSS, fonts, and logos",
   "main": "index.js",
   "scripts": {

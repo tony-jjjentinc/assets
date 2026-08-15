@@ -1,0 +1,12 @@
+{
+  "grid": {
+    "svg": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M1 1h18v18H1z' fill='none' stroke='%23888888' stroke-width='1' stroke-opacity='0.2'/%3E%3C/svg%3E",
+    "background-size": "20px 20px",
+    "background-repeat": "repeat"
+  },
+  "dots": {
+    "svg": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%23888888' fill-opacity='0.25'/%3E%3C/svg%3E",
+    "background-size": "16px 16px",
+    "background-repeat": "repeat"
+  }
+}
