@@ -60,22 +60,31 @@
       const [selectedGroup, setSelectedGroup] = useState('jjjei_admin');
       const [selectedVariant, setSelectedVariant] = useState('0');
       const [version, setVersion] = useState('v4');
-      const [useLocal, setUseLocal] = useState(false);
+      const [source, setSource] = useState('jsdelivr');
       const [isDark, setIsDark] = useState(false);
       const [copied, setCopied] = useState(false);
 
       const activeGroupObj = THEME_GROUPS.find(g => g.key === selectedGroup) || THEME_GROUPS[0];
 
+      const getThemeUrl = (src, ver, group, variant) => {
+        const fileKey = `${group}:${variant}.css`;
+        if (src === 'local') {
+          return `colors/${ver}/${fileKey}`;
+        }
+        if (src === 'gh-pages') {
+          return `https://tony-jjjentinc.github.io/assets/colors/${ver}/${fileKey}`;
+        }
+        // Default to jsdelivr CDN
+        return `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/${ver}/${fileKey}`;
+      };
+
       useEffect(() => {
-        const themeKey = `${selectedGroup}:${selectedVariant}`;
-        const themePath = useLocal 
-          ? `colors/${version}/${themeKey}.css` 
-          : `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/${version}/${themeKey}.css`;
+        const themePath = getThemeUrl(source, version, selectedGroup, selectedVariant);
         const linkElem = document.getElementById('active-theme-stylesheet');
         if (linkElem) {
           linkElem.href = themePath;
         }
-      }, [selectedGroup, selectedVariant, version, useLocal]);
+      }, [selectedGroup, selectedVariant, version, source]);
 
       useEffect(() => {
         document.documentElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
@@ -91,7 +100,7 @@
       };
 
       const copyCssUrl = () => {
-        const url = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/${version}/${selectedGroup}:${selectedVariant}.css`;
+        const url = getThemeUrl(source, version, selectedGroup, selectedVariant);
         navigator.clipboard.writeText(url);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -102,9 +111,8 @@
           {/* Sticky Controls Navbar */}
           <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-toolbar shadow-sm px-3">
             <div className="container-fluid">
-              <span className="navbar-brand fw-bold text-primary d-flex align-items-center gap-2">
-                <span className="badge bg-primary rounded-pill">v4</span>
-                JJJEI Assets Showcase
+              <span className="navbar-brand fw-bold text-dark d-flex align-items-center gap-2">
+                Assets Design Showcase
               </span>
 
               <div className="d-flex flex-wrap align-items-center gap-2">
@@ -129,14 +137,15 @@
                 </select>
 
                 {/* Source Toggle */}
-                <select className="form-select form-select-sm" value={useLocal ? 'local' : 'cdn'} onChange={e => setUseLocal(e.target.value === 'local')} style={{ width: '150px' }}>
-                  <option value="cdn">jsDelivr CDN</option>
+                <select className="form-select form-select-sm" value={source} onChange={e => setSource(e.target.value)} style={{ width: '160px' }}>
+                  <option value="jsdelivr">jsDelivr CDN</option>
+                  <option value="gh-pages">GitHub Pages CDN</option>
                   <option value="local">Local CSS</option>
                 </select>
 
                 {/* Copy CDN Link */}
                 <button className="btn btn-sm btn-outline-secondary border-secondary-subtle text-dark bg-body" onClick={copyCssUrl}>
-                  {copied ? 'CDN URL Copied' : 'Copy CDN Link'}
+                  {copied ? 'URL Copied' : 'Copy URL'}
                 </button>
               </div>
             </div>
@@ -146,7 +155,7 @@
             {/* Header Banner */}
             <div className="p-4 mb-4 rounded-3 bg-light text-dark shadow-sm">
               <div className="container-fluid py-2">
-                <h1 className="display-6 fw-bold mb-0">JJJEI Core Assets v4 Showcase</h1>
+                <h2 className="display-6 fw-bold mb-0">JJJEI Core Assets v4 Showcase</h2>
               </div>
             </div>
 
