@@ -98,7 +98,7 @@
       };
 
       return (
-        <div>
+        <div className="bg-primary-subtle">
           {/* Sticky Controls Navbar */}
           <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-toolbar shadow-sm px-3">
             <div className="container-fluid">
@@ -116,32 +116,27 @@
                 </select>
 
                 {/* Variant Selector */}
-                <select className="form-select form-select-sm" value={selectedVariant} onChange={e => setSelectedVariant(e.target.value)} style={{ width: '100px' }}>
+                <select className="form-select form-select-sm" value={selectedVariant} onChange={e => setSelectedVariant(e.target.value)} style={{ width: '200px' }}>
                   {activeGroupObj.variants.map(v => (
                     <option key={v} value={v}>Variant {v}</option>
                   ))}
                 </select>
 
                 {/* Version Selector */}
-                <select className="form-select form-select-sm" value={version} onChange={e => setVersion(e.target.value)} style={{ width: '90px' }}>
+                <select className="form-select form-select-sm" value={version} onChange={e => setVersion(e.target.value)} style={{ width: '120px' }}>
                   <option value="v4">v4</option>
                   <option value="latest">latest</option>
                 </select>
 
                 {/* Source Toggle */}
-                <select className="form-select form-select-sm" value={useLocal ? 'local' : 'cdn'} onChange={e => setUseLocal(e.target.value === 'local')} style={{ width: '110px' }}>
+                <select className="form-select form-select-sm" value={useLocal ? 'local' : 'cdn'} onChange={e => setUseLocal(e.target.value === 'local')} style={{ width: '150px' }}>
                   <option value="cdn">jsDelivr CDN</option>
                   <option value="local">Local CSS</option>
                 </select>
 
-                {/* Dark Mode Toggle */}
-                <button className={`btn btn-sm ${isDark ? 'btn-warning' : 'btn-dark'}`} onClick={() => setIsDark(!isDark)}>
-                  {isDark ? '☀️ Light' : '🌙 Dark'}
-                </button>
-
                 {/* Copy CDN Link */}
-                <button className="btn btn-sm btn-outline-primary" onClick={copyCssUrl}>
-                  {copied ? '✓ Copied URL!' : '📋 Copy CDN Link'}
+                <button className="btn btn-sm btn-outline-secondary border-secondary-subtle text-dark bg-body" onClick={copyCssUrl}>
+                  {copied ? 'CDN URL Copied' : 'Copy CDN Link'}
                 </button>
               </div>
             </div>
@@ -149,12 +144,9 @@
 
           <div className="container my-4">
             {/* Header Banner */}
-            <div className="p-4 mb-4 rounded-3 bg-primary-gradient text-white shadow-sm">
+            <div className="p-4 mb-4 rounded-3 bg-light text-dark shadow-sm">
               <div className="container-fluid py-2">
-                <h1 className="display-6 fw-bold mb-2">JJJEI Core Assets v4 Showcase</h1>
-                <p className="col-md-10 fs-6 opacity-90 mb-0">
-                  Active Theme: <code>{selectedGroup}:{selectedVariant}</code> | Output Path: <code>colors/{version}/{selectedGroup}:{selectedVariant}.css</code>
-                </p>
+                <h1 className="display-6 fw-bold mb-0">JJJEI Core Assets v4 Showcase</h1>
               </div>
             </div>
 
@@ -232,46 +224,54 @@
 
             {/* Section 3: Custom Loaders */}
             <section className="mb-5">
-              <h3 className="fw-bold mb-3 border-bottom pb-2">3. Custom Loader Alternatives</h3>
+              <h3 className="fw-bold mb-3 border-bottom pb-2">3. Custom Loader Alternatives & Color Variants</h3>
               <p className="text-body-secondary small">
-                Alternatives to standard Bootstrap spinners configured via keyframes (<code>.loader</code>, <code>.loader-pulse</code>, <code>.loader-dots</code>).
+                Alternatives to standard Bootstrap spinners configured via keyframes (<code>.loader</code>, <code>.loader-pulse</code>, <code>.loader-dots</code>) with color variants (<code>.loader-primary</code>, <code>.loader-light</code>, <code>.loader-dark</code>, etc.).
               </p>
 
               <div className="row g-3">
                 <div className="col-md-3">
                   <div className="card p-3 text-center h-100 shadow-sm">
                     <h6>Standard Ring (.loader)</h6>
-                    <div className="py-3">
-                      <div className="loader text-primary"></div>
+                    <div className="py-3 d-flex justify-content-center gap-3 align-items-center">
+                      <div className="loader loader-primary"></div>
+                      <div className="loader loader-dark"></div>
+                      <div className="bg-dark p-2 rounded d-inline-block"><div className="loader loader-light"></div></div>
                     </div>
-                    <code className="small">&lt;div class="loader text-primary"&gt;&lt;/div&gt;</code>
+                    <code className="small">&lt;div class="loader loader-primary"&gt;&lt;/div&gt;</code>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="card p-3 text-center h-100 shadow-sm">
                     <h6>Pulse Loader (.loader-pulse)</h6>
-                    <div className="py-3">
-                      <div className="loader-pulse text-success"></div>
+                    <div className="py-3 d-flex justify-content-center gap-3 align-items-center">
+                      <div className="loader-pulse loader-primary"></div>
+                      <div className="loader-pulse loader-dark"></div>
+                      <div className="bg-dark p-2 rounded d-inline-block"><div className="loader-pulse loader-light"></div></div>
                     </div>
-                    <code className="small">&lt;div class="loader-pulse text-success"&gt;&lt;/div&gt;</code>
+                    <code className="small">&lt;div class="loader-pulse loader-primary"&gt;&lt;/div&gt;</code>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="card p-3 text-center h-100 shadow-sm">
                     <h6>Dots Loader (.loader-dots)</h6>
-                    <div className="py-3">
-                      <div className="loader-dots text-danger">●</div>
+                    <div className="py-3 d-flex justify-content-center gap-3 align-items-center">
+                      <div className="loader-dots loader-primary">●</div>
+                      <div className="loader-dots loader-dark">●</div>
+                      <div className="bg-dark p-2 rounded d-inline-block"><div className="loader-dots loader-light">●</div></div>
                     </div>
-                    <code className="small">&lt;div class="loader-dots text-danger"&gt;●&lt;/div&gt;</code>
+                    <code className="small">&lt;div class="loader-dots loader-primary"&gt;●&lt;/div&gt;</code>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="card p-3 text-center h-100 shadow-sm">
                     <h6>Bootstrap Spinner (.spinner-border)</h6>
-                    <div className="py-3">
-                      <div className="spinner-border text-info" role="status"></div>
+                    <div className="py-3 d-flex justify-content-center gap-3 align-items-center">
+                      <div className="spinner-border loader-primary" role="status"></div>
+                      <div className="spinner-border loader-dark" role="status"></div>
+                      <div className="bg-dark p-2 rounded d-inline-block"><div className="spinner-border loader-light" role="status"></div></div>
                     </div>
-                    <code className="small">&lt;div class="spinner-border text-info"&gt;&lt;/div&gt;</code>
+                    <code className="small">&lt;div class="spinner-border loader-primary"&gt;&lt;/div&gt;</code>
                   </div>
                 </div>
               </div>
