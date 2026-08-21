@@ -182,6 +182,10 @@
                           <span>bg-{color}-gradient</span>
                           <span className="badge bg-black bg-opacity-25">45°</span>
                         </div>
+                        <div className={`p-2 rounded bg-${color}-gradient-subtle text-${color}-emphasis small font-monospace d-flex justify-content-between align-items-center border border-${color}-subtle`}>
+                          <span>bg-{color}-gradient-subtle</span>
+                          <span className="badge bg-black bg-opacity-10">Subtle 45°</span>
+                        </div>
                         <div className={`p-2 rounded bg-${color}-shaded text-white small font-monospace d-flex justify-content-between align-items-center`}>
                           <span>bg-{color}-shaded</span>
                           <span className="badge bg-black bg-opacity-25">Shaded</span>
@@ -218,6 +222,9 @@
                       </div>
                       <div className={`p-2 mb-1 rounded bg-status-${code}-gradient text-white small`}>
                         .bg-status-{code}-gradient
+                      </div>
+                      <div className={`p-2 mb-1 rounded bg-status-${code}-gradient-subtle text-status-${code}-emphasis small border border-status-${code}-subtle`}>
+                        .bg-status-{code}-gradient-subtle
                       </div>
                       <div className={`p-2 mb-1 rounded bg-status-${code}-shaded text-white small`}>
                         .bg-status-{code}-shaded
