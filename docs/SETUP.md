@@ -74,8 +74,8 @@ function doGet(e) {
   var group = e.parameter.group || 'jjjei_admin:0'; 
   
   var template = HtmlService.createTemplateFromFile('Index');
-  // jsDelivr (Latest - Recommended)
-  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/${group}.css`;
+  // jsDelivr (Rolling Latest - Recommended)
+  template.groupCssUrl = `https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@latest/colors/latest/${group}.css`;
   
   return template.evaluate()
       .addMetaTag('viewport', 'width=device-width, initial-scale=1');
@@ -97,7 +97,14 @@ function doGet(e) {
 
 ## 5. Cache Purging
 
-**jsDelivr:** To force jsDelivr to clear its edge cache and fetch the newest version immediately, replace `cdn` with `purge` in the URL in your browser:
-`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css`
+**jsDelivr:** When running `npm run release`, the edge cache is purged automatically for both `@latest` and `@main`. If you ever need to manually purge a specific file on jsDelivr, replace `cdn` with `purge` in the URL:
+`https://purge.jsdelivr.net/gh/tony-jjjentinc/assets@latest/colors/latest/jjjei_admin:0.css`
 
-**GitHub Pages:** Note that GitHub Pages has a ~10-minute cache (`max-age=600`). When you push updates to your CSS repository, it may take up to 10 minutes for the changes to reflect globally across your GAS apps. You can bypass your browser's local cache by doing a hard refresh (`Ctrl + F5` or `Cmd + Shift + R`).
+## 6. Local Development & Releasing
+
+For building assets locally and releasing new updates:
+1. **Local Build:** Run `npm run build` (`python3 scripts/generator.py`) to compile all CSS files and generate the WCAG contrast audit.
+2. **Visual Verification:** Open `index.html` in your web browser to test swatches, components, and dark mode.
+3. **Automated Release:** Run `npm run release [patch | minor | major]` to bump semver, compile, tag, force-sync the `latest` branch, and purge CDN caches in one atomic step.
+
+For full release lifecycle and semantic versioning rules, refer to the [Versioning & Release Guide](VERSIONING.md).

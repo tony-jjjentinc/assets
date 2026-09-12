@@ -54,46 +54,105 @@ How legacy compatibility is guaranteed:
 
 ---
 
-## 3. How to Release Next Updates (Developer Workflow)
+## 3. Development to Release Lifecycle
 
-### Standard Automated Release (Recommended)
+The following lifecycle outlines the complete path from modifying design tokens locally to publishing production releases globally.
 
-The repository provides a single unified release command:
+```mermaid
+flowchart TD
+    subgraph Step1["1. Local Development"]
+        A["Edit Config & SCSS<br/>(config/*.json, scripts/generator.py)"] --> B["npm run build<br/>(Recompiles CSS locally)"]
+        B --> C["Open index.html<br/>(Visual inspection & contrast check)"]
+    end
+
+    subgraph Step2["2. Commit Changes"]
+        C --> D["git add & git commit<br/>(Commit code changes to main)"]
+        D --> E["git push origin main"]
+    end
+
+    subgraph Step3["3. Automated Release"]
+        E --> F["npm run release (patch | minor | major)"]
+    end
+
+    subgraph Step4["4. Release Pipeline Automation"]
+        F --> G1["1. Bump semver in package.json"]
+        F --> G2["2. Recompile production CSS (colors/latest & colors/v{major})"]
+        F --> G3["3. Commit & Tag: git tag -a vX.Y.Z"]
+        F --> G4["4. Push to main & tag to origin"]
+        F --> G5["5. Force-sync 'latest' branch (git push origin main:latest --force)"]
+        F --> G6["6. Invalidate jsDelivr edge caches"]
+    end
+
+    subgraph Step5["5. Consumer Consumption"]
+        G3 --> H1["Production Apps:<br/>assets@vX.Y.Z/colors/latest/{group}.css<br/>(Immutable, instant, 0 stale cache)"]
+        G5 --> H2["Rolling Apps:<br/>assets@latest/colors/latest/{group}.css<br/>(Auto-updating, freshly purged)"]
+        G2 --> H3["Legacy Apps:<br/>assets@main/colors/v4/{group}.css<br/>(100% backwards-compatible)"]
+    end
+```
+
+### Step-by-Step Developer Workflow
+
+#### Step 1: Local Development & Configuration
+1. **Modify Tokens or Styling:**
+   * Add or edit group colors in [`config/groupColors.json`](../config/groupColors.json), UI system colors in [`config/systemColors.json`](../config/systemColors.json), or numeric status colors in [`config/statusColors.json`](../config/statusColors.json).
+   * Configure global tokens (fonts, corner rounding, shadows, WCAG thresholds, tint weights) in [`config/designTokens.json`](../config/designTokens.json).
+   * Update SCSS utility rules or loaders in [`scripts/generator.py`](../scripts/generator.py).
+2. **Recompile CSS Locally:**
+   ```bash
+   npm run build
+   ```
+   * Compiles SCSS bundles into [`colors/latest/`](../colors/latest) and [`colors/v4/`](../colors/v4).
+   * Evaluates contrast and outputs [`contrast-report.md`](../colors/latest/contrast-report.md).
+3. **Inspect Visually:**
+   * Open [`index.html`](../index.html) in your web browser to test swatches, status matrices, components, and light/dark theme toggling.
+
+#### Step 2: Commit Code Changes to `main`
+Once your feature or fix is ready and tested locally:
+```bash
+git add .
+git commit -m "FEAT: describe your changes"
+git push origin main
+```
+
+#### Step 3: Publish the Release (Single Command)
+Run the release pipeline from the `main` branch specifying the semver bump level:
 
 ```bash
-# For bug fixes, token adjustments, or contrast tweaks (e.g. 4.0.0 -> 4.0.1):
-npm run release
-# or explicitly:
-npm run release patch
+# For bug fixes, WCAG corrections, or token weight tweaks (e.g. 4.0.0 -> 4.0.1):
+npm run release patch       # or simply: npm run release
 
 # For new color variants, utilities, or feature additions (e.g. 4.0.0 -> 4.1.0):
 npm run release minor
 
-# For major breaking overhauls or Bootstrap major upgrades (e.g. 4.0.0 -> 5.0.0):
+# For major breaking overhauls or Bootstrap major version upgrades (e.g. 4.0.0 -> 5.0.0):
 npm run release major
 
-# Or specify an exact semver:
+# Or specify an explicit target version:
 npm run release 4.1.0
 ```
 
-#### What the Release Command Executes Automatically:
-1. **Pre-flight Check:** Ensures you are on the `main` branch with a clean working tree.
-2. **Version Bump:** Calculates the next semantic version and updates `"version"` in [`package.json`](file:///home/soot/projects/jjjei/assets/package.json).
-3. **Asset Compilation:** Runs `python3 scripts/generator.py` to compile all CSS bundles for `colors/latest/` and `colors/v{major}/`.
-4. **Git Commit:** Stages changed files and commits: `RELEASE: vX.Y.Z`.
-5. **Git Tag:** Creates an annotated tag: `git tag -a vX.Y.Z -m "Release vX.Y.Z"`.
-6. **Push to Remote:**
+> [!TIP]
+> **Dry-Run Simulation:** Test the release flow without creating commits or pushing to remote:
+> ```bash
+> npm run release -- --dry-run
+> ```
+
+#### Step 4: Automated Pipeline Execution
+The release script ([`scripts/release.py`](../scripts/release.py)) automatically executes the following steps:
+1. **Pre-flight Check:** Confirms the repository is on `main` and the working tree is clean.
+2. **Version Bump:** Updates `"version"` in [`package.json`](../package.json).
+3. **Build Execution:** Recompiles all SCSS bundles to ensure 100% build-to-source fidelity.
+4. **Git Commit & Tag:** Stages assets, commits `RELEASE: vX.Y.Z`, and creates annotated Git tag `vX.Y.Z`.
+5. **Remote Push & Branch Sync:**
    * Pushes commit to `origin main`.
    * Pushes the new release tag `vX.Y.Z` to `origin`.
    * Force-syncs the `latest` branch: `git push origin main:latest --force`.
-7. **CDN Edge Purge:** Automatically triggers `python3 scripts/purge_cdn.py` to invalidate jsDelivr edge caches for `@latest` and `@main`.
+6. **Edge Cache Purge:** Invokes [`scripts/purge_cdn.py`](../scripts/purge_cdn.py) to immediately invalidate jsDelivr's worldwide edge caches for `@latest` and `@main`.
 
-### Dry-Run Simulation
-
-To verify all steps without making actual Git commits or remote pushes:
-```bash
-npm run release -- --dry-run
-```
+#### Step 5: Consumer Integration & Updates
+* **Production Apps (Recommended):** Update `<link>` href to `@vX.Y.Z` (e.g., `@v4.1.0`). Because the version tag is part of the URL, it fetches the new release immediately with zero cache delay.
+* **Rolling Apps:** Keep `<link>` href pointed to `@latest`. Receives updates within seconds after the automated purge completes.
+* **Legacy Apps:** Unchanged; continue pointing to `@main/colors/v4/` with full backwards compatibility.
 
 ---
 
