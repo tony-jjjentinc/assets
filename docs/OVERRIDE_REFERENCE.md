@@ -95,12 +95,14 @@ All components that leverage `$primary` adopt the active group color:
 | `.border-primary-subtle` | Border matching the subtle tint weight. |
 | `.text-primary-emphasis` | Primary color auto-darkened to achieve WCAG 4.5:1 AA contrast against white backgrounds. |
 | `.bg-primary-base` | Anchor page background using a 60% tint of the department's parent base color (`:0`), ensuring brand continuity. |
-| `.bg-primary-gradient` | 45-degree linear gradient transitioning from the primary color to subtle primary tint. |
-| `.bg-primary-gradient-subtle` | 45-degree linear gradient transitioning from subtle primary tint to 50% opacity subtle primary tint. |
+| `.bg-primary-gradient` | 45-degree linear gradient transitioning from the primary color to subtle primary tint with tactile SVG noise grain. |
+| `.bg-primary-gradient-subtle` | 45-degree linear gradient transitioning from subtle primary tint to 50% opacity subtle primary tint with tactile SVG noise grain. |
 | `.bg-primary-faint` | 20% faint tint background (`mix(#fff, $primary, 20%)` in light mode; `mix(#000, $primary, 20%)` in dark mode). |
 | `.border-primary-faint` | 20% faint border. |
 | `.bg-primary-shaded` | 35% shaded background (`mix(#000, $primary, 35%)`). |
 | `.border-primary-shaded` | 35% shaded border. |
+| `.bg-primary-body` | 93% off-white tint background (`mix(#fff, $primary, 93%)` in light mode; `mix(#000, $primary, 92%)` in dark mode) for gentle page-level canvas wash. |
+| `.border-primary-body` | 88% subtle border (`mix(#fff, $primary, 88%)` in light mode; `mix(#000, $primary, 85%)` in dark mode). |
 | `.loader-primary` | Colorizes animated custom loaders (`.loader`, `.loader-pulse`, `.loader-dots`) to the primary color. |
 
 ---
@@ -123,6 +125,7 @@ Each custom brand color generates a complete family of Bootstrap-compatible clas
   - `.bg-jjjei-primary-gradient` — 45° gradient
   - `.bg-jjjei-primary-faint` — 20% faint tint
   - `.bg-jjjei-primary-shaded` — 35% darkened shade
+  - `.bg-jjjei-primary-body` — 93% off-white background wash
 - **Text & Borders:**
   - `.text-jjjei-primary` — Text color
   - `.text-jjjei-primary-emphasis` — High-contrast text emphasis
@@ -130,6 +133,7 @@ Each custom brand color generates a complete family of Bootstrap-compatible clas
   - `.border-jjjei-primary-subtle` — Subtle border
   - `.border-jjjei-primary-faint` — Faint border
   - `.border-jjjei-primary-shaded` — Shaded border
+  - `.border-jjjei-primary-body` — 88% subtle border
 - **Components & Loaders:**
   - `.btn-jjjei-primary`, `.btn-outline-jjjei-primary`
   - `.alert-jjjei-primary`
@@ -139,7 +143,7 @@ Each custom brand color generates a complete family of Bootstrap-compatible clas
   - `.loader-jjjei-primary`
 
 #### For `jjjei-secondary`:
-- Same structure: `.bg-jjjei-secondary`, `.bg-jjjei-secondary-subtle`, `.bg-jjjei-secondary-gradient`, `.bg-jjjei-secondary-faint`, `.bg-jjjei-secondary-shaded`, `.text-jjjei-secondary`, `.text-jjjei-secondary-emphasis`, `.border-jjjei-secondary`, `.border-jjjei-secondary-subtle`, `.border-jjjei-secondary-faint`, `.border-jjjei-secondary-shaded`, `.btn-jjjei-secondary`, `.btn-outline-jjjei-secondary`, `.alert-jjjei-secondary`, `.loader-jjjei-secondary`, `.table-jjjei-secondary`, `.list-group-item-jjjei-secondary`.
+- Same structure: `.bg-jjjei-secondary`, `.bg-jjjei-secondary-subtle`, `.bg-jjjei-secondary-gradient`, `.bg-jjjei-secondary-faint`, `.bg-jjjei-secondary-shaded`, `.bg-jjjei-secondary-body`, `.text-jjjei-secondary`, `.text-jjjei-secondary-emphasis`, `.border-jjjei-secondary`, `.border-jjjei-secondary-subtle`, `.border-jjjei-secondary-faint`, `.border-jjjei-secondary-shaded`, `.border-jjjei-secondary-body`, `.btn-jjjei-secondary`, `.btn-outline-jjjei-secondary`, `.alert-jjjei-secondary`, `.loader-jjjei-secondary`, `.table-jjjei-secondary`, `.list-group-item-jjjei-secondary`.
 
 #### Example Usage:
 ```html
@@ -187,6 +191,7 @@ Replace `#` with the status number (`0` to `9`):
   - `.bg-status-#-gradient-subtle` — 45° linear gradient from subtle tint to 50% opacity subtle tint
   - `.bg-status-#-faint` — 20% faint background tint
   - `.bg-status-#-shaded` — 35% shaded background
+  - `.bg-status-#-body` — 93% off-white status background wash
 - **Text & Emphasis Utilities:**
   - `.text-status-#` — Status color text
   - `.text-status-#-emphasis` — WCAG-compliant high-contrast status text
@@ -195,12 +200,14 @@ Replace `#` with the status number (`0` to `9`):
   - `.border-status-#-subtle` — Subtle status border
   - `.border-status-#-faint` — Faint status border
   - `.border-status-#-shaded` — Shaded status border
+  - `.border-status-#-body` — 88% subtle status border
 - **Component Classes:**
   - `.btn-status-#`, `.btn-outline-status-#` — Status button styles
   - `.alert-status-#` — Status alert banner
   - `.table-status-#` — Highlighted table row / cell
   - `.list-group-item-status-#` — Highlighted list item
   - `.loader-status-#` — Colored loader spinner
+  - `.nav-pills-status-#` — Color-scoped navigation pills
 
 ### Example Dashboard Status Usage:
 
@@ -237,3 +244,48 @@ Replace `#` with the status number (`0` to `9`):
   </tbody>
 </table>
 ```
+
+---
+
+## 6. Navigation Overrides (`.nav-link`, `.nav-pills`)
+
+The system enhances Bootstrap navigation components with automatic WCAG contrast handling and scoped color variants:
+
+### 1. Primary Navigation Active Contrast
+* In Bootstrap 5, `.nav-pills .nav-link.active` defaults to white text on `$primary`.
+* In this architecture, `$nav-pills-link-active-color` is dynamically bound to `color-contrast($primary)`. On bright/light departmental themes (e.g., `jjjei_admin:0` gold `#FFD700`), the active pill text automatically switches to dark text (`#191C1F`), preserving WCAG AA accessibility.
+
+### 2. Scoped Nav Pills Variants (`.nav-pills-#{$color}`)
+Apply `.nav-pills-{color}` alongside `.nav-pills` to scope the active pill styling to any theme or status color:
+
+```html
+<!-- Status-0 (Completed / Green) Pills -->
+<ul class="nav nav-pills nav-pills-status-0">
+  <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
+</ul>
+
+<!-- Status-5 (Urgent / Red) Pills -->
+<ul class="nav nav-pills nav-pills-status-5">
+  <li class="nav-item"><a class="nav-link active" href="#">Alerts</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Resolved</a></li>
+</ul>
+```
+
+### 3. Soft Nav Pills (`.nav-pills-subtle`)
+For lighter, modern interfaces where full solid primary pills are visually heavy, add `.nav-pills-subtle`:
+
+```html
+<!-- Primary Soft Nav Pills -->
+<ul class="nav nav-pills nav-pills-subtle">
+  <li class="nav-item"><a class="nav-link active" href="#">Overview</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+</ul>
+
+<!-- Color-Scoped Soft Nav Pills -->
+<ul class="nav nav-pills nav-pills-status-2 nav-pills-subtle">
+  <li class="nav-item"><a class="nav-link active" href="#">Processing</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Completed</a></li>
+</ul>
+```
+

@@ -198,6 +198,10 @@
                           <span>bg-{color}-subtle</span>
                           <span className="badge bg-black bg-opacity-10">Subtle</span>
                         </div>
+                        <div className={`p-2 rounded bg-${color}-body text-body small font-monospace d-flex justify-content-between align-items-center border border-${color}-body`}>
+                          <span>bg-{color}-body</span>
+                          <span className="badge bg-black bg-opacity-10">Body Off-White</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -229,8 +233,11 @@
                       <div className={`p-2 mb-1 rounded bg-status-${code}-shaded text-white small`}>
                         .bg-status-{code}-shaded
                       </div>
-                      <div className={`p-1 rounded bg-status-${code}-faint text-body small border border-status-${code}-faint`}>
+                      <div className={`p-1 mb-1 rounded bg-status-${code}-faint text-body small border border-status-${code}-faint`}>
                         .bg-status-{code}-faint
+                      </div>
+                      <div className={`p-1 rounded bg-status-${code}-body text-body small border border-status-${code}-body`}>
+                        .bg-status-{code}-body
                       </div>
                     </div>
                   </div>
@@ -397,6 +404,38 @@
                     <div className="form-check form-switch mb-2">
                       <input className="form-check-input" type="checkbox" role="switch" id="switchEx" defaultChecked />
                       <label className="form-check-label" htmlFor="switchEx">Form switch active theme color</label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Navigation Pills */}
+                <div className="col-md-12">
+                  <div className="card p-3 shadow-sm">
+                    <h5 className="card-title mb-3">Navigation Pills & Color Scopes</h5>
+                    <div className="row g-3">
+                      <div className="col-md-4">
+                        <h6 className="small fw-bold text-secondary">Primary Nav Pills (Auto-Contrast)</h6>
+                        <ul className="nav nav-pills">
+                          <li className="nav-item"><a className="nav-link active" href="#!">Active</a></li>
+                          <li className="nav-item"><a className="nav-link" href="#!">Link</a></li>
+                          <li className="nav-item"><a className="nav-link disabled" href="#!">Disabled</a></li>
+                        </ul>
+                      </div>
+                      <div className="col-md-4">
+                        <h6 className="small fw-bold text-secondary">Soft Subtle Nav Pills (.nav-pills-subtle)</h6>
+                        <ul className="nav nav-pills nav-pills-subtle">
+                          <li className="nav-item"><a className="nav-link active" href="#!">Active</a></li>
+                          <li className="nav-item"><a className="nav-link" href="#!">Overview</a></li>
+                          <li className="nav-item"><a className="nav-link" href="#!">Reports</a></li>
+                        </ul>
+                      </div>
+                      <div className="col-md-4">
+                        <h6 className="small fw-bold text-secondary">Status Nav Pills (.nav-pills-status-0)</h6>
+                        <ul className="nav nav-pills nav-pills-status-0">
+                          <li className="nav-item"><a className="nav-link active" href="#!">Completed</a></li>
+                          <li className="nav-item"><a className="nav-link" href="#!">In Review</a></li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

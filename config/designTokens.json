@@ -29,5 +29,15 @@
   "base-bg-tint-strength": 40,
   "base-bg-shade-strength": 40,
 
+  "_comment_body": "Custom design token config for off-white body background tint (7% base, 93% white/black)",
+  "body-bg-tint-weight": 93,
+  "body-border-tint-weight": 88,
+  "body-bg-shade-weight": 92,
+  "body-border-shade-weight": 85,
+
+  "_comment_noise": "Custom design token config for gradient noise grain textures",
+  "enable-gradient-noise": true,
+  "gradient-noise-opacity": 0.06,
+
   "override-bootstrap-spinner": false
 }

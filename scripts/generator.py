@@ -200,6 +200,16 @@ def generate_css():
     base_bg_tint_strength = float(design_tokens.get('base-bg-tint-strength', 40))
     base_bg_shade_strength = float(design_tokens.get('base-bg-shade-strength', 40))
 
+    body_bg_tint = float(design_tokens.get('body-bg-tint-weight', 93))
+    body_border_tint = float(design_tokens.get('body-border-tint-weight', 88))
+    body_bg_shade = float(design_tokens.get('body-bg-shade-weight', 92))
+    body_border_shade = float(design_tokens.get('body-border-shade-weight', 85))
+
+    enable_noise = design_tokens.get('enable-gradient-noise', True)
+    noise_opacity = float(design_tokens.get('gradient-noise-opacity', 0.06))
+    noise_svg = f"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='{noise_opacity}'/%3E%3C/svg%3E"
+    noise_prefix = f'url("{noise_svg}"), ' if enable_noise else ''
+
     override_spinner = design_tokens.get('override-bootstrap-spinner', False)
 
     def generate_subtle_overrides(name, hex_color):
@@ -215,7 +225,12 @@ def generate_css():
             f"${name}-border-faint-dark: {shade_color(hex_color, faint_border_shade)};",
 
             f"${name}-bg-shaded: {shade_color(hex_color, shaded_bg_shade)};",
-            f"${name}-border-shaded: {shade_color(hex_color, shaded_border_shade)};"
+            f"${name}-border-shaded: {shade_color(hex_color, shaded_border_shade)};",
+
+            f"${name}-bg-body: {tint_color(hex_color, body_bg_tint)};",
+            f"${name}-border-body: {tint_color(hex_color, body_border_tint)};",
+            f"${name}-bg-body-dark: {shade_color(hex_color, body_bg_shade)};",
+            f"${name}-border-body-dark: {shade_color(hex_color, body_border_shade)};"
         ]
         return "\n".join(overrides)
 
@@ -379,6 +394,7 @@ def generate_css():
         scss_content.append('));')
         scss_content.append('')
         scss_content.append('// Components that depend on colors')
+        scss_content.append('$nav-pills-link-active-color: color-contrast($primary);')
         scss_content.append('@import "node_modules/bootstrap/scss/root";')
         scss_content.append('@import "node_modules/bootstrap/scss/buttons";')
         scss_content.append('@import "node_modules/bootstrap/scss/button-group";')
@@ -433,17 +449,17 @@ def generate_css():
         scss_content.append("// 45deg Gradient Utilities (Primary, System & Status colors)")
         scss_content.append("@each $color, $value in $theme-colors {")
         scss_content.append("  .bg-#{$color}-gradient {")
-        scss_content.append("    background: linear-gradient(45deg, $value 0%, var(--#{$prefix}#{$color}-bg-subtle, mix(#fff, $value, 75%)) 100%) !important;")
+        scss_content.append(f"    background: {noise_prefix}linear-gradient(45deg, $value 0%, var(--#{{$prefix}}#{{$color}}-bg-subtle, mix(#fff, $value, 75%)) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("  [data-bs-theme=\"dark\"] .bg-#{$color}-gradient {")
-        scss_content.append("    background: linear-gradient(45deg, $value 0%, var(--#{$prefix}#{$color}-bg-subtle-dark, mix(#000, $value, 75%)) 100%) !important;")
+        scss_content.append(f"    background: {noise_prefix}linear-gradient(45deg, $value 0%, var(--#{{$prefix}}#{{$color}}-bg-subtle-dark, mix(#000, $value, 75%)) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("")
         scss_content.append("  .bg-#{$color}-gradient-subtle {")
-        scss_content.append("    background: linear-gradient(45deg, var(--#{$prefix}#{$color}-bg-subtle, mix(#fff, $value, 75%)) 0%, color-mix(in srgb, var(--#{$prefix}#{$color}-bg-subtle, mix(#fff, $value, 75%)) 50%, transparent) 100%) !important;")
+        scss_content.append(f"    background: {noise_prefix}linear-gradient(45deg, var(--#{{$prefix}}#{{$color}}-bg-subtle, mix(#fff, $value, 75%)) 0%, color-mix(in srgb, var(--#{{$prefix}}#{{$color}}-bg-subtle, mix(#fff, $value, 75%)) 50%, transparent) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("  [data-bs-theme=\"dark\"] .bg-#{$color}-gradient-subtle {")
-        scss_content.append("    background: linear-gradient(45deg, var(--#{$prefix}#{$color}-bg-subtle-dark, mix(#000, $value, 75%)) 0%, color-mix(in srgb, var(--#{$prefix}#{$color}-bg-subtle-dark, mix(#000, $value, 75%)) 50%, transparent) 100%) !important;")
+        scss_content.append(f"    background: {noise_prefix}linear-gradient(45deg, var(--#{{$prefix}}#{{$color}}-bg-subtle-dark, mix(#000, $value, 75%)) 0%, color-mix(in srgb, var(--#{{$prefix}}#{{$color}}-bg-subtle-dark, mix(#000, $value, 75%)) 50%, transparent) 100%) !important;")
         scss_content.append("  }")
         scss_content.append("")
         scss_content.append("  .bg-#{$color}-shaded {")
@@ -465,6 +481,36 @@ def generate_css():
         scss_content.append("  [data-bs-theme=\"dark\"] .border-#{$color}-faint {")
         scss_content.append("    border-color: mix(#000, $value, 20%) !important;")
         scss_content.append("  }")
+        scss_content.append("")
+        scss_content.append("  .bg-#{$color}-body {")
+        scss_content.append(f"    background-color: mix(#fff, $value, {body_bg_tint}%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  .border-#{$color}-body {")
+        scss_content.append(f"    border-color: mix(#fff, $value, {body_border_tint}%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  [data-bs-theme=\"dark\"] .bg-#{$color}-body {")
+        scss_content.append(f"    background-color: mix(#000, $value, {body_bg_shade}%) !important;")
+        scss_content.append("  }")
+        scss_content.append("  [data-bs-theme=\"dark\"] .border-#{$color}-body {")
+        scss_content.append(f"    border-color: mix(#000, $value, {body_border_shade}%) !important;")
+        scss_content.append("  }")
+        scss_content.append("")
+        scss_content.append("  .nav-pills-#{$color} {")
+        scss_content.append("    --#{$prefix}nav-pills-link-active-bg: var(--#{$prefix}#{$color}, #{$value});")
+        scss_content.append("    --#{$prefix}nav-pills-link-active-color: #{color-contrast($value)};")
+        scss_content.append("  }")
+        scss_content.append("  .nav-pills-#{$color}.nav-pills-subtle .nav-link.active,")
+        scss_content.append("  .nav-pills-#{$color}.nav-pills-subtle .show > .nav-link {")
+        scss_content.append("    background-color: var(--#{$prefix}#{$color}-bg-subtle, mix(#fff, $value, 75%)) !important;")
+        scss_content.append("    color: var(--#{$prefix}#{$color}-text-emphasis, #{color-contrast($value)}) !important;")
+        scss_content.append("  }")
+        scss_content.append("}")
+        scss_content.append("")
+        scss_content.append("// Soft/subtle nav-pills utility")
+        scss_content.append(".nav-pills-subtle .nav-link.active,")
+        scss_content.append(".nav-pills-subtle .show > .nav-link {")
+        scss_content.append("  background-color: var(--#{$prefix}primary-bg-subtle) !important;")
+        scss_content.append("  color: var(--#{$prefix}primary-text-emphasis) !important;")
         scss_content.append("}")
         scss_content.append("")
 
