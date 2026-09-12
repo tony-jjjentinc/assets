@@ -14,11 +14,14 @@ By defining your color palette and design tokens in simple JSON files, a Python 
 │   ├── statusColors.json      # Defines custom semantic status colors for dashboards
 │   └── designTokens.json      # Defines global styling (fonts, border radius, shadows, contrast, subtle strengths)
 ├── scripts/
-│   └── generator.py           # The Python build script
-├── package.json           # Node.js configuration to manage Bootstrap & Sass
-├── node_modules/          # Source files for Bootstrap and dart-sass
-└── colors/                # 📂 Output directory
-    └── v3/                # 📂 Versioned CSS files and accessibility reports
+│   ├── generator.py           # The Python build script
+│   ├── release.py             # Automated release, semver, and tagging pipeline
+│   └── purge_cdn.py           # jsDelivr CDN edge cache purge utility
+├── package.json               # Project manifest, dependencies, and build/release scripts
+├── node_modules/              # Source files for Bootstrap and dart-sass
+└── colors/                    # 📂 Output directory
+    ├── latest/                # 📂 Modern canonical assets for @latest and @vX.Y.Z releases
+    └── v4/                    # 📂 Current major version directory for legacy fallback
 ```
 
 ---

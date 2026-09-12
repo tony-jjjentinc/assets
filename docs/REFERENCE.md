@@ -17,15 +17,19 @@ To use these assets in your projects, it is highly recommended to use **jsDelivr
 ## 1. Styling Integration (CSS/Colors)
 
 ### Static Implementation
-Include the default Bootstrap 5 CSS CDN link in your web projects, followed by the CDN URL pointing to the pre-compiled group CSS. You can use either the `latest` endpoint for auto-updating styles or a pinned version endpoint (e.g. `v3`).
+Include the default Bootstrap 5 CSS CDN link in your web projects, followed by the CDN URL pointing to the pre-compiled group CSS. You can use the rolling `latest` branch for auto-updating styles, an immutable Git tag for frozen production stability (e.g. `@v4.0.0`), or legacy directory pinning (`colors/v4/`).
 
 ```html
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jsDelivr (Latest - Recommended) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css">
 
-<!-- jsDelivr (Version Pinned) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v3/jjjei_admin:0.css">
+<!-- 1. jsDelivr: Rolling Latest (Recommended for general auto-updating apps) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@latest/colors/latest/jjjei_admin:0.css">
+
+<!-- 2. jsDelivr: Immutable Tagged Release (Recommended for mission-critical production) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@v4.0.0/colors/latest/jjjei_admin:0.css">
+
+<!-- 3. jsDelivr: Legacy Directory Pinned (Still fully supported) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v4/jjjei_admin:0.css">
 ```
 
 ### Dynamic Implementation (Code.gs)
@@ -36,8 +40,13 @@ You can dynamically pass the appropriate group CSS URL to the frontend template,
 function doGet(e) {
   var group = e.parameter.group || 'jjjei_admin:0';
   var template = HtmlService.createTemplateFromFile('Index');
-  // Use 'latest' to automatically inherit future theme updates
-  template.cssUrl = 'https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/' + group + '.css';
+
+  // Option 1: Rolling 'latest' to automatically inherit future theme enhancements
+  template.cssUrl = 'https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@latest/colors/latest/' + group + '.css';
+
+  // Option 2: Immutable Git release tag for guaranteed zero-regression stability
+  // template.cssUrl = 'https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@v4.0.0/colors/latest/' + group + '.css';
+
   return template.evaluate();
 }
 ```

@@ -7,3 +7,4 @@ For detailed documentation, please refer to the files in the `docs/` directory:
 - [Setup](docs/SETUP.md) - Instructions for local development and building assets.
 - [Reference](docs/REFERENCE.md) - Instructions for integrating these assets into your Google Apps Script projects.
 - [Override Reference](docs/OVERRIDE_REFERENCE.md) - Quick reference for primary overrides, custom brand colors, and status utilities.
+- [Versioning & Release Guide](docs/VERSIONING.md) - Release workflow, Git tag/branch architecture, and CDN endpoint guide.

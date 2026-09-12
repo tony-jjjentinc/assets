@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "python3 scripts/generator.py",
-    "purge": "python3 scripts/purge_cdn.py"
+    "purge": "python3 scripts/purge_cdn.py",
+    "release": "python3 scripts/release.py"
   },
   "repository": {
     "type": "git",

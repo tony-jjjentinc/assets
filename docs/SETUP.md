@@ -16,10 +16,11 @@ Ensure this repository is pushed to GitHub and GitHub Pages is enabled in your r
 
 ## 2. CSS Versioning & Endpoints
 
-The build script automatically outputs compiled CSS files to **two** locations:
+JJJEI Core Assets supports modern Git tag/branch endpoints and maintains full backward compatibility with legacy directory-based endpoints. (See [Versioning Guide](VERSIONING.md) for full details).
 
-1. **`colors/latest/` (Auto-Updating - Recommended):** Applications using this path will automatically receive future non-breaking theme updates without code modifications.
-2. **`colors/v3/` (Version Pinned):** Applications pointing to major version paths (determined by `package.json` version major) remain completely stable and unaffected when major updates are published.
+1. **`@latest/colors/latest/` (Rolling Latest - Recommended):** Applications using this endpoint automatically inherit future theme enhancements, new color tokens, and accessibility fixes without manual code changes.
+2. **`@vX.Y.Z/colors/latest/` (Immutable Release Pin):** Mission-critical production applications can pin to exact Git release tags (e.g. `@v4.0.0`) for permanent stability.
+3. **`@main/colors/v4/` (Legacy Directory Pinned):** Pre-existing implementations referencing major version paths remain fully supported.
 
 ## 3. Setting up the HTML Template in GAS
 
@@ -40,12 +41,14 @@ In your GAS project's `Index.html` (or whichever file contains your `<head>` tag
     <!-- 1. Include the standard Bootstrap 5 CDN link for layout/structure -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- 2. Add your custom theme overrides (jsDelivr Recommended - Latest) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/latest/jjjei_admin:0.css">
+    <!-- 2. Add custom theme overrides (jsDelivr - Rolling Latest Recommended) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@latest/colors/latest/jjjei_admin:0.css">
     
-    <!-- OR Version Pinned -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v3/jjjei_admin:0.css"> -->
+    <!-- OR Immutable Version Pinned -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@v4.0.0/colors/latest/jjjei_admin:0.css"> -->
     
+    <!-- OR Legacy Directory Pinned -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tony-jjjentinc/assets@main/colors/v4/jjjei_admin:0.css"> -->
   </head>
   <body>
     <div class="container mt-4">
